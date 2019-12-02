@@ -1,0 +1,87 @@
+% !TEX encoding = UTF-8 Unicode
+%
+% Copyright 2018 Joel Feldman, Andrew Rechnitzer and Elyse Yeager.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+%
+\documentclass[12pt,letterpaper]{book}
+
+
+\usepackage{notes_header}
+
+\graphicspath{{./figures/misc/}}
+
+\usepackage{xeCJK}
+\usepackage{fontspec}
+%\setmainfont{Athelas}
+\setCJKmainfont{宋體-繁}
+\XeTeXlinebreaklocale "zh"  
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\usepackage{amssymb, amsmath}
+
+\usepackage{wasysym}
+\usepackage{textcomp}
+
+
+\usepackage{xcolor} % Required for specifying colors by name
+\definecolor{tssteelblue}{RGB}{70,130,180}
+\definecolor{tsorange}{RGB}{255,138,88}
+\definecolor{ocre}{RGB}{52,177,201} % Define the orange color used for highlighting throughout the book
+\newcommand{\ocre}[1]{{\color{ocre}#1}}
+\newcommand{\tssteelblue}[1]{{\color{tssteelblue}#1}}
+\newcommand{\tsorange}[1]{{\color{tsorange}#1}}
+
+
+\usepackage{mathtools,cancel}
+\renewcommand{\CancelColor}{\color{red}} %change cancel color to red
+\begin{document}
+%% Cover image, not numbered
+\setcounter{page}{0}\includepdf[scale=1.1]{cover.pdf}
+
+\begin{titlepage}
+\begin{center}
+\textsc{\LARGE NTU 108-1 Differential Calculus 
+}\\[2ex]
+
+\vspace{5ex}
+\hrule
+\vspace{5ex}
+
+%\begin{minipage}[t]{0.3\textwidth} \begin{flushleft}
+\large Li-Chang \textsc{Hung}
+%\end{flushleft} \end{minipage}%
+\end{center}
+\vspace{2ex}
+\hrule
+
+\vfill
+\textsc{This document was typeset on \today.}
+\end{titlepage}
+
+\subsection*{Legal stuff}
+\begin{itemize}
+\item Copyright \copyright\ 2019 Li-Chang Hung.
+
+\item Edited by Hao-Yu Chien under the framework by Joel Feldman, Andrew Rechnitzer and Elyse Yeager. 
+
+\item Links to the original files can be found at the \href{http://www.math.ubc.ca/~CLP/index.html}{text webpage}
+\end{itemize}
+
+\frontmatter
+
+
+\tableofcontents
+
+\mainmatter
+
+\setcounter{chapter}{0}
+\input{basic_notes}
+\input{limits_notes}
+\input{differentiation_notes}
+\input{applications_notes}
+
+%\appendix
+%\input{clp_highschool}
+
+\end{document}

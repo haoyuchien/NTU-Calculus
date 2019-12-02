@@ -1,0 +1,366 @@
+%
+% Copyright 2018 Joel Feldman, Andrew Rechnitzer and Elyse Yeager.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+%
+\graphicspath{{./figures/limits/}}
+%%%%%%%%%
+
+
+\chapter{Limits}\label{chap limits}
+\section{Limit 極限}
+\begin{defn}[Working definition]
+$\displaystyle \lim_{x \to a} f(x) = L$
+\begin{itemize}
+\item As $x$ approaches $a$, $f(x)$ approaches $L$.
+\end{itemize} 
+\end{defn}
+
+$\displaystyle \lim_{\theta \to 0} \frac{\sin \theta}{\theta} = 1$ ($0 < \theta < \displaystyle \frac{\pi}{2}$)\\
+
+\begin{tabular}{c|ccccc}
+&$\bigtriangleup$ OBA & $\subset$ & sector (扇形) OBA & $\subset$ &$\bigtriangleup$ OB'A\\\hline
+area & $\displaystyle \frac{1}{2} \cdot 1 \sin \theta$ & $\leq$ & $\displaystyle \pi \cdot 1^2 \frac{\theta}{2\pi}$ & $\leq$ & $\displaystyle \frac{1}{2} \cdot 1 \tan \theta$\\
+$\implies$ & $\sin \theta$ & $\leq$ & $\theta$ & $\leq$ & $\tan \theta$\\
+$\implies$ & 1 & $\leq$ & $\displaystyle \frac{\theta}{\sin \theta}$ & $\leq$ & $\displaystyle \frac{1}{\cos \theta}$\\
+$\implies$ & $\theta$ & $\leq$ & $\displaystyle \frac{\sin \theta}{\theta}$ & $\leq$ & 1\\
+$\implies$ & $\displaystyle \lim_{\theta \to 0^{+}} \cos \theta$ & $\leq$ & $\displaystyle \lim_{\theta \to 0^{+}} \frac{\sin \theta}{\theta}$ & $\leq$ & $\displaystyle \lim_{\theta \to 0^{+}} 1$\\
+\end{tabular}
+
+$\implies \displaystyle \lim_{\theta \to 0^{+}} \frac{\sin \theta}{\theta} = 1$
+
+\begin{eg}{}
+Find $\displaystyle \lim_{x \to 0} \frac{1- \cos x}{x^2}$
+
+$$\begin{array}{rcl}
+\displaystyle \lim_{x \to 0} \frac{1 - \cos x}{x^2} & = & \displaystyle \lim_{x \to 0} \frac{(1 -\cos x)(1 + \cos x)}{x^2 (1 + \cos x)}\\
+& = & \displaystyle  \lim_{x \to 0} \frac{\sin ^2 x}{x^2 (1 + \cos x)}\\
+& = & \displaystyle \lim_{x \to 0} (\frac{\sin x}{x})^2 \cdot \lim_{x \to 0} \frac{1}{1+\cos x}\\
+& = & \displaystyle (\lim_{x \to 0} \frac{\sin x}{x})^2 \cdot \frac{1}{2}\\
+& = & \displaystyle 1 \cdot \frac{1}{2}\\
+& = & \displaystyle \frac{1}{2}
+\end{array}$$\\
+or
+$$\begin{array}{rcl}
+\displaystyle \lim_{x \to 0} \frac{1 - \cos x}{x^2} & = & \displaystyle \lim_{x \to 0} \frac{2\sin ^2 \frac{x}{2}}{x^2}\\
+& = & \displaystyle \lim_{x \to 0} \frac{2\sin ^2 \frac{x}{2}}{4(\frac{x}{2})^2}\\
+& = & \displaystyle \frac{1}{2} \lim_{x \to 0} \frac{\sin ^2 \frac{x}{2}}{(\frac{x}{2})^2}\\
+&= & \displaystyle \frac{1}{2} \cdot 1\\
+& = & \displaystyle \frac{1}{2}
+\end{array}$$
+\end{eg}
+
+\section{Ways to Find Limits}
+\begin{itemize}
+\item Direct substitution
+
+$\displaystyle \lim_{x \to a} f(x) = f(a)$
+\item Factorization 因式分解
+\item Rationalization  有理化
+\item Squeeze Theorem 夾擠定理
+\begin{theorem}
+If 
+\begin{align*}
+f(x) \leq g(x) \leq h(x) \text{near} x = a
+\end{align*}
+and 
+\begin{align*}
+\displaystyle \lim_{x \to a} f(x) = \lim_{x \to a} h(x) = L
+\end{align*} 
+then 
+\begin{align*}
+\displaystyle \lim_{x \to a} g(x) = L
+\end{align*}
+\end{theorem}
+\end{itemize}
+
+\begin{eg}[type $\frac{0}{0}$ $\star$]
+$$\lim_{x \to 0} \frac{(x+3)^2 - 9}{x} = \lim_{x \to 0} \frac{x^2 + 6x+9-9}{x} = \lim_{x \to 0} \frac{x(x+6)}{x} = 6$$
+\end{eg}
+\begin{eg} [type $\frac{0}{0}$ $\star$]
+$$\lim_{x \to 0} \frac{\sqrt{x^2 - 9} - 3}{x^2} = \lim_{x \to 0} \frac{(\sqrt{x^2 +9} - 3)(\sqrt{x^2 + 9} +3)}{x^2 (\sqrt{x^2 - 9} + 3)} = \lim_{x \to 0} \frac{1}{\sqrt{x^2 +9} + 3} = \frac{1}{6}$$
+\end{eg}
+\begin{eg}[type $\frac{0}{0}$ $\star \star$]
+$$\begin{array}{rcl}
+\displaystyle \lim_{x \to 2} \frac{\sqrt{x^3+x^2-8}-2}{x-2} & = & \displaystyle \lim_{x \to 2} \frac{(\sqrt{x^3+x^2-8}-2)(\sqrt{x^3+x^2-8}+2)}{(x-2)(\sqrt{x^3+x^2-8}+2)}\\
+& = & \displaystyle \lim_{x \to 2} \frac{x^3 + x^2 -12}{(x-2)(\sqrt{x^3+x^2-8}+2)}\\
+& = & \displaystyle \lim_{x \to 2} \frac{(x-2)(x^2 +3x +6)}{(x-2)(\sqrt{x^3+x^2-8}+2)}\\
+& = & \displaystyle \frac{4+6+6}{4}\\
+& = & 4
+\end{array}$$\\
+or
+
+$$\lim_{x \to 2} \frac{\sqrt{x^3+x^2-8}-2}{x-2} = \lim_{x \to 2} \frac{f(x) - f(2)}{x-2} = f'(2)$$
+$$f(x) = x^3 +x^2 - 8$$
+$$f'(x) = \frac{1}{2} (x^3 +x^2 -8)^{-\frac{1}{2}} (3 x^2 + 2x)$$
+$$\implies f'(2)= \frac{1}{2} (\frac{1}{2})(12-4) = 4$$
+\end{eg}
+\begin{eg} [type $\frac{0}{0}$ $\star \star$]
+$$\begin{array}{rcl}
+\displaystyle \lim_{x \to 2} \frac{\sqrt{1+ \sqrt{2+x}} - \sqrt{3}}{x-2} & = & \displaystyle \lim_{x \to 2} \frac{(\sqrt{1+ \sqrt{2+x}} - \sqrt{3})(\sqrt{1+\sqrt{2+x}}+ \sqrt{3})}{(x-2)(\sqrt{1+\sqrt{2+x}}+ \sqrt{3})}\\
+& = & \displaystyle \lim_{x \to 2} \frac{1+ \sqrt{2+x} - 3}{(x-2)(\sqrt{1+\sqrt{2+x}}+ \sqrt{3})}\\
+& = & \displaystyle \lim_{x \to 2} \frac{(\sqrt{2+x} -2)(\sqrt{2+x} +2)}{(x-2)(\sqrt{1+\sqrt{2+x}}+ \sqrt{3})(\sqrt{2+x} +2)}\\
+& = & \displaystyle \lim_{x \to 2} \frac{2+x-4}{(x-2)(\sqrt{1+\sqrt{2+x}}+ \sqrt{3})(\sqrt{2+x} +2)}\\
+& = & \displaystyle \frac{1}{2\sqrt{3} \cdot 4}\\
+& = & \displaystyle \frac{1}{8\sqrt{3}}
+\end{array}$$
+\end{eg}
+\begin{eg} [type $\frac{0}{0}$ $\star$]
+$$\begin{array}{rcl}
+\displaystyle \lim_{x \to 0} \frac{\tan x - \sin x}{x^3} & = & \displaystyle \lim_{x \to 0} \frac{\frac{\sin x}{\cos x} - \sin x}{x^3}\\
+& = & \displaystyle \lim_{x \to 0} \frac{\sin x (1 - \cos x)(1 + \cos x)}{x^3 \cos x (1 + \cos x)}\\
+& = & \displaystyle \lim_{x \to 0} \frac{\sin ^3 x}{x^3}c\frac{1}{\cos x (1 + \cos x)}\\
+& = & \displaystyle \lim_{x \to 0} \frac{\sin ^3 x}{x^3} \cdot \lim_{x \to 0} \frac{1}{\cos x (1 + \cos x)}\\
+& = & \displaystyle \frac{1}{2}
+\end{array}$$
+\end{eg}
+\begin{eg} [type $\frac{0}{0}$ $\star$]
+$$\begin{array}{rcl}
+\displaystyle \lim_{x \to 0} \frac{\cos x -1}{\sin(x \sin x)} & = & \displaystyle \lim_{x \to 0} \frac{(\cos x -1)(\cos x +1)}{\sin(x \sin x)(\cos x +1)}\\
+& = & \displaystyle -\lim_{x \to 0} \frac{sim^2 x}{\sin (x \sin x)} \cdot \frac{1}{\cos x + 1}\\
+& = & \displaystyle -\lim_{x \to 0} \frac{x \sin x}{\sin (x \sin x)} \cdot \frac{\sin ^2 x}{x \sin x} \cdot \frac{1}{\cos x + 1}\\
+& = & \displaystyle -\lim_{x \to 0} \frac{x \sin x}{\sin (x \sin x)} \cdot \lim_{x \to 0} \frac{\sin ^2 x}{x \sin x} \cdot \lim_{x \to 0} \frac{1}{\cos x + 1}\\
+& = & \displaystyle -\frac{1}{2}
+\end{array}$$
+\end{eg}
+\begin{eg} 
+$$\lim_{x \to 0} x^2 \sin (\frac{1}{x})$$
+$$\begin{array}{c}
+-1 \leq \sin x \leq 1, \forall x \in R\\
+\displaystyle \Big| x^2 \sin (\frac{1}{x}) \Big| \leq \mid x^2 \cdot 1 \mid = x^2, x \in R\\
+\displaystyle \implies - x^2 \leq x^2 \sin (\frac{1}{x}) \leq x^2, x\in R\\
+\displaystyle \lim_{x \to 0} - x^2 = \lim_{x \to 0} x^2 = 0
+\end{array}$$
+By Squeeze Theorem, we have $\displaystyle \lim_{x \to 0} x^2 \sin (\frac{1}{x}) = 0$
+\end{eg}
+
+\section{$ \displaystyle \epsilon$ - $\delta$ language}
+\begin{defn}{}
+$\displaystyle \lim_{x \to a} f(x) = L$
+\begin{itemize}
+\item $\forall \epsilon > 0$, $\exists \delta$ $(= \delta(\epsilon))$ s.t. if $\mid x - a \mid < \delta$ then $\mid f(x) -L \mid < \epsilon$ 
+\end{itemize}
+\end{defn}
+
+\begin{eg}
+Prove $\displaystyle \lim_{x \to 3} (x +2) = 5$ using $\epsilon$ - $\delta$ language\\\\
+Want to prove:\\
+$\forall \epsilon > 0, \exists \delta = \delta (\epsilon)$ s.t. if $\mid x - 3 \mid < \delta$ then $\mid (x+2)-5 \mid < \epsilon$\\
+Experiment:\\ 
+When $\epsilon = 0.1, \exists \delta$ s.t. if $\mid x-3 \mid < \delta$ then $\mid x-3 \mid < 0.1$\\
+$\begin{array}{rclc}
+\text{If } \delta & = & 0.1 & \checkmark\\
+\text{If } \delta & = & 0.2 & \times\\
+\text{If } \delta & = & 0.05 & \checkmark
+\end{array}$\\
+$\forall \epsilon > 0, \exists \delta = \epsilon$ s.t. if $\mid x-3 \mid < \delta$ then $\mid x-3 \mid < \epsilon$
+\end{eg}
+\begin{eg}[]
+Prove $\displaystyle \lim_{x \to 5} x^2 = 25$ using $\epsilon$ - $\delta$ language\\\\
+Want to show:\\ $\forall \epsilon > 0, \exists \delta = \delta(\epsilon)$ s.t. if $\mid x-5 \mid < \delta$ then $\mid x^2 - 25 \mid < \epsilon$\\
+When $\mid x-5 \mid <1$:\\
+$-1 < x-5 < 1 \Rightarrow 9< x+5<11$\\
+$\mid x^2 - 25 \mid = \mid (x-5)(x+5) \mid < \mid x-5 \mid \cdot 11$ hope $< \epsilon$\\
+hope $\displaystyle \mid x-5 \mid < \frac{\epsilon}{11}$\\
+take $\displaystyle \delta = \min(1, \frac{\epsilon}{11})$\\
+Verification:\\
+$\displaystyle \forall \epsilon > 0, \exists \delta = \min (1, \frac{\epsilon}{11})$\\
+check \\
+$\displaystyle \mid x-5 \mid < \min(1, \frac{\epsilon}{11}) \leq \frac{\epsilon}{11}$\\
+$\displaystyle \implies \mid x^2 -25 \mid < \epsilon$\\
+$\displaystyle \mid x^2 -25 \mid = \mid x-5 \mid \cdot \mid x+5 \mid \leq \frac{\epsilon}{11} \cdot 11 = \epsilon$
+\end{eg}
+
+\begin{jk}{}
+九九乘法表(table) $\Rightarrow$ 地板算
+\end{jk}
+\section{Limit Law}
+Assume $\displaystyle \lim_{x \to a} f(x) = L$ and $\displaystyle \lim_{x \to a} g(x) = M$ exist, then:
+\begin{itemize}
+\item $\displaystyle \lim_{x \to a} (f(x) + g(x)) = \lim_{x \to a} f(x) + \lim_{x \to a} g(x)$
+\item $\displaystyle \lim_{x \to a} (f(x) - g(x)) = \lim_{x \to a} f(x) - \lim_{x \to a} g(x)$
+\item $\displaystyle \lim_{x \to a} (f(x) \cdot g(x)) = \lim_{x \to a} f(x) \cdot \lim_{x \to a} g(x)$
+\item $\displaystyle \lim_{x \to a} (\frac{f(x)}{g(x)}) =  \frac{\displaystyle \lim_{x \to a} f(x)}{\displaystyle \lim_{x \to a} g(x)}$\\
+\end{itemize}
+Remarks:
+\begin{itemize}
+\item $\displaystyle \lim_{x \to a} (c \cdot f(x)) = \lim_{x \to a} c \cdot \lim_{x \to a} f(x) = c \cdot \lim_{x \to a} f(x)$
+\item $\displaystyle \lim_{x \to a} (f(x))^n = \lim_{x \to a} (f(x))^{n - 1} \cdot \lim_{x \to a} f(x) = (\lim_{x \to a} f(x))^n$
+\item $\displaystyle \lim_{x \to 0} x^2 \sin (\frac{1}{x}) \neq (\lim_{x \to 0} x^2) \cdot (\lim_{x \to 0} \sin (\frac{1}{x}))$
+\end{itemize}
+\begin{eg}
+Assume $\displaystyle \lim_{x \to 0} \frac{f(x)}{x^2} =5$\\\\
+(a)Find $\displaystyle \lim_{x \to 0} f(x)$\\
+$$\displaystyle \lim_{x \to 0} (\frac{f(x)}{x^2} \cdot x^2) = \lim_{x \to 0} f(x)$$
+$$\displaystyle (\lim_{x \to 0} \frac{f(x)}{x^2}) \cdot (\lim_{x \to 0} x^2) = 5 \cdot 0 = 0$$
+(b)Find $\displaystyle \lim_{x \to 0} \frac{f(x)}{x}$\\
+$$\displaystyle \lim_{x \to 0} (\frac{f(x)}{x^2} \cdot x) = \lim_{x \to 0} \frac{f(x)}{x}$$
+$$\displaystyle (\lim_{x \to 0} \frac{f(x)}{x^2}) \cdot (\lim_{x \to 0} x) = 5 \cdot 0 = 0$$
+\end{eg}
+
+\section{Continuity}
+\begin{defn}
+$f(x)$ is conti. at $x = a$ if 
+\begin{itemize}
+\item $f(x)$ is defined at $x = a$ \\ $f(a)$ makes sense
+\item $\displaystyle \lim_{x \to a} f(x)$ exists \\$\displaystyle \lim_{x \to a^{-}} f(x) = \lim_{x \to a^{+}} f(x)$
+\item $\displaystyle \lim_{x \to a} f(x) = f(a)$ \\$\forall \epsilon > 0, \exists \delta = \delta(\epsilon) > 0$ s.t if $\mid x -a \mid < \delta \Rightarrow \mid f(x) - f(a) \mid < \epsilon$
+\end{itemize}
+\end{defn}
+
+\begin{jk}{}
+原子小金剛
+
+撞牆穿牆
+\end{jk}
+
+\begin{eg}[Removable Discontinuity]
+$$\displaystyle f(x) = \frac{x^2 - x -2}{x - 2}$$
+How would you define $f(2)$ in order to make $f(x)$ is conti. at $x = 2$?\\\\
+\textit{Sol:}\\
+$$\displaystyle \lim_{x \to 2} f(x) = \lim_{x \to 2} \frac{(x + 1)(x -2)}{x - 2} = 3$$
+\end{eg}
+\begin{eg}
+$$f(x) = \left \{ \begin{array}{rcl}
+cx^2 + 2x & \mbox{,} & x < 2\\
+x^3 - cx & \mbox{,} & x > 2
+\end{array} \right.$$
+For what value of the const $c$ is the fcn. $f$ conti. on ($- \infty, \infty$)?\\
+$$\begin{array}{rcccl}
+\displaystyle \lim_{x \to 2^{+}} f(x) & = & \displaystyle \lim_{x \to 2^{+}} (x^3 - cx) & = & 8 - 2c\\
+\displaystyle \lim_{x \to 2^{-}} f(x) & = & \displaystyle \lim_{x \to 2^{-}} (cx^2 +2x) & = & 4c +4
+\end{array}$$
+$$\begin{array}{rcl}
+8 - 2c & = & 4c + 4\\
+4 & = & 6c\\
+c & = & \displaystyle \frac{2}{3}
+\end{array}$$
+\end{eg}
+
+\section{Intermediate Value Theorem}
+\begin{theorem}
+Suppose that $f(x)$ is conti. $[a, b]$.
+\begin{itemize}
+\item If $f(a) < f(b)$ and $\forall k \in R$ with $f(a) < k < f(b)$,\\
+then $\exists c \in (a, b)$ s.t $f(c) = k$
+\item If $f(x)$ is conti. on $[a, b]$ and $\exists N \in R$ s.t $f(b) < N < f(a)$,\\
+then $\exists c \in (a, b)$ s.t $f(c) = N$
+\item If $N = 0$ in I.V.T, $f(b) < 0 <f(a)$, $\exists c \in (a, b)$ s.t $f(c) = 0$
+\end{itemize}
+\end{theorem}
+The proof relies on `` Least Upper Bound Axiom"
+\begin{defn}
+If $S \in R$,
+\begin{itemize}
+\item $b$ is called an upper bound of $S$ if $\forall x \in S \implies \leq b$
+\item $b$ is called a least upper bound if
+\begin{itemize}
+\item $b$ is an upper bound of $S$ 
+\item $b$ is less than or equal to every other upper bound of $S$.
+\end{itemize}
+\end{itemize}
+\end{defn}
+
+\begin{lemma}
+Let $M, N \in R$.
+
+If $M > N - \epsilon \quad \forall \epsilon > 0$, then $M > N$\\
+
+\textit{pf:}\\
+Suppose that If $M < N$, $\exists \epsilon > 0$ s.t $M + \epsilon < N\\
+\implies \underline{M < N - \epsilon}$ \textbf{a contradiction} $\implies M \geq N$
+\end{lemma}
+
+\begin{proof}
+Intermediate Value Theorem\\
+Let $A = \{ x \in [a, b] \ \ \ f(x) \leq k\}$\\
+\begin{itemize}
+\item $A \neq \phi$ (empty set)\\
+($\because f(a) < k \implies a \in A$)
+\item $A$ is bounded above
+\end{itemize}
+By Least Upper Bound axiom $\implies$ $A$ has an l.u.b $c$\\
+Denote sup $A = c$\\
+\textit{want to show:} $f(c) = k$\\\\
+\textit{Claim:} $c \in [a, b]$
+\begin{itemize}
+\item $b$ is an upper bound of $S$ $\implies c \leq b$\\
+$\Big \{$
+\begin{tabular}{cc}
+$c$ is an upper bound of $S$ \\
+$f(a) < k \implies a \in A$
+\end{tabular}
+$\implies a \leq c \implies a \leq c \leq b$\\
+\end{itemize}
+$f(x)$ is conti. at $x =c \Leftrightarrow \forall \epsilon > 0, \exists \delta > 0$ s.t if $\mid x -c \mid < \delta$\\
+$f(c) - \epsilon < f(x) < f(c) + \epsilon - (\star)$\\\\
+\textit{Claim:} $f(c) \leq k$\\
+\textit{pf:}\\ 
+$c =$ sup $A \implies c - \delta$ is not an upper bound of $A$\\
+$\therefore \exists x_{1} \in A \implies f(x_{1} \leq k)$ s.t $c - \delta < x_{1} \leq c \implies c - x_{1} < \delta$\\
+$(\star) \implies f(c) < f(x) + \epsilon \leq k + \epsilon \implies f(c) \leq k$\\\\
+\textit{Claim:} $c < b$\\
+\textit{pf:}\\
+If $c = b$, \underline{$k < f(b) = f(c) \leq k$} \textbf{a contradiction}\\\\
+\textit{Claim:} $f(c) \geq k$\\
+\textit{pf:}\\
+$c < b \implies \exists x_{2}$ s.t $c < x+{2} < b$ and $x_{2} - c < \delta$\\
+$(\star) \implies f(x_{2} < f(c) + \epsilon$\\
+$x_{2} < c \implies x_{2} \notin A \implies f(x_{2}) > k \implies k < f(x_{2}) < f(c) + \epsilon \implies f(c) > k - \epsilon$\\
+(Lemma) $\implies f(c) \geq k$
+\end{proof}
+\begin{eg}
+Show that there is a root of the eqn. $\sin x = x^2 - x$ in $(1, 2)$\\\\
+\textit{pf:}\\
+let $f(x) = x^2 -x - \sin x$ conti.\\
+$$\begin{array}{rcccccl}
+f(1) & = & 1 - 1 - \sin 1 & = & -\sin 1 & < & 0\\
+f(2) & = & 4 - 2 - \sin 2 & = & 2 - \sin 2 & > & 0
+\end{array}$$\\
+By I.V.T, $\exists c \in (1, 2)$ s.t $f(c) = 0$
+\end{eg}
+\begin{eg}
+Prove that $\cos x = x^3$ has at least one real root.\\\\
+\textit{pf:}\\
+let $f(x)= \cos x - x^3$\\
+observe:
+$$\begin{array}{rcl}
+\displaystyle \lim_{x \to \infty} f(x) & = & - \infty\\
+\displaystyle \lim_{x \to \infty} f(x) & = & \infty\\
+\end{array}$$
+$$\begin{array}{rcccl}
+f(100) & = & \cos 100 - 100^3 & < & 0\\
+f(-100) & = & \cos -100 + 100)^3 & > & 0
+\end{array}$$
+By I.V.T, $\exists c \in (-100, 100)$ s.t $f(c) = 0$
+\end{eg}
+\begin{eg}
+Show that $f(x) = \left \{ \begin{array}{ccl}
+x^4 \sin \frac{1}{x} & \mbox{,} & x \neq 0\\
+0 & \mbox{,} & x = 0
+\end{array}\right.$ is conti. on $(- \infty, \infty)$\\\\
+\textit{pf:}\\
+We need to show $\displaystyle \lim_{x \to 0} f(x) = f(0)$\\
+$$\displaystyle \lim_{x \to 0} f(x) = \lim_{x \to 0} (x^4 \sin \frac{1}{x})$$
+$$\displaystyle -1 \leq \sin \frac{1}{x} \leq 1$$
+$$\displaystyle \implies -x^4 \leq x^4 \sin \frac{1}{x} \leq x^4$$
+$$\displaystyle \lim_{x \to 0} -x^4 = \lim_{x \to 0} x^4 = 0$$
+By Sqeeze thm, $\displaystyle \lim_{x \to 0} x^4 \sin \frac{1}{x} = 0 \implies \lim_{x \to 0} f(x) = 0 = f(0)$
+\end{eg}
+\begin{eg}
+Assume $f(x)$ is conti. on $[-1, 1]$. Show that $\exists c \in (-1, 1)$ s.t $f(c) = \displaystyle \frac{c}{1 - c^2}$ \ (i.e: $x = c$ is a root of $f(x) = \displaystyle \frac{x}{1 - x^2}$)\\\\
+\textit{pf:}\\
+let $g(x) = 1 - x^2 \cdot f(x) - x$\\
+$g(1) = (1 -1)f(1) -1 < 0$\\
+$g(-1) = (1 -1) f(-1) +1 > 0$\\
+$g(x)$ is conti. on $[-1, 1]$\\
+By I.V.T, $\exists c \in (-1, 1)$ s.t $g(c) = 0$\\\\
+$f(x)$ is conti. at $x =a \Leftrightarrow \displaystyle \lim_{x \to a} f(x) = f(a)$
+\end{eg}
+\section{Velocity}
+\begin{defn}
+\begin{itemize}
+\item Average velocity $(t = a \to t = a + h) \displaystyle = \frac{f(a + h) - f(a)}{a + h -a}$\\
+\item Instantaneous velocity $\displaystyle = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h} := f'(a)$
+\end{itemize}
+\end{defn}

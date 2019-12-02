@@ -1,0 +1,741 @@
+%
+% Copyright 2018 Joel Feldman, Andrew Rechnitzer and Elyse Yeager.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+%
+
+\def\lin{{\text{LIN}}}
+\def\prod{{\text{PR}}}
+\def\quot{{\text{QR}}}
+\def\simp{{\text{SMP}}}
+
+\graphicspath{{figures/differentiation/}}
+\chapter{Derivatives}\label{chap deriv}
+\section{Derivatives 導（函）數}
+\begin{defn}
+\begin{itemize}
+\item The derivative of $f(x)$ at $x = a$ is given by 
+$$\displaystyle \lim_{x \to a} \frac{f(x) - f(a)}{x -a} = \lim_{h \to 0} \frac{f(a + h) -f(a)}{h} := f'(a)$$
+\item The derivative of $f(x)$ is given by 
+$$\displaystyle \lim_{y \to x} \frac{f(y) - f(x)}{y - x} = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} := f'(x)$$
+\end{itemize}
+\end{defn}
+
+\begin{eg}
+Find the derivative of $f(x) = x^2 - 2x +3$ at $x = 2$ by definition\\\\
+\textit{pf:}
+$$f'(2) = \displaystyle \lim_{h \to 0} \frac{f(2 +h) - f(2)}{h} = \lim_{h \to 0} \frac{(2 + h)^2 - 2(2 + h) + 3 -3}{h} = \lim_{h \to 0} \frac{h(h+2)}{h} = 2$$
+\end{eg}
+\begin{eg}
+Let $f(x) = x^3 -x$. Find the derivative of $f(x)$\\\\
+\textit{Sol:}
+$$\begin{array}{rcl}
+f'(x) & = & \displaystyle \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{(x + h)^3 - (x + h) - x^3 +x}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{3x^2h + 3xh^2 + h^3 -h}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{h(3x^2 + 3xh + h^2 -1)}{h}\\
+& = & 3x^2 - 1
+\end{array}$$
+\end{eg}
+\begin{notn}
+%Notations for the derivative of $y=f(x)$
+\begin{itemize}
+\item $\displaystyle f'(x) = y'(x) = \frac{\mathrm{d}f(x)}{dx} = \frac{\mathrm{d}y}{\mathrm{d}x} = \frac{\mathrm{d}}{\mathrm{d}x}f(x)$
+\item $\displaystyle f'(a) = y'(a) = \frac{\mathrm{d}f(x)}{\mathrm{d}x} \Big| x=a = \frac{\mathrm{d}y}{\mathrm{d}x} \Big| x =a\ \ (\neq \frac{\mathrm{d}}{\mathrm{d}x} f(a) = 0)$
+\end{itemize}
+\end{notn}
+
+\begin{jk}{}
+活生生血淋淋的栗子
+\end{jk}
+\section{Differentiability}
+\begin{defn}
+$f(x)$ is differentiable at $x = a$ if $f'(a)$ exists (i.e. $\displaystyle \lim_{h \to 0} \frac{f(a +h) - f(a)}{h}$ exists)
+\end{defn}
+
+\begin{eg}
+Discuss differentiability of $f(x) = | x |$ at $x = 0$\\\\
+\textit{Sol:}
+$$\displaystyle \lim_{h \to 0} \frac{f(0 + h) - f(0)}{h} = \lim_{h \to 0} \frac{\mid h \mid -0}{h}$$
+$$\begin{array}{rcccl}
+\displaystyle \lim_{h \to 0^{+}} \frac{| h |}{h} & = & \displaystyle \lim_{h \to 0^{+}} \frac{h}{h} & = & 1\\
+\displaystyle \lim_{h \to 0^{-}} \frac{| h |}{h} & = & \displaystyle \lim_{h \to 0^{-}} \frac{-h}{h} & = & -1\\
+\end{array}$$\\
+$\implies \displaystyle \lim_{h \to 0} \frac{\mid h \mid}{h}$ doesn't exist\\
+$\implies f'(0)$ doesn't exists\\
+$\implies f(x)$ is not differentiable at $x = 0$ but $f(x)$ is conti. at $x = 0$
+\end{eg}
+
+\begin{theorem}[Differentiability $\implies$ Continuity]
+If $f(x)$ is differentiable at $x = a$, $f(x)$ is continuous at $x = a$ (i.e: $\displaystyle \lim_{x \to a} f(x) = f(a)$)
+\end{theorem} 
+
+\textit{pf:}
+
+$f(x)$ is diff. at $x = a$
+
+i.e $\displaystyle f'(a) = \lim_{h \to} \frac{f(a+h) -f(a)}{h} = \lim_{x \to a} \frac{f(x) - f(a)}{x-a}$ exists
+$$\displaystyle \lim_{x \to a} \frac{f(x) -f(a)}{x-a} (x-a) = \lim_{x \to a} \frac{f(x) -f(a)}{x-a} \cdot \lim_{x \to a} (x-a) \implies \displaystyle \lim_{x \to a} (f(x) - f(a))=0$$
+$$\begin{array}{cl}
+\implies & \displaystyle \lim_{x \to a} (f(x) - f(a) + f(a)) = \displaystyle \lim_{x \to a} f(x))\\
+= & \displaystyle \lim_{x \to a} (f(x) - f(a)) + \lim_{x \to a} f(a)\\
+= & 0 + f(a)\\
+= & f(a)
+\end{array}$$
+\section{Differentiation Rule}
+If $f'(x)$ and $g'(x)$ exist, and $c$ is any consts.
+\begin{itemize}
+\item $\displaystyle \frac{dc}{dx} = 0$
+$$f(x) = c \displaystyle \implies f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} = 0$$
+\item $\displaystyle \frac{\mathrm{d}}{dx} (c f(x)) = c f'(x)$
+$$\displaystyle \frac{d}{dx} (cf(x)) = \lim_{h \to 0} \frac{cf(x+h) - cf(x)}{h} = c \cdot f'(x)$$
+\item $\displaystyle \frac{d}{dx} (f(x) + g(x)) = f'(x) + g'(x)$
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} (f(x) + g(x)) & = & \displaystyle \lim_{h \to 0} \frac{(f(x + h) + g(x+h)) - (f(x) + g(x))}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} + \lim_{h \to 0} \frac{g(x+h) - g(x)}{h}\\
+& = & f'(x) \pm g'(x)
+\end{array}$$
+\item $\displaystyle \frac{d}{dx} (f(x) - g(x)) = f'(x) - g'(x)$
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} (f(x) - g(x)) & = & \displaystyle \lim_{h \to 0} \frac{(f(x + h) - g(x+h)) - (f(x) - g(x))}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} - \lim_{h \to 0} \frac{g(x+h) - g(x)}{h}\\
+& = & f'(x) - g'(x)
+\end{array}$$
+\item $\displaystyle \frac{d}{dx} (f(x) \cdot g(x)) = f'(x)g(x) + f(x)g'(x)$ \quad \tssteelblue{(Product Rule)}
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} (f(x) \cdot g(x)) & = &\displaystyle \lim_{h \to 0} \frac{f(x+h) \cdot g(x+h) - f(x) \cdot g(x)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{f(x+h) \cdot g(x+h) - f(x) \cdot g(x+h) + f(x) \cdot g(x+h) - f(x) \cdot g(x)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{g(x+h)(f(x+h) -f(x)}{h} + \lim_{h \to 0} \frac{f(x) (g(x+h) -g(x)}{h}\\
+& = & \displaystyle \lim_{h \to 0} g(x+h) \cdot \lim_{h \to 0} \frac{f(x+h) -f(x)}{h} + \lim_{h \to 0} f(x) \cdot \lim_{h \to 0} \frac{g(x+h) -g(x)}{h}\\
+& = & \displaystyle g(x)f'(x) + f(x)g'(x)\\
+& = & \displaystyle f'(x)g(x) + f(x)g'(x)
+\end{array}$$
+\item $\displaystyle \frac{d}{dx} (\frac{f(x)}{g(x)}) = \frac{g(x)f'(x) - g'(x)f(x)}{(g(x))^2}$ \quad \tssteelblue{(Quotient Rule)}
+$$\displaystyle \frac{d}{dx} (\frac{f(x)}{g(x)}) = \frac{d}{dx}(f(x) \frac{1}{g(x)}) = f'(x) \frac{1}{g(x)} + f(x) \frac{d}{dx} (\frac{1}{g(x)})$$
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} (\frac{1}{g(x)}) & = & \displaystyle \lim_{h \to 0} \frac{\frac{1}{g(x+h)} - \frac{1}{g(x)}}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{g(x) -g(x+h)}{h \cdot g(x+h)g(x)}\\
+& = & \displaystyle \lim_{h \to 0} \frac{-g(x+h) + g(x)}{h} \cdot \lim_{h \to 0} \frac{1}{g(x+h) g(x)}\\
+& = & \displaystyle \lim_{h \to 0} \frac{-g(x+h) + g(x)}{h} \cdot \frac{1}{g(x)}\lim_{h \to 0} \frac{1}{g(x+h)}\\
+& = & \displaystyle -g'(x) \cdot \frac{1}{g(x)}\frac{1}{g(x)}\\
+& = & \displaystyle \frac{-g'(x)}{(g(x))^2}
+\end{array}$$
+$$\displaystyle \frac{d}{dx} (\frac{f(x)}{g(x)}) = \frac{f'(x)}{g(x)} + f(x) \frac{-g'(x)}{(g(x))^2} = \frac{f'(x)g(x) - f(x(g'(x)}{(g(x))^2}$$
+\end{itemize}
+
+\begin{jk}{}
+熱氣球 $\Rightarrow$ 數學沒用
+\end{jk}
+
+\section{Derivatives of Trigonometric Functions}
+\begin{itemize}
+\item $\displaystyle \frac{d}{dx} \sin x = \cos x$
+$$\begin{array}{rcl}
+\displaystyle f'(x) & = & \displaystyle \lim_{h \to 0} \frac{\sin (x+h) - \sin x}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{\sin x \cos h + \cos x \sin h -\sin x}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{\sin x (\cos h - 1)^2}{h} + \lim_{h \to 0} (\cos x \cdot \frac{\sin h}{h})\\
+& = & \displaystyle \sin x \lim_{h \to 0} \frac{(\cos h -1)(\cos h +1)}{h \cdot \cos x + 1} + \lim_{h \to 0} (\cos x \cdot \frac{\sin h}{h})\\
+& = & \displaystyle \sin x \lim_{h \to 0} \frac{- \sin ^2 h}{h^2} \cdot \frac{h}{\cos h + 1} + \lim_{h \to 0} (\cos x \cdot \frac{\sin h}{h})\\
+& = & \displaystyle \sin x \cdot -1 \cdot 0 + \lim_{h \to 0} (\cos x \cdot \frac{\sin h}{h})\\
+& = & \displaystyle 0 + \cos x\\
+& = & \displaystyle \cos x
+\end{array}$$
+\item $\displaystyle \frac{d}{dx} \cos x = - \sin x$
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} \cos x & = & \displaystyle \lim_{h \to 0} \frac{\cos (x+h) - \cos x}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{\cos x \cos h - \sin x \sin h - \cos x}{h}\\
+& = & \displaystyle \lim_{h \to 0} (\cos \frac{\cos h - 1}{h}) - \lim_{h \to 0} (\sin \frac{\sin h }{h})\\
+& = & \displaystyle \cos x \cdot 0 - \sin x \\
+& = & \displaystyle - \sin x
+\end{array}$$
+$$\displaystyle \lim_{h \to 0} \frac{\cos h -1}{h} = \lim_{h \to 0} \frac{(\cos h - 1)(\cos h +1)}{h(\cos +1)} = \lim_{h \to 0} \frac{\cos ^2 h - 1}{h(\cos h +1)} = 0$$
+\item $\displaystyle \frac{d}{dx} \tan x = \sec ^2 x$
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} \tan x & = & \displaystyle \frac{d}{dx} (\frac{\sin x }{\cos  x})\\
+& = & \displaystyle \frac{\cos x \sin x - \sin x \cos x}{\cos ^2 x} \quad \tssteelblue{\text{(Quotient Rule)}}\\
+& = & \displaystyle \frac{\cos ^2 x +\sin ^2 x}{\cos ^2 x}\\
+& = & \displaystyle \sec^2 x 
+\end{array}$$
+\item $\displaystyle \frac{d}{dx} \sec x = \sec x \tan x$
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} \sec x & = & \displaystyle \frac{d}{dx} (\frac{1}{\cos x})\\
+& = & \displaystyle \frac{\cos x \cdot 0 - 1 (\cos x)}{\cos ^2 x} \quad \tssteelblue{\text{(Quotient Rule)}}\\
+& = & \displaystyle \frac{\sin x }{\cos ^2 x}\\
+& = & \displaystyle \frac{\sin x}{\cos x} \sec x\\
+& = & \displaystyle \sec x \tan x
+\end{array}$$
+\item $\displaystyle \frac{d}{dx} \csc x = - \csc x \cot x$
+\item $\displaystyle \frac{d}{dx} \cot x = - \csc ^2 x$
+\end{itemize}
+
+\section{Derivatives of Polynomials}
+\begin{itemize}
+\item $\displaystyle \frac{d}{dx} (x^n) = n \cdot x^{n-1}, n \in N$
+$$\begin{array}{rcl}
+\displaystyle \lim_{y \to x} \frac{f(y) - f(x)}{y - x} & = & \displaystyle \lim_{y \to x} \frac{y^n - x^n}{y - x}\\
+& = & \displaystyle \lim_{y \to x} \frac{(y - x)(y^{n-1} +x y^{n-1} + \cdots + x^{n-1})}{y-x}\\
+& = & \displaystyle x^{n - 1} + x \cdot x^{n-2} + \cdots + x^{n-1}\\
+& = & \displaystyle n \cdot x^{n-1}
+\end{array}$$
+\end{itemize}
+
+\begin{eg}
+$$\displaystyle \frac{d}{dx} (x^2) = 2x^{2-1} = 2x$$
+\end{eg}
+\begin{eg}
+$$\displaystyle \frac{d}{dx} (x^3) = 3x^{3-1} = 3x^2$$
+\end{eg}
+
+\begin{notn}
+$$\begin{array}{rcl}
+f'(x) & = & \displaystyle \frac{d f(x)}{dx}\\
+f''(x) & = & \displaystyle \frac{d}{dx} (\frac{d f(x)}{dx}) = \frac{d^2 f(x)}{dx^2}$ \quad (not $\displaystyle \frac{d^2 f(x)}{d^2 x^2})\\
+f^{(n)}(x) & = & \displaystyle \frac{d^n f(x)}{dx^n}
+\end{array}$$
+\end{notn}
+
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \frac{d^2}{dx^2}x^2 & = & \displaystyle \frac{d}{dx} (\frac{d}{dx} (x^2))\\
+& = & \displaystyle \frac{d}{dx} (2x)\\
+& = & \displaystyle 2 \frac{d}{dx} x\\
+& = & \displaystyle 2(1x^{1-1})\\
+& = & \displaystyle 2
+\end{array}$$
+\end{eg}
+
+\section{Derivatives of $e^x$}
+\begin{itemize}
+\item $\displaystyle (e^x)' = \frac{d}{dx} e^x = e^x \quad (e \Doteq 2.718281828459045 \cdots)$\\\\
+$f(x) = a^x$ \quad ($a >0$ const.)
+$$\begin{array}{rcl}
+\displaystyle f'(x) & = & \displaystyle \lim_{h \to 0} \frac{f(x +h) -f(x)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{a^{x+h} - a^x}{h}\\
+& = & \displaystyle a^x \lim_{h \to 0} \frac{a^h - 1}{h}
+\end{array}$$
+%$\displaystyle \lim_{h \to 0} \frac{a^h -1}{h}$
+%\begin{itemize}
+%\item $a = 2$, $\displaystyle \lim_{h \to 0} \frac{2^h - 1}{h} \Doteq 0.69$
+%\item $a = 3$, $\displaystyle \lim_{h \to 0} \frac{3^h - 1}{h} \Doteq 1.10$
+%\end{itemize}
+$\displaystyle f_h(a) = \frac{a^h - 1}{h}$ \quad ($h$ is fixed)
+\begin{itemize}
+\item $f(a)$ is conti.
+\item $f(a) \nearrow$ \quad (increasing in $a$)
+\end{itemize}
+When $ a = 2$,
+$$\displaystyle \lim_{h \to 0} \frac{2^h -1}{h} = \lim_{h \to 0} f_h(2) \Doteq 0.69 < 1$$
+When $a = 3$,
+$$\displaystyle \lim_{h \to 0} \frac{3^h -1}{h} = \lim_{h \to 0} f_h(3) \Doteq 1.10 > 1$$\\
+By I.V.T, $\displaystyle \exists a_0 \in (2, 3)$ s.t $\displaystyle \lim_{h \to 0} f_h(a_0) = 1$\\
+%$\displaystyle \lim_{h \to 0} \frac{{a_0}^h -1}{h} = 1$
+%$f(x) = {a_0}^x$\\
+$\displaystyle \implies f'(x) = {a_0}^x \cdot \lim_{h \to 0} \frac{{a_0}^h - 1}{h} = {a_0}^x$\\
+i.e: $\displaystyle \frac{d}{dx}({a_0}^x) = {a_0}^x$ \quad (${a_0} = e$)
+\end{itemize}
+
+\begin{jk}{}
+躍（ㄧ ㄠ 、）躍（ㄧ ㄠ 、）欲試
+\end{jk}
+\subsection*{$e$ Defined by Limit}
+let $\displaystyle f(x) = lna$\\
+$$f'(x) = \frac{1}{x}$$
+$$\begin{array}{rcl}
+\displaystyle 1 = f'(x) & = & \displaystyle \lim_{h \to 0} \frac{f(1-h) - f(1)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{ln (1+h)}{h}\\
+& = & \displaystyle \lim_{h \to 0} ln((1+h)^{\frac{1}{h}})\\
+& = & \displaystyle ln(\lim_{h \to 0} (1+h)^\frac{1}{h})
+\end{array}$$
+$$\begin{array}{rcl}
+ln A & = & 1\\
+A & = & e
+\end{array}$$
+$$\therefore \displaystyle e = \lim_{h \to 0} (1+h)^{\frac{1}{h}}$$
+$$\displaystyle h = \frac{1}{k} \implies e = \lim_{k \to \infty} (1 + \frac{1}{k})^k$$
+\begin{eg}
+$$\displaystyle (x^6)' = 6x^{6-1} = 6x^5$$
+\end{eg}
+\begin{eg}
+$$\displaystyle (\frac{1}{x^2})' = (x^{-2})' = -2x^{-2-1} = -2^{-3} = \frac{-2}{x^{-3}}$$
+\end{eg}
+\begin{eg}
+$$\displaystyle (\sqrt[3]{x^2})' = (x^{\frac{2}{3}})' = \frac{2}{3} x^{\frac{2}{3} - 1} = \frac{2}{3} x^{-\frac{1}{3}}$$
+\end{eg}
+\begin{eg}
+$$(x^9 + 12x^5 - 4x^4 + 10x^3 - 6x+5)' = 8x^7 + 60 x^4 - 16x^3 + 30x^2- 6$$
+\end{eg}
+\begin{eg}
+Find the tangent line to the curve $y = x\sqrt{x}$ at $(1,1)$\\\\
+\textit{sol:}\\
+let $\displaystyle f(x) = x\sqrt{x} = x^{\frac{3}{2}}$
+$$\begin{array}{rcl}
+f'(x) & = & \displaystyle \frac{3}{2} x^{\frac{1}{2}}\\
+f'(1) & = & \displaystyle \frac{3}{2}
+\end{array}$$
+tangent line : $\displaystyle \frac{y-1}{x-1} = \frac{3}{2}$
+\end{eg}
+\begin{eg}
+Find the points at the curve $y = x^4 -6x^2 + 4$ where the tangent line is horizontal\\\\
+\textit{sol:}\\
+let $\displaystyle f(x) = x^4-6x^2 + 4$
+$$\displaystyle f'(x) = 4x^3 -12x$$
+let $f'(x) = 0$ \quad i.e: solve $4x^3 -12^x=0$
+$$\displaystyle x(x^2-3)=0$$ 
+$$x=0, \pm\sqrt{3}$$
+\end{eg}
+\begin{eg}[Product Rule]
+$$\displaystyle f(x) = x^2 \sin x$$
+$$\begin{array}{rcl}
+\displaystyle f'(x) & = & \displaystyle (x^2)' \sin x  + x^2 (\sin x)'\\
+& = & \displaystyle 2x \sin x+ x^2 \cos x
+\end{array}$$
+\end{eg}
+\begin{eg}[Quotient Rule]
+$$\displaystyle f(x) = \frac{\sec x}{1 + \tan x}$$
+$$\begin{array}{rcl}
+\displaystyle f'(x) & = & \displaystyle \frac{(1+\tan x)(\sec x)' - (\sec x)(1 + \tan x)'}{(1 + \tan x)^2}\\
+& = & \displaystyle \frac{\sec x \tan x + \sec x \tan ^2 x - \sec ^3 x}{(1+\tan x)^2}\\
+& = & \displaystyle \frac{\sec x (\tan x-1)}{(1+ \tan x)^2}
+\end{array}$$
+$$\tan ^2 x  +1 = \sec ^2 x$$
+$$\sec x \tan x + \sec x (\cancel{\sec^2 x} -1) - \cancel{\sec ^3x} = \sec x(\tan x-1)$$
+\end{eg}
+\begin{eg}
+\begin{itemize}
+\item[(i)]  $f(x) = x\cdot e^x$
+$$\begin{array}{rcl}
+f'(x) & = & \displaystyle (x)'e^x + x(e^x)'\\
+& = &\displaystyle 1 e^x + x e^x\\
+& = &\displaystyle e^x(1+x)
+\end{array}$$
+\item[(ii)] Find $f^n(x)$\\
+$$\begin{array}{rcl}
+f & = & xe^x\\
+f' & = & e^x(1+x)\\
+f'' & = & e^x(1+x) + e^x \cdot 1\\
+& = & e^x(2+x)\\
+f''' & = & e^2(2+x) + e^x \cdot 1\\
+& = & e^x(3+x)
+\end{array}$$
+guess: $f^n(x) = e^x(n +x)$\\
+prove it by \underline{induction}\\
+$$\begin{array}{ccl}
+\displaystyle \frac{d}{dx} 1 & = &0\\
+\displaystyle \frac{d}{dx} e^x & = &e^x\\
+\displaystyle (e^x)'' & = &e^x\\
+\displaystyle (e^x)''' & = & e^x
+\end{array}$$
+\end{itemize}
+\end{eg}
+\begin{eg}[Quotient Rule]
+$$\displaystyle f(x) = \frac{x^2 + x-2}{x^3+6}$$
+$$\begin{array}{rcl}
+f'(x) & = & \displaystyle \frac{(x^3 + 6)(2x+1) - (x^2 + x-2)(3x^2)}{(x^3+6)^2}\\
+& = & \displaystyle \frac{2x^4 + x^3 + 12x + 6 - 3x^4 - 3x^3 + 6x^2}{(x^3+6)^2}\\
+& = & \displaystyle \frac{-x^4 -2x^3 + 6x^2+12x+6}{(x^3+6)^2}
+\end{array}$$
+\end{eg}
+\begin{eg}
+Find an equation of the tangent line to the curve $\displaystyle y = \frac{e^x}{1+x^2}$ at $\displaystyle (1, \frac{e}{2})$\\\\
+\textit{sol:}\\
+let $\displaystyle f(x) = \frac{e^x}{1+x^2}$
+$$\begin{array}{rcl}
+f'(x) & = & \displaystyle \frac{(1+x^2)(e^x) - e^x(2x)}{(1+x^2)^2}\\
+& = & \displaystyle \frac{e^x(x^2 -2x+1)}{1+x^2)^2}\\
+f'(1) & = & \displaystyle \frac{e^x(1-2+1)}{4} = 0
+\end{array}$$
+$\implies$ eqn. of the tangent line is $\displaystyle y = \frac{e}{2}$
+\end{eg}
+
+\begin{notn}
+$$e^x = y$$
+$$\log_e e^x = \log_e y$$
+$$ x = \log_e y = ln y = Ln y$$
+\end{notn}
+
+\begin{eg}
+$f(x) = \cos x$. \quad Find $f^{(27)}(x)$
+$$\begin{array}{rcl}
+f'(x) & = & -\sin x\\
+f''(x) & = & -\cos x\\
+f'''(x) & = & \sin x\\
+f''''(x) & = & \cos x
+\end{array}$$
+$$\implies \quad f^{(27)}(x) = \sin x$$
+\end{eg}
+\section{Chain Rule 連鎖律}
+\begin{defn}
+Let $h(x) = f(g(x))$\\
+If $f$ and $g$ are differentiable\\
+$$\begin{array}{rcl}
+h'(x) & = & f'(g(x)) \cdot g'(x)\\
+& = & f'(u) |_{u=g(x)} \cdot g'(x)\\
+& = & \displaystyle \frac{df(g(x))}{dg(x)} \cdot \frac{dg(x)}{dx}
+\end{array}$$
+\end{defn}
+
+\begin{eg}
+$$\displaystyle \frac{d}{dx} (\sin 2x)$$
+$$\begin{array}{rcl}
+h(x) & = & \sin (2x)\\
+f(x) & = & \sin x \implies f'(x) = \cos x\\
+g(x) & = & 2x \implies g'(x) = 2
+\end{array}$$
+$$f(g(x)) = f(2x) = \sin (2x)$$
+$$\begin{array}{rcl}
+\displaystyle \frac{d \sin (2x)}{dx} & = & \displaystyle \frac{d \sin (2x)}{d(2x)} \cdot \frac{d(2x)}{dx}\\
+& = & \displaystyle \frac{d \sin y}{dy} \cdot 2\\
+& = & \displaystyle 2\cos y \\
+& = & 2\cos (2x)
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\displaystyle \frac{de^{2x}}{dx}$$
+$$\begin{array}{rcl}
+\displaystyle \frac{de^{2x}}{dx} & = & \displaystyle \frac{de^{2x}}{d(2x)} \cdot \frac{d(2x)}{dx}\\
+& = & \displaystyle e^y \cdot 2\\
+& = & e^{2x} \cdot 2
+\end{array}$$
+$$f(x) = a^x (a>0) \implies f'(x) = ?$$
+If $a = e = 2.718281828459045$\\
+$$(e^x)' = e^x$$
+If $a \neq e$\\
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} (a^x) & = & ((e^{ln a})^x)' = (e^{ln a \cdot x})'\\
+& = & \displaystyle \frac{d(e^{(ln a)x})}{d((ln a)x)} \cdot \frac{d((ln a)x)}{dx}\\
+& = & e^y \cdot ln a\\
+& = & e^{(ln a)x} \cdot ln a\\
+& = & a^x \cdot ln a\\
+\displaystyle \frac{d a^x}{dx} & = & ln a\cdot a^x
+\end{array}$$
+when $a = e$\\
+$$\displaystyle \frac{de^x}{dx} = ln e \cdot e^x = 1 e^x= e^x$$
+\end{eg}
+\begin{eg}
+$$\displaystyle \frac{d \tan (\sin x)}{dx}$$
+$$\begin{array}{rcl}
+\displaystyle \frac{d \tan (\sin x)}{dx} & = & \displaystyle \frac{d \tan (\sin x)}{d \sin x} \cdot \frac{d \sin x}{dx}\\
+& = & \sec ^2 (\sin x) \cos x
+\end{array}$$
+\end{eg}
+\begin{proof}
+Chain Rule\\
+Let $\displaystyle \epsilon_1 = \frac{g(x)-g(a)}{x-a} - g'(a)$ ($\epsilon_1 = \epsilon_1 (x)$)\\
+$$\begin{array}{rcl}
+\displaystyle \lim_{x \to a} \epsilon_1 & = & \displaystyle \lim_{x \to a} (\frac{g(x)-g(a)}{x-a} -g'(a))\\
+& = & \displaystyle  \lim_{x \to a} (\frac{g(x)-g(a)}{x-a}) - \lim_{x \to a} g'(a)\\
+& = & \displaystyle g'(a) - g'(a)
+\end{array}$$
+$\therefore \epsilon_1 \to 0$ as $x \to a$\\
+\begin{center}
+$g(x) -g(a) = (g'(a) + \epsilon_1)(x - a) \qquad \qquad --- (1)$\\
+\end{center}
+Similarity:\\
+Let $y = g(x)$, $b = g(a) \qquad \qquad --- (3)$\\
+$$\displaystyle \epsilon_2 = \frac{f(y) - f(b)}{y-b} - f'(b) \quad (\epsilon_2 = \epsilon_2(y))$$
+$\therefore \epsilon_2 \to 0$ as $y \to b$
+
+$$f(y) - f(b) = (f'(b)+\epsilon_2)(y-b) \qquad \qquad --- (2)$$
+$$\begin{array}{rcl}
+(3) & \implies & f(g(x) - f(g(a)) = (f'(g(a)) + \epsilon_2)(g(x)-g(a))\\
+(1) & \implies & (f'(g(a)) + \epsilon_2)(g'(a) + \epsilon_1)(x-a)
+\end{array}$$
+$$\displaystyle \lim_{x \to a} \frac{f(g(x)) - f(g(a))}{x - a} = \lim_{x \to a} (f'(g(a) + \epsilon_2)(g'(a) + \epsilon_1)$$
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} (f(g(x)) |_{x=a} & = & \displaystyle \lim_{x \to a} (f'(g(a)) +\epsilon_2) \lim_{x \to a} (g'(a) + \epsilon_1)\\
+& = & (f(g(a)) + 0) \cdot (g'(a) + 0)\\
+&= & f'(g(a)) \cdot g'(a)
+\end{array}$$
+$$(1): g(x) \approx g(a)+ g'(a)(x-a)$$
+$$(2): g(y) \approx g(b)+g'(b)(y-b)$$
+$$f(g(x)) -f(g(a)) \approx f'(g(a))(g(x)-g(a)) \approx f'(g(a)) g'(a)(x-a)$$
+\end{proof}
+
+\section{Linear Approximation (Linearization)}
+$$g(x) \approx g(a) + g'(a)(x-a) \quad (\text{As } x \text{ is close to } a)$$
+$$\displaystyle g'(a) = \frac{g(x)-g(a)}{x-a}$$
+$$f(x) \approx f(a) + f'(a)(x-a)$$
+$$g(x) \approx g(a) + g'(a)(x-a)$$
+$$f(x)g(x) \approx f(a)g(a) + f(a)g'(a) + f'(a)g(a) + f'(a)g'(a)(x-a)^2$$
+$$\displaystyle \frac{f(x)g(x) -f(a)g(a)}{x-a} \approx f(a)g(a) +  f(a)g'(a)+f'(a)g'(a)(x-a)$$
+$$\displaystyle \frac{d}{dx} (f(x)g(x)) \approx f'(a)g(a) + f(a)g'(a) \quad \text{\tssteelblue{product rule}}$$
+$$\displaystyle \frac{d}{dx} (x^a) = ax^{a-1}, a \in R$$
+
+\begin{eg}
+$f(x) = a^x. \text{ Find } f'(x)$
+$$a^x = (e^{ln a})^x = e^{(ln a)x}$$
+$$\displaystyle \frac{d}{dx} (a^x) = a^x ln a \quad a>0$$
+\end{eg}
+\begin{eg}
+Find linearization of $f(x) = (x+3)^{\frac{1}{2}}$ at $a=1$.\\
+$$\begin{array}{rcl}
+f(x) & \approx & f(a) + f'(a)(x-a)\\
+f'(x) & = & \displaystyle \frac{1}{2}(x+3)^{\frac{1}{2}}\\
+f'(1) & = & \displaystyle \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}\\
+f(1) & = & 2
+\end{array}$$
+when $x \approx 1$
+$$\displaystyle f(x) \approx 2+ \frac{1}{4} (x-1) = \frac{1}{4} x + \frac{7}{4}$$
+\begin{itemize}
+\item Find $\sqrt{398} < 4 = 2$\\
+$$\displaystyle f(0.98) \approx \frac{1}{4} \cdot 0.98 + \frac{7}{4} = 1.995$$
+\item Find $\sqrt{405} > 4 = 2$\\
+$$\displaystyle f(1.05) \approx \frac{1}{4} \cdot 1.05 + \frac{7}{4} = 2.0125$$
+\end{itemize}
+\end{eg}
+\begin{eg}
+Find the linearization of $f(\theta) = \sin \theta$ at $a = 0$\\
+$$\begin{array}{rcl}
+f(\theta) & \approx & f(a) + f'(a)(\theta -a)\\
+& = & 0+1(\theta -0)\\
+& = & \theta
+\end{array}$$
+$\therefore \sin \theta \approx \theta$ as $\theta \approx 0$
+$$\displaystyle \lim_{\theta \to 0} \frac{\sin \theta}{\theta} = 1$$
+\end{eg}
+
+\section{Implicit Differentiation}
+\begin{eg}
+Find an eqn. of the tangent line to $x^2 + y^2 = 25$ at $(3, 4)$
+
+$$4x^2+y^2 =25$$
+$$\begin{array}{rcl}
+y(x) & = & + \sqrt{25 - x^2} = (25-x^2)^{\frac{1}{2}}\\\\
+y'(x) & = & \displaystyle \frac{d(z^{\frac{1}{2}})}{dz} \frac{dz}{dx}\\
+& = & \displaystyle \frac{1}{2} z^{-\frac{1}{2}} (-2 x)\\
+& = & \displaystyle -x z^{-\frac{1}{2}}\\
+& = & \displaystyle \frac{-x}{\sqrt{25-x^2}}\\\\
+y'(3) & = & \displaystyle \frac{-3}{4}
+\end{array}$$\\
+$$\begin{array}{rrclll}
+& x^2 + (y(x))^2 & = & 25 && ---(1)\\\\
+\displaystyle \frac{d}{dx}(1) \implies & \displaystyle \frac{d}{dx} (x^2 + (y(x))^2) & = & \displaystyle \frac{d}{dx} (25)\\\\
+& \cancel{2}x + \cancel{2}y(x)y'(x) & = & 0\\\\
+& y'(x) & = & \displaystyle -\frac{x}{y}
+\end{array}$$
+\end{eg}
+
+\begin{notn}
+Folium of Descartes: $x^3 + y^3 = 6xy$
+\end{notn}
+
+\begin{eg}
+\begin{itemize}
+\item[(1)] Find $y'(x)$ if $x^3+y^3=6xy$\\
+$$\begin{array}{rrcll}
+& x^3 + (y(x))^3 & = & 6x\cdot y(x) & \quad \quad ---(\star)\\\\
+\displaystyle \frac{d}{dx}(\star) \implies & 3x^2 +3y(x)^2y'(x) & = & \displaystyle 6\frac{d}{dx} (x \cdot y(x))\\
+&& = & 6(1 \cdot y(x) + x \cdot y'(x))\\\\
+& 3x^2 +3y^2y' & = & 6(y+xy')\\\\
+& y' & = & \displaystyle \frac{2y-x^2}{y^2-2x}
+\end{array}$$
+\item[(2)] Find the tangent line to the folium of Descartes at $(3, 3)$
+$$\displaystyle y'(3) = \frac{2y-x^2}{y^2-2x} \Big|_{(x,y)=(3,3)} = \frac{-3}{3} = -1$$
+tangent line:
+$$\displaystyle \frac{y-3}{x-3} = -1$$
+\end{itemize}
+\end{eg}
+\begin{eg}
+Find $y'$ if $\sin(x+y) = y^2 \cos x$\\
+$$\begin{array}{rrcll}
+& \sin (x+y(x)) & = & (y(x))^2 \cos x & \quad \quad ---(2)\\\\
+\displaystyle \frac{d}{dx}(2) \implies & \cos(x+y(x)) \cdot (1+y'(x)) & = & (2 y(x) \cdot  y'(x)) \cos x + (y(x))^2(-\sin x)\\\\
+& \cos (x+y) (1+y') & = & 2(\cos x)yy' - (\sin x)y^2\\\\
+& y' & = & \displaystyle \frac{y^2 \sin x + \cos (x+y)}{2y \cos x -\cos (x+y)}
+\end{array}$$
+\end{eg}
+\begin{eg}
+Find $f'(x)$ if $f(x) = \log_a x \quad (a>0 \text{ const.})$
+$$\begin{array}{rrcll}
+& y(x) = \log_a x = a^{y(x)} & = & x & \quad \quad ---(3)\\\\
+\displaystyle \frac{d}{dx} (3) \implies & \displaystyle \frac{d}{dx} (a^{y(x)}) & = & \displaystyle \frac{d}{dx} x\\\\
+& \displaystyle \frac{d(a^{y(x)})}{dy(x)} \frac{dy(x)}{dx} & = & 1\\\\
+& y'(x) & = & \displaystyle \frac{1}{ln a} a^{-y(x)}\\
+&& = & \displaystyle \frac{1}{ln a} \frac{1}{x}
+\end{array}$$
+\end{eg}
+\begin{itemize}
+\item $\displaystyle \frac{d}{dx} (x^a) = ax^{a-1}$, $a \in R$
+\item $\displaystyle \frac{d}{dx} (a^x) = a^x lna$, $a > 0$\\
+when $\displaystyle a = e \implies (e^x)' = e^x$
+\item $\displaystyle \frac{d}{dx} \log_a x = \frac{1}{ln a} \frac{1}{x}$, $a > 0$\\
+when $\displaystyle a = e \implies (ln x)' = \frac{1}{x}$
+\end{itemize}
+
+\section{Derivatives of Inverse Trigonometric Functions}
+$y = \sin ^{-1} x = \arcsin x$\\
+If $\displaystyle \sin y = \sin (\sin^{-1} x) = x, x \in [-\frac{\pi}{2}, \frac{\pi}{2}]$
+\begin{itemize}
+\item $\displaystyle \frac{d}{dx} (\sin ^{-1} x) = \frac{1}{\sqrt{1-x^2}}$\\\\
+let $y(x) = \sin^{-1} x$
+$$\begin{array}{rrcll}
+& \sin (y(x)) & = & x & ---(1)\\\\
+\displaystyle \frac{d}{dx}(1) \implies & \cos (y(x)) \cdot y'(x) & = & 1\\\\\
+& y'(x) & = & \displaystyle \frac{1}{\cos (y(x))}\\
+&& = & \displaystyle \frac{1}{\sqrt{1-x^2}}
+\end{array}$$
+\item $\displaystyle \frac{d}{dx} (\cos ^{-1} x) = - \frac{1}{\sqrt{1-x^2}}$
+\item $\displaystyle \frac{d}{dx} (\tan ^{-1} x) = \frac{1}{1+x^2}$\\\\
+let $y(x) = \tan ^{-1} x$\\
+$$\begin{array}{rrcll}
+& \tan (y(x)) & = & x & ---(2)\\\\
+\displaystyle \frac{d}{dx}(2) \implies & \sec ^2 y(x) \cdot y'(x) & = & 1\\\\
+& y'(x) & = & \displaystyle \frac{1}{\sec ^2 y(x)}\\
+&& = & \displaystyle \cos ^2 y(x) = \frac{1}{1+x^2}
+\end{array}$$
+\item $\displaystyle \frac{d}{dx} (\sec ^{-1} x) = \frac{1}{x \sqrt{x^2 -1}}$\\\\
+let $y(x) = \sec ^{-1} x$
+$$\begin{array}{rrcll}
+& \displaystyle \frac{d}{dx} (y(x)) & = & x & ---(3)\\\\
+\displaystyle \frac{d}{dx}(3) \implies & \sec y(x) \tan y(x) \cdot y'(x) & = & 1\\\\
+&y'(x) & = & \displaystyle \frac{1}{\sec y(x) \tan y(x)}\\
+&& = & \displaystyle \frac{1}{x} \frac{1}{\sqrt{x^2-1}} = \frac{1}{x \sqrt{x^2-1}}
+\end{array}$$
+\item $\displaystyle \frac{d}{dx} (\csc ^{-1} x) = - \frac{1}{x \sqrt{x^2-1}}$
+\item $\displaystyle \frac{d}{dx} (\cot ^{-1} x) = - \frac{1}{1+x^2}$\\\\
+\end{itemize}
+
+\begin{jk}
+記 $\implies$ 不要記
+\end{jk}
+
+\begin{eg}
+$$\displaystyle \frac{d}{dx} (f(x)^{g(x)})$$\\
+let $y(x) = f(x)^{g(x)}$
+$$\begin{array}{rrcll}
+\text{take } ln \implies & ln y(x) = ln(f(x)^{g(x)}) & = & (g(x))(ln f(x)) & ---(4)\\\\
+\displaystyle \frac{d}{dx}(4) \implies & \displaystyle \frac{1}{y(x)} y'(x) & = & \displaystyle \frac{d}{dx}(g(x) lnf(x))\\
+&& = & \displaystyle g'(x) lnf(x) + g(x) \frac{f'(x)}{f(x)} & \tssteelblue{(\text{product rule})}\\\\
+& y'(x) & = & \displaystyle y(x)(g'(x) \cdot lnf(x) + \frac{g(x)}{f(x)} \cdot f'(x))\\\\
+& \displaystyle \frac{d}{dx} (f(x)^{g(x)}) & = & \displaystyle f(x)^{g(x)} (g'(x) \cdot lnf(x) + \frac{g(x)}{f(x)} \cdot f'(x))
+\end{array}$$
+\end{eg}
+\begin{eg}
+$f(x) = x^{\sqrt{x}}$. Find $f'(x)$
+$$\begin{array}{rrcll}
+\text{take } ln \implies & lnf(x) = ln x^{\sqrt{x}} & = & \sqrt{x} ln x & ---(5)\\\\
+\displaystyle \frac{d}{dx}(5) \implies & \frac{1}{f(x)}f'(x) & = & \displaystyle \frac{1}{2}x^{-\frac{1}{2}} lnx + \sqrt{x} \frac{1}{x}\\\\
+& f'(x) & = & \displaystyle f(x)x^{-\frac{1}{2}}(\frac{1}{2}lnx+1)\\
+&& = & \displaystyle \frac{x^{\sqrt{x}}}{2\sqrt{x}}(ln x +2)
+\end{array}$$
+\end{eg}
+\begin{eg}
+$\displaystyle f(x) = \frac{x^{\frac{3}{4}}\sqrt{x^2+1}}{(3x+2)^5}$. Find $f'(x)$
+$$\begin{array}{rrcll}
+\text{take } ln \implies & lnf(x) & = & \displaystyle \frac{3}{4} lnx + \frac{1}{2}ln(x^2+1) - 5ln(3x+2) & ---(6)\\\\
+\displaystyle \frac{d}{dx}(6) \implies & \displaystyle \frac{f'(x)}{f(x)} & = & \displaystyle \frac{3}{4} \cdot  \frac{1}{x} + \frac{1}{2} \cdot \frac{2x}{x^2+1} -5 \cdot \frac{3}{3x+2}\\\\
+& f'(x) & = & \displaystyle \frac{x^{\frac{3}{4}}\sqrt{x^2+1}}{(3x+2)^5} (\frac{3}{4} \cdot \frac{1}{x} + \frac{1}{2} \cdot \frac{2x}{x^2+1} -5 \cdot \frac{3}{3x+2})
+\end{array}$$
+\end{eg}
+\begin{jk}
+解剖霸王龍 $\implies$ 西方做無聊的事
+\end{jk}
+\begin{notn}
+\begin{itemize}
+\item $\displaystyle \frac{d}{dx} (a^b) = 0$ \quad $a, b \in R$ consts
+\item $\displaystyle \frac{d}{dx}(f(x)^b) = b \cdot f(x)^{-1} \cdot f'(x)$ \quad $b$: const\\\\
+$\begin{array}{rcll}
+\displaystyle \frac{d}{dx} (f(x)^b) & = & \displaystyle \frac{df(x)}{df(x)} \cdot \frac{df(x)}{dx} & \tssteelblue{(\text{chain rule})}\\
+& = & b \cdot y^{b-1} \cdot f'(x)\\
+& = & b \cdot f(x)^{b-1} \cdot f'(x)
+\end{array}$
+\item $\displaystyle \frac{d}{dx}(a^{g(x)}) = a^{g(x)} \cdot ln a \cdot g'(x)$ \quad $a > 0$ const 
+\item $\displaystyle \frac{d}{dx}(f(x)^{g(x)})$ \quad take $ln$ in $y$, and differentiate\\\\
+$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} lny(x) & = & \displaystyle \frac{d lny(x)}{dy(x)} \cdot \frac{dy(x)}{dx}\\
+& = & \displaystyle \frac{1}{y(x)} y'(x)\\
+& = & \displaystyle \frac{y'(x)}{y(x)}
+\end{array}$
+\end{itemize}
+\end{notn}
+\begin{jk}[Anagram]
+Tom Hanks = monk hats \\
+Mel Gibson = big lemons
+\end{jk}
+
+\section{Exponential Growth and Decay}
+$t$: time\\
+$y(t)$: population\\
+under ideal condition, assume:
+$$\begin{array}{rrcll}
+& y'(t) & = & \displaystyle \frac{dy}{dt} \propto y(t)\\\\
+\text{differential eqn.} \implies & y'(t) & = & \displaystyle k \cdot y(t) & k: \text{ const} \quad \quad ---(\star)\\\\
+& y(t) & = & c \cdot e^kt
+\end{array}$$\\
+Q: solve ($\star$)\\
+$$k=1$$ 
+$$y'(t) = y(t) \quad \quad --(1)$$\\
+$$\begin{array}{rcll}
+y(t) & = & e^t & \text{solves } (1)\\
+y(t) & = & 2e^t & \text{solves } (1)\\
+y(t) & = & c \cdot e^t & \text{solves } (1) \quad c\text{: any const}
+\end{array}$$
+Q: solve $c$\\
+$$
+\text{initial value problem}
+\left\{ \begin{array}{ll}
+           y'(t) = k \cdot y(t) \quad t>0 \\
+           y(0) = y_0 \quad y_0\text{: const, initial condition (I.C)}
+        \end{array} \right.
+$$
+$$\begin{array}{rcl}
+y(t) & = & c \cdot e^{kt}\\
+y(0) & =& c \cdot 1 = c
+\end{array}$$
+$$c = y_0$$
+$\therefore$ The \textit{sol} of I.VP. is $y(t)=y_0 \cdot e^{kt}$\\
+$t>0 \implies \displaystyle \lim_{t \to \infty} y(t) = \infty$
+\begin{itemize}
+\item verify $y(t) = y_0 \cdot e^{kt}$ solves $(\star)$\\
+$$\displaystyle y'(t) = y_0 \frac{d}{dt}(e^{kt}) = \frac{d e^{kt}}{dkt} \cdot \frac{dkt}{dt} \cdot y_0 = e^{kt} \cdot k \cdot y_0 = k(y_0 e^{kt})$$
+\item verify $y(0) = y_0$ is satisfied\\
+$$\begin{array}{rcl}
+y(t) & = & y_0 \cdot e^{kt}\\
+y(0) & = & y_0 \cdot e^0 = y_0
+\end{array}$$
+\end{itemize}
+
+\subsection*{Compound Interest}
+\$ 1000 ($A_0$) invested 6\% ($r$) per year ($t$)
+$$\begin{array}{rcl}
+\text{annual 3 years} & \implies & 1000(1+0.06)^4 \Doteq 1191.02\\
+\text{semi-annual 3 years} & \implies & 1000(1+0.03)^6 \Doteq 1194.05\\
+\text{quarterly 3 years} & \implies & 1000(1+0.015)^{12} \Doteq 1196.68\\
+\text{daily 3 years} & \implies & \displaystyle 1000(1+ \frac{0.06}{365})^{3.365} \Doteq 1197.20\\
+\text{無時不刻 3 years} & \implies & 
+\begin{array}{rcl}
+\displaystyle \lim_{n \to \infty} A_0(1 + \frac{r}{n})^{nt} & = & \displaystyle \lim_{n \to \infty} A_0 (1+ \frac{1}{\frac{n}{r}})^{\frac{n}{r} \cdot rt}\\
+& = & \displaystyle \lim_{n \to \infty} A_0((1+\frac{1}{k})^k)^{rt}\\
+& = & \displaystyle A_0 \lim_{n \to \infty} ((1+\frac{1}{k})^k)^{rt} \\
+& = & A_0 e^{rt}
+\end{array}
+\end{array}$$
+
+\subsection*{Radioactive Decay}
+Decay rate of radioactive $\propto$ remaining mass $(=m(t))$\\
+$$\begin{array}{rcl}
+\displaystyle \frac{d m(t)}{mt} & \propto & m(t)\\
+\displaystyle \frac{dm(t)}{dt} & = & k \cdot m(t) \quad k<0 \text{ const}
+\end{array}$$
+$$m(t) = m(0) \cdot e^{kt}$$
+\begin{eg}
+The half-life of Ra (鐳) is 1590 years. \\
+$$\displaystyle \frac{1}{2} \cancel{m(0)} = \cancel{m(0)} e^{k \cdot 1590}$$
+$$\displaystyle -ln2 = ln \frac{1}{2} = 1590 k$$
+$$\displaystyle k = \frac{-ln2}{1590}$$
+Q: $m(0) = 100 \text{(mg)} \implies m(1000)=?$\\
+$$\displaystyle m(1000) = m(0) \cdot e^{\frac{-ln2}{1590} \cdot 1000} \Doteq 65 \  \text{(mg)}$$
+Q: $m(t) = 30 \text{(mg)} \implies t=?$\\
+$$30 = 100 e$$
+$$\displaystyle ln 30 = ln 100 + (\frac{-ln2}{1590})t \implies t = 2762 \  \text{(yr)}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rrcll}
+& (x(t))^2 + (y(t))^2 & = & 5^2 & ---(1)\\
+\displaystyle \frac{d}{dt} (1) \implies & \cancel{2}x(t)x'(t) + \cancel{2}y(t)y'(t) & = & 0
+\end{array}$$
+$$\begin{array}{rcl}
+\displaystyle \frac{x(t)}{y(t)} & = & \displaystyle - \frac{y(t)}{x(t)}\\
+y'(t) & = & \displaystyle - \frac{3}{4}
+\end{array}$$
+\end{eg}

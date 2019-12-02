@@ -1,0 +1,439 @@
+%
+% Copyright 2018 Joel Feldman, Andrew Rechnitzer and Elyse Yeager.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+%
+\graphicspath{{figures/applications/}}
+
+\chapter{Applications of Derivatives}
+\section{Maximum and Minimum}
+\begin{eg}
+\begin{itemize}
+\item $f(x) = \cos x$\\
+$x \in R$ has infinity many local max and local min\\
+abs max = $1$\\
+abs min= $-1$
+\item $f(x) = x^2$\\
+local max: none\\
+local min: $x= 0 \implies $ abs min\\
+$f(x) = x^2 \geq 0$
+\item $f(x) = x^3$\\
+local max: none\\
+local min: none
+\end{itemize}
+\end{eg}
+\section{Extreme Value Theorem}
+\begin{theorem}
+Assume $f(x)$ is conti. on $[a, b]$, then\\
+$f(x)$ has a abs max $f(C)$\\
+$f(x)$ has a abs min $f(D)$\\
+for some $C, D \in [a, b]$
+\end{theorem}
+\section{Fermat's Theorem}
+\begin{theorem}
+Assume
+\begin{itemize}
+\item[(1)] $f(x)$ has a local max or local min at $c$
+\item[(2)] $f'(c)$ exists ($f$ is differentiable at $x = c$)
+\end{itemize}
+Then
+$$f'(c) = 0$$
+\end{theorem}
+\begin{notn}
+$\left\{ \begin{array}{ll}
+           f'(c) \neq 0 \\
+           f'(c) \text{exists}
+        \end{array} \right.
+$ $\implies f(c)$ is neither a local max nor a local min
+\end{notn}
+\begin{proof}
+Fermat's Theorem
+\begin{itemize}
+\item[(1)] If $f$ has a local max at $c$\\
+$\implies f(c+h) \leq f(c)$ if  $\mid h \mid$ is small enough
+\item[(2)] If $f'(c)$ exists\\
+$\implies \displaystyle f'(c) = \lim_{h \to 0} \frac{f(c+h)-f(c)}{h} = \lim_{h \to 0^+} \frac{f(c+h)-f(c)}{h} = \lim_{h \to 0^-} \frac{f(c+h)-f(c)}{h}$
+\end{itemize}
+$f(c+h) - f(c) \leq 0$ if $\mid h \mid$ is small enough
+\begin{itemize}
+\item if $h > 0$\\
+$\begin{array}{rcl}
+\implies & \displaystyle \frac{f(c+h) -f(c)}{h} \leq 0\\
+\implies & \displaystyle \lim_{h \to 0^+} \frac{f(c+h) -f(c)}{h} \leq 0\\
+\implies & \displaystyle \lim_{h \to 0} \frac{f(c+h) -f(c)}{h} \leq 0\\
+\implies & f'(c) \leq 0
+\end{array}$
+\item if $h < 0$\\
+$\begin{array}{rcl}
+\implies & \displaystyle \frac{f(c+h) -f(c)}{h} \geq 0\\
+\implies & \displaystyle \lim_{h \to 0^+} \frac{f(c+h) -f(c)}{h} \geq 0\\
+\implies & \displaystyle \lim_{h \to 0} \frac{f(c+h) -f(c)}{h} \geq 0\\
+\implies & f'(c) \geq 0
+\end{array}$\\
+\end{itemize}
+$f'(c) \geq 0$ and $f'(c) \leq 0 \implies f'(c) =0$
+\end{proof}
+
+\begin{remark} \ 
+\begin{itemize}
+\item[(1)] Reverse of Fermat's Thm is \underline{false}\\
+$f(x) = x^3 \implies f'(x) = 3x^2 \quad f'(0) =0$\\
+$x=0$ is neither a local max nor a local min
+\item[(2)]
+$f(x) = \mid h \mid \implies f(x) > 0 \quad f(0) = 0$\\
+$f'(0)$ doesn't exist\\
+$0$ is a local min (abs min)
+\end{itemize}
+\end{remark}
+\section{Critical Point (Critical Number)}
+\begin{defn}
+\begin{itemize}
+\item If $f'(c)$ doesn't exist or $f''(c)$ = 0, then $c$ is called a critical point of $f$
+\item If $f$ has a local max or a local min at $c$, then $c$ is a critical point of $f$
+\end{itemize}
+\end{defn}
+\begin{eg}
+Find critical point of $f(x) = x^{\frac{3}{5}}(4-x)$\\
+$$\begin{array}{rcl}
+f'(x) & = & \displaystyle \frac{3}{5} x^{-\frac{2}{5}}(4-x) + x^{\frac{3}{5}} \cdot -1\\
+& = & \displaystyle \frac{1}{5}x^{-\frac{2}{5}}(12- 3x -5x)\\
+& = & \displaystyle \frac{1}{5}x^{-\frac{2}{5}}(12-8x)\\
+& = & \displaystyle \frac{1}{5} \cdot \frac{12-8x}{x^{\frac{2}{5}}}
+\end{array}$$
+let $f(x)'=0$
+$$x = \displaystyle \frac{3}{2}$$
+Find $x$ s.t. $f'(x)$ doesn't exist $\implies f'(0)$ doesn't exist
+\end{eg}
+
+\section{Rolle's Theorem}
+\begin{theorem}
+Assume
+\begin{itemize}
+\item[(H1)] $f(x)$ is conti. in $[a, b]$
+\item[(H2)] $f(x)$ is differentiable in $(a, b)$
+\item[(H3)] $f(a) =f(b)$
+\end{itemize}
+Then $\exists c \in (a, b) \text{ s.t } f'(c) =0$
+\end{theorem}
+\begin{remark}
+等高兩點間必有波峰或波谷
+\end{remark}
+
+
+\begin{proof}
+Rolle's Theorem\\
+Without loss of generality, we may assume
+$$f(a) = f(b) = 0$$
+Otherwise let $g(x) = f(x) - f(a) = f(x) - f(b)$, then
+$$\begin{array}{rcl}
+g(a) = 0 & \text{ and } & g(b) = 0
+\end{array}$$
+3 cases:
+\begin{itemize}
+\item[(1)] $f(x) =0 \quad \forall x \in (a, b)\\
+\implies f'(x) = 0 \quad  \forall x \in (a, b)$
+\item[(2)] $\exists x \in (a, b)$ s.t. $f(x) > 0$\\
+Extreme Value Thm, (H1) $\implies f$ has a local max at $c \in (a, b)$\\
+Fermat's Thm, (H2) $\implies f'(c) = 0$
+\item[(3)] $\exists x \in (a, b)$ s.t $f(x) < 0$\\
+Extreme Value Thm, (H1) $\implies f$ has a local min at $c \in (a, b)$\\
+Fermat's Thm, (H2) $\implies f'(c) = 0$
+\end{itemize}
+\end{proof}
+\begin{eg}
+Prove $x^3+x -1=0$ has one real root\\\\
+let $f(x) = x^3+x-1$\\
+$$\left\{ \begin{array}{ll}
+           f(1) = 1 >0 \\
+           f(-1) = -3 <0
+        \end{array} \right.
+$$
+By I.V.T, $\exists c \in (-1, 1)$ s.t. $f(c) =0$\\
+Assume $x_1$ and $x_2$ are two roots of $f(x)=0$\\
+$$f(x_1)=f(x_2)=0$$
+$$\left\{ \begin{array}{ll}
+           \exists k \in (x_1, x_2) \  \text{s.t.} f(k)=0\\
+           f'(x) = 3x^2 +1 \geq 1 > 0 \quad \forall x \in R
+        \end{array} \right.
+$$ 
+$\implies$ contradiction
+\end{eg}
+\section{Mean Value Theorem}
+\begin{theorem}
+Assume
+\begin{itemize}
+\item[(H1)] $f(x)$ is conti. in $[a, b]$
+\item[(H2)] $f(x)$ is differentiable in $(a, b)$
+\end{itemize}
+Then $\exists c \in (a, b)$ s.t. $\displaystyle f'(c) = \frac{f(a)-f(b)}{a-b}$
+\end{theorem}
+\begin{remark}
+When $f(a) = f(b)$ in M.V.T, M.V.T becomes Rolle's Thm
+\end{remark}
+\begin{proof} Mean Value Theorem\\
+Let $\displaystyle h(x) = f(a) + \frac{f(a) -f(b)}{a-b} (x-a)$\\
+Let $g(x) = f(x) - h(x)$\\
+$$\left\{ \begin{array}{rcl}
+g(a) & = & f(a) - h(a) = 0\\
+g(b) & = & f(b) - h(b) = 0
+\end{array}
+\right.
+$$
+$$\displaystyle \frac{h(x) - f(a)}{x-a} = \frac{f(a) - f(b)}{a-b}$$
+$g(x) = f(x) - h(x)$ is conti. on $(a,b)$ and diff. on $(a, b)$\\
+By Rolle's Thm, $\exists c \in (a, b)$ s.t. $g'(c) = 0$\\
+$$\begin{array}{rcl}
+h'(x) & = & \displaystyle \frac{f(a) - f(b)}{a-b}\\
+g'(x) & = & f'(x) - h'(x)\\
+g'(c) & = & \displaystyle f'(c) - \frac{f(a) - f(b)}{a-b}\\
+f'(c) & = & \displaystyle \frac{f(a) - f(b)}{a-b}
+\end{array}$$
+\end{proof}
+\begin{eg}
+$f(x) = \sin \sqrt{x+1}$
+\begin{itemize}
+\item Find $f'(x)$
+$$\begin{array}{rcl}
+f(x) & = & \sin (x+1)^\frac{1}{2}\\\\
+f'(x) & = & \displaystyle \cos(\sqrt{x+1}) \cdot \frac{1}{2}(x+1)^{-\frac{1}{2}} \cdot 1\\
+& = & \displaystyle \frac{\cos \sqrt{x+1}}{2\sqrt{x+1}}
+\end{array}$$
+\item 
+$\displaystyle \lim_{x \to 0} \frac{\sin \sqrt{x+1 - \sin 1}}{x-0} = \lim_{x \to 0} \frac{f(x) -f(0)}{x-0} = f'(0) = \frac{\cos 1}{2}$
+\item Prove $\displaystyle \sin \sqrt{x+1} < \frac{1}{2}x + \sin 1$ for $x>0$\\
+By M.V.T, $\exists c \in (0, x)$ s.t. $\displaystyle f'(c) = \frac{f(x) - f(0)}{x-0} = \frac{\sin \sqrt{x+1} - \sin 1}{x}$
+$$\displaystyle f'(c) = \frac{\cos \sqrt{c+1}}{2\sqrt{c+1}} \leq \frac{1}{2\sqrt{x+1}} < \frac{1}{2\sqrt{0+1}} = \frac{1}{2}$$
+\end{itemize}
+\end{eg}
+\begin{jk}
+你想不到8
+\end{jk}
+
+\section{L'Hospital's Rule}
+\begin{theorem}
+Consider $\displaystyle \lim_{x\to a} \frac{f(x)}{g(x)}$
+\begin{itemize}
+\item type $\displaystyle \frac{0}{0}$\\
+$\displaystyle \lim_{x\to a} f(x) = \lim_{x \to a} g(x) = 0$
+\item type $\displaystyle \frac{\infty}{\infty}$\\
+$\displaystyle \lim_{x\to a} f(x) = \pm \infty$\\
+$\displaystyle \lim_{x\to a} g(x) = \pm \infty$
+\end{itemize}
+Assume 
+\begin{itemize}
+\item[(1)] $f$ and $g$ are differentiable
+\item[(2)] $g'(x) \neq 0$ on an open interval containing $a$ (except possibility at $a$.)
+\end{itemize}
+Then for type $\displaystyle \frac{0}{0}$ or $\displaystyle \frac{\infty}{\infty}$, 
+$$\displaystyle \lim_{x\to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}$$
+\end{theorem}
+
+\subsection*{Baby L'Hospital's Rule}
+\begin{theorem}
+Assume 
+\begin{itemize}
+\item[(1)] $f(a) = g(a) =0$
+\item[(2)] $f'$ and $g'$ are conti.
+\item[(3)] $g'(a) \neq 0$
+\end{itemize}
+Then
+$$\displaystyle \lim_{x\to a} \frac{f(x)}{g(x)} = \lim_{x\to a} \frac{f'(x)}{g'(x)}$$
+\end{theorem}
+\begin{proof} Baby L'Hospital's Rule\\
+$$\begin{array}{rcl}
+\displaystyle \lim_{x\to a} \frac{f(x)}{g(x)} & = & \displaystyle  \lim_{x\to a} \frac{f(x)-f(a)}{g(x)-g(a)}\\
+& = & \displaystyle \lim_{x\to a} \frac{\displaystyle \frac{f(x) - f(a)}{x-a}}{\displaystyle \frac{g(x) -g(a)}{x-a}}\\
+& = & \displaystyle \frac{\displaystyle \lim_{x\to a} \frac{f(x) -f(a)}{x-a}}{\displaystyle \lim_{x\to a} \frac{g(x) -g(a)}{x-a}} \qquad \qquad \text{\tssteelblue{(limit law)}} \\
+& = & \displaystyle \frac{f'(a)}{g'(a)}\\
+& = & \displaystyle \frac{\displaystyle \lim_{x\to a} f'(x)}{\displaystyle \lim_{x\to a} g'(x)}\\
+& = & \displaystyle \lim_{x\to a} \frac{f'(x)}{g'(x)}
+\end{array}$$
+\end{proof}
+\begin{eg}
+$$\begin{array}{ll}
+\displaystyle \lim_{x\to 1} \frac{ln x}{x-1} & (\text{type } \displaystyle \frac{0}{0})\\
+= \displaystyle \lim_{x\to 1} \frac{\frac{1}{x}}{1}\\
+= 1
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{ll}
+\displaystyle \lim_{x\to \infty} \frac{e^x}{x^2} & (\text{type } \displaystyle \frac{\infty}{\infty})\\
+\displaystyle = \lim_{x\to \infty} \frac{e^x}{2x} & (\text{type } \displaystyle \frac{\infty}{\infty})\\
+\displaystyle = \lim_{x\to \infty} \frac{e^x}{2} & (\text{type } \displaystyle \frac{\infty}{2})\\
+= \infty
+\end{array}$$
+$$e^x >> x^2$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{ll}
+\displaystyle \lim_{x\to 0} \frac{\tan x -x}{x^3} & (\text{type } \displaystyle \frac{0}{0})\\
+\displaystyle = \lim_{x\to 0} \frac{\sec^2 x -1}{3x^2} & (\text{type } \displaystyle \frac{0}{0})\\
+\displaystyle = \lim_{x\to 0} \frac{2\sec^2x \tan x}{6x} & (\text{type } \displaystyle \frac{0}{0})\\
+\displaystyle = \frac{1}{3} \lim_{x\to 0} \frac{2\sec x \sec x \tan x+ \sec^4 x}{1} & (\text{type } \displaystyle \frac{1}{1})\\
+\displaystyle = \frac{1}{3}
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{ll}
+\displaystyle \lim_{x\to 0^+} x ln x & (\text{type } 0 \infty)\\
+\displaystyle = \lim_{x \to 0^+} \frac{lnx}{\frac{1}{x}}\\
+\displaystyle = \lim_{x\to 0^+} \frac{\frac{1}{x}}{-\frac{1}{x^2}}\\
+\displaystyle = \lim_{x \to 0^+} (-x)\\
+= 0
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{ll}
+displaystyle \lim_{x \to \frac{\pi}{2}^-}(\sec x - \tan x) & (\text{type } \infty - \infty)\\
+\displaystyle = \lim_{x \to \frac{\pi}{2}^-}(\frac{1}{\cos x} - \frac{\sin x}{\cos x})\\
+\displaystyle = \lim_{x \to \frac{\pi}{2}^-} \frac{1-\sin x}{\cos x} & (\text{type } \displaystyle \frac{0}{0})\\
+\displaystyle = \lim_{x \to \frac{\pi}{2}^-} \frac{-\cos x}{-\sin x} & (\text{type } \displaystyle \frac{0}{-1})\\
+=0
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\lim_{x\to 0^+} (1+ \sin (4x))^{\cot x} \quad (\text{type } f(x)^{g(x)})$$
+$$\begin{array}{rcl}
+y(x) & = & (1+ \sin (4x))^{\cot x}\\
+ln y(x) & = & \cot x \cdot ln(1+\sin (4x))
+\end{array}$$
+Find $\displaystyle \lim_{x\to 0^+} (ln y(x))$\\
+$$\begin{array}{rcll}
+\displaystyle \lim_{x\to 0^+} (ln y(x)) & = & \displaystyle \lim_{x\to 0^+} \cot x ln(1+\sin (4x)) & (\text{type }\infty 0)\\
+& = & \displaystyle \lim_{x\to 0^+} \frac{ln(1+\sin (4x))}{\tan x} & (\text{ type } \displaystyle \frac{0}{0})\\
+& = & \displaystyle \lim_{x\to 0^+} \frac{\frac{4\cos (4x)}{1+\sin (4x)}}{\sec ^2 x} & (\text{type } \frac{\frac{4}{1+0}}{1})\\
+& = & 4
+\end{array}$$
+$$\begin{array}{rcl}
+\displaystyle \lim_{x\to 0^+} (ln y(x)) & = & 4\\
+\displaystyle ln(\lim_{x\to 0^+} y(x)) & = & \displaystyle \lim_{x\to 0^+} y(x)= e^4)
+\end{array}$$
+\end{eg}
+\begin{jk}
+導遊口才很好真不是guide
+\end{jk}
+\section{Inflection Point (反曲點)}
+\begin{defn}
+A point $c$ is called a inflection point of $f$ if on $c$, the curve $y=f(x)$ changes from convex ($f''>0,  \ \ \cup$ ) to concave ($f''<0,\ \ \cap$) or concave to convex. That is, if $c$ is an inflection point then $f''(c) = 0$.
+\end{defn}
+\begin{itemize}
+\item If $f' >0 \implies f \nearrow$\\
+$f' < 0 \implies f \swarrow$\\
+$\nearrow \text{then} \searrow \implies \cap$ \quad (concave downward 凹口向下)\\
+$\searrow \text{then} \nearrow \implies \cup$ \quad (concave upward 凹口向上/凸口向下)
+\item If $f'' > 0 \implies (f')' > 0 \quad \cup$\\
+$f'' < 0 \implies (f')' < 0 \quad \cap$
+\end{itemize}
+\subsection*{1st derivative test}
+$f'(c) = 0$\\
+$f'(c^-): +,  \ \ f'(c^+): -, \ \ f'(c) = 0: \text{local max} \quad \cap$\\
+$f'(c^-): -, \ \ f'(c^+): +, \ \ f'(c) = 0: \text{local min} \quad \cup$
+\subsection*{2nd derivative test}
+$f'(c)= 0$\\
+$f''(c): +, \ \ f'(c)= 0: \text{local min} \quad \cup$\\
+$f''(c): -, \ \ f'(c) = 0: \text{local max} \quad \cap$
+\section{Optimization Problems}
+$\left \{ \begin{array}{ll}
+\text{objective fcn}\\
+\text{condition(s)}
+\end{array}
+\right.$
+$\implies \text{max or min}$\\\\
+\begin{eg}
+Find the point on the parabola $y^2 = 2x$ which closest to $(1, 4)$
+$$\left \{ \begin{array}{rcl}
+d(x, y) & = & \sqrt{(x-1)^2 + (y-4)^2}\\
+x & = & \displaystyle \frac{y^2}{2}
+\end{array}\right.$$
+Q: Minimize $d(x, y)$ under the condition $y^2= 2x$\\
+let
+$$\begin{array}{rcl}
+f(x, y) & = & (x-1)^2 + (y-4)^2\\
+& = & \displaystyle (\frac{1}{2}y^2 -1)^2 + (y-4)^2\\
+& = & \displaystyle \frac{1}{4}y^4- \cancel{y^2} + 1 +\cancel{ y^2} - 8y + 16\\
+& = & \displaystyle \frac{1}{4}y^4 - 8y+ 17\\
+& = & g(y)
+\end{array}$$
+Find critical point of $g(y)$\\
+let $g'(y) = 0$\\
+$$g'(y) = y^3-8=0$$
+$$(y-2)(y^2+2y+4)=0$$
+$$y=2$$
+\begin{itemize}
+\item 1st derivative test\\
+$$\begin{array}{cccc}
+f'(c^-) & f'(c) & f'(c^+) & \\
+- & 0 & + & \cup \quad \text{local min}\\
++ & 0 & - & \cap \quad \text{local max}
+\end{array}$$
+$$\begin{array}{rcl}
+g'(y) & = & y^3 - 8\\
+g'(2) & = & 0\\
+g'(2^-) & < & 0\\ 
+g'(2^+) & > & 0
+\end{array}$$
+$\implies \text{local min}$
+\item 2nd derivative test\\
+$$\begin{array}{ccc}
+f'(c) & f''(c) & \\
+0 & + & \cup \quad \text{local min}\\
+0 & -& \cap \quad \text{local max}
+\end{array}$$
+$$\begin{array}{rcl}
+g''(y) & = & 3y^2\\
+g'(2) & = & 12>0
+\end{array}$$
+$\implies \text{local min}$
+\end{itemize}
+\end{eg}
+\begin{eg}
+Find the area of the largest rectangle that can be inscribed (內接) in a semi-circle of radius $r$\\
+$$\left \{ \begin{array}{rcl}
+A(x, y) & = & 2xy\\
+r^2 & = & x^2 + y^2
+\end{array}\right.$$
+Q: Max $A(x,y)$\\
+$$A(x,y) = 2xy = 2x(r^2 - x^2)^{\frac{1}{2}} := f(x)$$
+$$\displaystyle f'(x) = 2(r^2 - x^2)^{\frac{1}{2}} + x(-x)(r^2-x^2)^{\frac{1}{2}} = \frac{2}{(r^2 - x^2)^{\frac{1}{2}}}((r^2-x^2)-x^2)$$
+critical point\\
+let $f'(x) = 0 \implies r^2-2x^2 \implies x = \displaystyle  \frac{r}{\sqrt{2}}$\\
+when $f'(x)$ doesn't exist $\implies x=r \implies y=0$
+\begin{itemize}
+\item 1st derivative test
+$$\begin{array}{rcl}
+f'(x) & = & \displaystyle \frac{2(r^2-x^2)}{(r^2 - x^2)^{\frac{1}{2}}}\\ % \implies f'(\frac{r}{\sqrt{2}})
+\displaystyle f'(\frac{r}{\sqrt{2}}^-) & > & 0\\
+\displaystyle f'(\frac{r}{\sqrt{2}} ^+) & < & 0
+\end{array}$$
+$\implies \text{local max}$
+\end{itemize}
+\end{eg}
+\section{Antiderivatives（反導函數）}
+\begin{defn}
+$F(x)$ is ``an" antiderivative of $f(x)$ if $F'(x) = f(x)$
+\end{defn}
+\begin{notn}
+Why``an" not ``the"?\\\\
+If $F'(x) = f(x)$\\
+$\implies (F(x) + c)' = f(x)$ \quad $c$: const. interp of $x$\\
+$\implies F(x) + c$ is also an antiderivative of $f(x)$
+\end{notn}
+\begin{eg}
+$$\begin{array}{rcl}
+f(x) & = & \sin x\\
+F(x) & = & -\cos x + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+f(x) & = & \displaystyle \frac{1}{x}\\
+F(x) & = & ln x + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+f(x) & = & x^n\\
+F(x) & = & \displaystyle \frac{1}{n+1} x^{n+1} + c
+\end{array}$$
+\end{eg}
