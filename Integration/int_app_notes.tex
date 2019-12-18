@@ -1,0 +1,432 @@
+%
+% Copyright 2018 Joel Feldman, Andrew Rechnitzer and Elyse Yeager.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+%
+
+\graphicspath{{./figures/applications/}}
+
+\chapter{Applications of Integration} \label{chap int app}
+\section{1st-order linear ODE 一階線性常微分方程}
+\begin{defn}[Separable Equations]
+\[\begin{array}{rcl}
+\displaystyle \frac{dy}{dx} & = & f(x) g(y)\\
+\displaystyle \int \frac{dy}{g(y)} & = & \displaystyle \int f(x)dx
+\end{array}\]
+\end{defn}
+\[y'(x) + P(x)y(x) = Q(x) \quad (y \neq 0) \quad \text{where } P(x) \text{ and } Q(x) \text{ are given} \quad ---(\star)\]
+\underline{Goal}: solve \(y(x) \)\\
+\underline{Idea}: Integrating factor\\
+\[(\star) \cdot I(x)\]
+\[I(x)y'(x) + I(x)P(x)y(x) = I(x)Q(x)\]
+\underline{Hope}: \(Iy' + IPy = (Iy)' \quad \quad ---(1)\)\\
+want \( I(x) \) s.t. \((1)\) is true\\
+\[(1) \implies Iy' + IPy = I'y + Iy' \quad \text{\tssteelblue{product rule}}\]
+\[IP = I' = \displaystyle \frac{dI}{dx}\]
+\[\displaystyle \frac{dI}{dx} = I(x)P(x)\]
+\[\displaystyle \int \frac{dI}{I} = \int P(x) dx\]
+\[\displaystyle ln I \cancel{+ c} = \int P(x) dx\]
+\[I(x) \cancel{\cdot e^c} = e^{\int P(x)dx}\]
+\[I(x) = \cancel{e^{-c}} e^{\int P(x)dx}\]
+i.e: \(I(x) = e^{\int P(x)dx} \quad \text{Integrating factor}\)
+\[?= Iy' + IPy = (Iy)'\]
+\[e^{\int P(x) dx} y' + e^{\int P(x)dx} Py = (e^{\int P(x)dx} y)'\]
+\[\displaystyle \frac{d}{dx}(e^{\int P(x)dx} y) = \frac{d}{dx}(e^{\int P(x)dx})y + e^{\int P(x)dx} y'\]
+\[\displaystyle \frac{d}{dx}(e^{\int P(x)dx}) = e^{\int P(x)dx} \quad \text{\tssteelblue{chain rule}}\]
+\[\displaystyle \frac{d}{dx} (\int P(x)dx) = P(x) \quad \text{\tssteelblue{F.T.C}}\]
+\((1) \implies (Iy)' = IQ\), where \(I(x) = e^{\int P(x)dx}\)
+\[\displaystyle \frac{d(Iy)}{dx} = I(x)Q(x)\]
+\[\displaystyle \int d(Iy) = \int I(x)Q(x)dx\]
+\[\displaystyle Iy \cancel{+ c} = \int I(x)Q(x)dx\]
+\[y(x) = \displaystyle \frac{1}{e^{\int P(x)dx}} \int (e^{\int P(x)dx})Q(x)dx\]
+\begin{eg}
+Solve \(y' + 3x^2y = 6x^2 \quad \quad ---(2)\)
+
+\soln Integrating factor
+\[\begin{array}{rcl}
+I(x) & = & e^{\int P(x)dx}\\
+& = & e^{\int 3x^2dx}\\
+& = & e^{x^3 + c}\\
+& = & \cancel{e^c} \cdot e^{x^3}
+\end{array}\]
+\[(2) \cdot e^{x^3} \implies e^{x^3}y' + 3x^2ye^{x^3} = 6x^2e^{x^3}\]
+\[\displaystyle \frac{d(e^{x^3})}{dx} = e^{x^3}y' = 6x^2e^{x^3}\]
+\[\begin{array}{rcl}
+\displaystyle \int d(e^{x^3}y) & = & \displaystyle \int 6x^2e^{x^3}dx\\
+& = & \int 2e^{x^3} dx^3\\
+& = & 2e^y+c\\
+& = & 2e^{x^3} +c
+\end{array}\]
+\[e^{x^3} y = 2e^{x^3} + c\]
+\[y = \displaystyle 2 + \frac{c}{e^{x^3}}\]
+\end{eg}
+\begin{eg}
+Solve Initial value problem (I.V.P) \(\left\{ \begin{array}{rcl}
+x^2y' + xy & = & 1 \quad \text{\tssteelblue{ODE}}\\
+y(1) & = & 2 \quad \text{\tssteelblue{Initial condition}}
+\end{array} \right.\)
+
+\soln 
+\[\displaystyle y' + \frac{1}{x}y = \frac{1}{x^2} \quad \quad ---(3)\]
+\[I(x) = e^{\int \frac{1}{x}dx} = e^{ln x} = x\]
+\[(3) \cdot I(x) \implies xy' + y = \frac{1}{x}\]
+\[(xy)' = \frac{1}{x}\]
+\[\displaystyle \frac{d(xy)}{dx} = \frac{1}{x}\]
+\[\displaystyle \int d(xy) = \int \frac{1}{x} dx\]
+\[xy = ln x +c\]
+use \(y(1) = 2\) to determine \(c\)
+\[xy = ln x +c\]
+\[x=1, y=2\]
+\[1 \cdot 2 = ln 1 +c\]
+\[c = 2\]
+The solution is \(xy = ln x + 2 \text{ or } y = \displaystyle \frac{lnx}{x} + \frac{2}{x}\)
+\end{eg}
+\begin{eg}
+Solve \((\sec x)y' - y = \tan x e^{\cos x - \sin x} \quad \quad ---(4)\)
+
+\soln
+\[\displaystyle y' - \frac{y}{\sec x} = \sin x e^{\cos x - \sin x}\]
+\[I(x) = e^{\int \cos x dx} = e^{\sin x}\]
+\[\begin{array}{rcl}
+(4) \cdot I(x) \implies e^{\sin x}y' + \cos x e^{\sin x}y & = & \cancel{e^{\sin x}} \sin x e^{\cos x - \cancel{\sin x}}\\
+& = & \sin x e^{\cos x}
+\end{array}\]
+\[(e^{\sin x}y)' = \sin x e^{\cos x}\]
+\[\displaystyle \frac{d(e^{\sin x}y)}{dx} = \sin x e^{\cos x}\]
+\[\int d(e^{\sin x}y) = \int \sin x e^{\cos x}dx\]
+\[\begin{array}{rcl}
+e^{\sin x}y & = & \displaystyle -\int e^{\cos x}d\cos x\\
+& = & -e^y + c\\
+& = & -e^{\cos x} + c
+\end{array}\]
+\[e^{\sin x}y = -e^{\cos x} + c\]
+\(y' + P(x)y = Q(x) \implies \text{ IF is } I(x) = e^{\int P(x)dx}\)
+\end{eg}
+\section{Arc Length  弧長}
+\begin{defn}
+\[ds = \sqrt{(dx)^2 + (dy)^2}\]
+\[\begin{array}{rcl}
+\displaystyle \int^{x=b}_{x=a} ds & = &\displaystyle \int^{x = b}_{x = a} \sqrt{(dx)^2 + (dy)^2}\\
+& = & \displaystyle \int^{x = b}_{x = a} \sqrt{\frac{dx^2}{dx^2} + \frac{dy^2}{dx^2}} dx\\
+& = & \displaystyle \int^b_a \sqrt{1 + (f'(x))^2} dx\\
+\end{array}\]
+Given \(x = g(y), c \leq y \leq d\), arc length \( = \displaystyle \int^d_c \sqrt{1 + (g'(y))^2} dy\)
+\end{defn}
+\begin{eg}
+Find the arc length of \(y = x^{\frac{3}{2}} \text{ from } (1, 1) \text{ to } (4, 8)\)
+
+\soln
+\[\begin{array}{rcl}
+f(x) = x^{\frac{3}{2}} & \implies & \displaystyle f'(x) = \frac{2}{3} x^{\frac{1}{2}}\\
+& \implies & \displaystyle 1 + (f'(x))^2 = 1 + \frac{4}{9} x\\
+\end{array}\]
+\[\begin{array}{rcl}
+\displaystyle \int \sqrt{1 + x}dx & = & \displaystyle \int (1 + x)^{\frac{1}{2}} dx\\
+& = & \displaystyle \frac{2}{3} (1 + x)^{\frac{3}{2}} + c
+\end{array}\]
+\[\begin{array}{rcl}
+\displaystyle \int^4_1 \sqrt{1 + \frac{4}{9} x} dx & = & \displaystyle \frac{4}{9} \frac{2}{3} (1 + \frac{4}{9} x)^{\frac{3}{2}}\Big|^4_1\\
+& = & \displaystyle \frac{8}{27} (10^{\frac{3}{2}} - \frac{13^{\frac{3}{2}}}{8})\\
+& = & \displaystyle \frac{1}{27} (40^{\frac{3}{2}} - 13^{\frac{3}{2}})
+\end{array}\]
+\end{eg}
+\begin{eg}
+Find the arc length of \(y = e^x \text{ from } (ln3, 3) \text{ to } (ln8, 8)\)
+
+\soln
+\[\begin{array}{rcl}
+f(x) = e^x & \implies & f'(x) = e^x\\
+& \implies & (f'(x))^2 = e^{2x}
+\end{array}\]
+\[\begin{array}{rcl}
+I & = & \displaystyle \int \sqrt{1 + e^{2x}}dx\\
+\text{let } u & = & \sqrt{1 + e^{2x}} = (1 + e^{2x})^{\frac{1}{2}}\\
+du & = & \displaystyle \cancel{\frac{1}{2}} (1 + e^{2x})^{-\frac{1}{2}} \cancel{2} e^{2x} dx = \frac{u^2 - 1}{u} dx\\
+I & = & \displaystyle \int u (\frac{u}{u^2 - 1}du)\\
+& = & \displaystyle \int \frac{u^2}{u^2 - 1} du\\
+& = & \displaystyle \int (1 + \frac{1}{u^2 - 1})du\\
+& = & \displaystyle u + \frac{1}{2}(ln(u - 1) - ln(u + 1)) + c
+\end{array}\]
+\[\begin{array}{rcl}
+\displaystyle \int^{ln8}_{ln3} \sqrt{1 + e^{2x}}dx & = & \displaystyle \sqrt{1 + e^{2x}} + \frac{1}{2}(ln( \sqrt{1 + e^{2x}} -1) - ln(\sqrt{1 + e^{2x}} + 1))\Big|^{ln8}_{ln3}\\
+& = & \displaystyle \sqrt{1 + 64} + \frac{1}{2} (ln(\sqrt{65} - 1) - ln(\sqrt{65} + 1))\\
+&& \displaystyle - (\sqrt{1 + 9} + \frac{1}{2} (ln(\sqrt{10} - 1) - ln(\sqrt{10} + 1)))\\
+& = & \displaystyle \sqrt{65} + \frac{1}{2}ln(\frac{\sqrt{65} - 1}{\sqrt{65} + 1}) - (\sqrt{10} + \frac{1}{2} ln(\frac{\sqrt{10} - 1}{\sqrt{10} + 1}))\\
+& = & \displaystyle \sqrt{65} - \sqrt{10} + \frac{1}{2}(ln (\frac{(\sqrt{65} - 1)^2}{65 -1}) - ln (\frac{(\sqrt{10} - 1)^2}{10 - 1}))\\
+& = & \displaystyle \sqrt{65} - \sqrt{10} + \frac{1}{2} (ln (\frac{(\sqrt{65} - 1)^2}{(\sqrt{10} -1)^2}) + ln (\frac{9}{64}))\\
+& = & \displaystyle \sqrt{65} - \sqrt{10} + ln(\frac{\sqrt{65} - 1}{\sqrt{10} - 1}) + ln \frac{3}{8}\\
+& = & 2 + ln3 - ln2
+\end{array}\]
+\end{eg}
+\section{Calculus with Parametric Curve}
+\begin{defn}[Parametric Equations 參數式]
+\[y = f(x)\]
+\[\left\{ \begin{array}{rcl}
+y & = & y(t)\\
+x & = & x(t)
+\end{array} \right. \quad \quad t : \text{parameter}\]
+\end{defn}
+\begin{notn}
+\[\left\{ \begin{array}{rcl}
+x & = & f(t)\\
+y & = & g(t)
+\end{array} \right. \quad \quad t : \text{parameter}\]
+\begin{itemize}
+\item Tangent
+\[\text{slope} \displaystyle = \frac{dy}{dx} = \frac{\frac{dy}{dt}}{\frac{dx}{dt}} = \frac{g'(t)}{f'(t)}\]
+\[\displaystyle g'(t) = \frac{dy}{dt} = \frac{dy}{dx} \frac{dx}{dt} = \frac{dy}{dx}f'(t) \quad \text{\tssteelblue{chain rule}}\]
+\item Area
+\[\displaystyle \int^b_a y(x)dx = \int^{t_2}_{t_1} y(f(t)) \frac{dx}{dt} dt = \int^{t_2}_{t_1} y(f(t))f'(t)dt\]
+\item Arc Length
+\[\displaystyle \int ds = \int \sqrt{(dx)^2 +(dy)^2} = \int \sqrt{\frac{(dx)^2}{(dt)^2} + \frac{(dy)^2}{(dt)^2}} dt = \int \sqrt{(f'(t))^2 + (g'(t))^2}dt\]
+\item Surface Area\\
+\(y = y(x)\) around \(x\)-axis
+\[\displaystyle \int 2 \pi y(x)ds = \int 2 \pi y(f(t)) \cdot \sqrt{(f'(t))^2 + (g'(t))^2} dt\]
+\item Cycloid 擺線
+\[\overset\frown{PQ} = \overline{P_0 Q}\]
+\[x = \overline{P_0Q} - r \sin \theta = \overset\frown{PQ} - r \sin \theta = r \theta - r \sin \theta\]
+\[y = r - r \cos \theta\]
+\[\left\{\begin{array}{rcl}
+x(\theta) & = & r(\theta - \sin \theta)\\
+y(\theta) & = & r(1 - \cos \theta)
+\end{array}\right.\]
+\end{itemize}
+\end{notn}
+\begin{eg}
+\[\left\{ \begin{array}{rcl}
+x & = & \cos t\\
+y & = & \sin t
+\end{array} \right.\] 
+\[\implies x^2 + y^2 = \cos^2 t + \sin^2 t = 1\]
+circle centered at \((0, 0)\) with radius \(1\)
+\end{eg}
+\begin{eg}
+Find the slope of the tangent of Cycloid at \(\displaystyle \theta = \frac{\pi}{3}\)
+
+\soln
+\[\begin{array}{rcl}
+x(\theta) & = & r(\theta - \sin \theta)\\
+y(\theta) & = & r(1 - \cos \theta)
+\end{array}\]
+\[\begin{array}{rcl}
+\text{slope} & = & \displaystyle \frac{y'(\theta)}{x'(\theta)} \Big |_{\theta = \frac{\pi}{3}}\\
+& = & \displaystyle \frac{r \sin \theta}{r(1 - \cos \theta)} \Big |_{\theta = \frac{\pi}{3}}\\
+& = & \displaystyle \frac{\frac{\sqrt{3}}{2}}{1 - \frac{1}{2}}\\
+& = & \sqrt{3}
+\end{array}\]
+\end{eg}
+\begin{eg}
+\[\begin{array}{rcl}
+\text{area } A & = & \displaystyle \int^{2\pi}_{\theta} r(1 - \cos \theta) \cdot r(1 - \cos \theta)d\theta\\
+& = & \displaystyle r^2 \int^{2\pi}_{\theta} (1 - \cos \theta)^2 d\theta\\
+& = & \displaystyle r^2 (\theta - 2 \sin \theta + \frac{1}{4} \sin 2\theta + \frac{1}{2} \theta) \Big |^{2\pi}_0\\
+& = & \displaystyle r^2 (\frac{3}{\cancel{2}} \cdot \cancel{2}\pi)\\
+& = & 3 \pi r^2
+\end{array}\]
+\[\cos 2 \theta = 2 \cos^2 \theta -1\]
+\[\begin{array}{rcl}
+\displaystyle \int (1 - 2 \cos \theta + \cos^2 \theta) d\theta & = & \displaystyle \int \cos^2 \theta d\theta\\
+& = & \displaystyle \int \frac{1}{2} (\cos 2 \theta+1) d\theta
+\end{array}\]
+\[\begin{array}{rcl}
+\text{arc length } & = & \displaystyle \int^{2 \pi}_0 r \sqrt{(1 - \cos \theta)^2 + (\sin \theta)^2} d \theta\\
+& = & \displaystyle r \int^{2\pi}_0 \sqrt{2 - 2\cos \theta} d\theta\\
+& = & \displaystyle \sqrt{2}r \int^{2\pi}_0 \sqrt{1 - \cos \theta} d\theta\\
+& = & \displaystyle \sqrt{2}r \int^{2\pi}_0 \sqrt{2\sin^2 \frac{\theta}{2}} d\theta\\
+& = & \displaystyle 2r \int^{2\pi}_0 \sqrt{\sin^2 \frac{\theta}{2}} d\theta\\
+& = & \displaystyle 2r \int^{2\pi}_0 \sin \frac{\theta}{2} d\theta\\
+& = & \displaystyle 2r(-2\cos \frac{\theta}{2}) \Big|^{2\pi}_0\\
+& = & -4r((-1)-1)\\
+& = & 8r
+\end{array}\]
+\[\begin{array}{rcl}
+\cos 2\theta = 2\cos^2 \theta - 1 & = & 1 - 2 \sin^2 \theta\\
+1 - \cos 2\theta & = & 2 \sin^2 \theta\\
+1 - \cos \theta & = & \displaystyle 2 \sin^2 \frac{\theta}{2}
+\end{array}\]
+\[\begin{array}{rcl}
+\text{surface area } & = & \displaystyle \int 2\pi (r(1 - \cos \theta)(\sqrt{2}r \sqrt{1 - \cos \theta}) d\theta\\
+& = & \displaystyle 2 \sqrt{2} \pi r^2 \int (1 - \cos \theta)^{\frac{1}{2}} d\theta
+\end{array}\]
+\[\begin{array}{rcl}
+\displaystyle \int \sin^3 \theta d\theta & = & \displaystyle \int \sin^2 \theta \sin \theta d\theta\\
+& = & \displaystyle - \int (1 - z^2) dz
+\end{array}\]
+\end{eg}
+\begin{eg}
+Find the surface area generated by rotating w.r.t \(x\)-axis
+
+\soln
+\[\begin{array}{rcl}
+A & = & \displaystyle \int^{2\pi}_0 2\pi y(\theta) ds\\
+& = & \displaystyle 2\pi \sqrt{2} r^2 \int^{2\pi}_0 (1 - \cos \theta) \sqrt{1 - \cos \theta} d\theta\\
+& = & \displaystyle 2\pi \sqrt{2} r^2 \int^{2\pi}_0 2 \sin^2 \frac{\theta}{2} \sqrt{2} \sqrt{\sin^2 \frac{\theta}{2}} d\theta\\
+& = & \displaystyle 8\pi r^2 \int^{2\pi}_0 \sin^2 \frac{\theta}{2} \sin \frac{\theta}{2} d\theta\\
+& = & \displaystyle -16\pi r^2 \int^{2\pi}_0 (1 - \cos^2 \frac{\theta}{2}) d\cos \frac{\theta}{2}\\
+& = & \displaystyle -16\pi r^2 \int^{-1}_1 (1 - z^2) dz\\
+& = & \displaystyle -16\pi r^2 (z - \frac{1}{3} z^3) \Big|^{-1}_1\\
+& = & \displaystyle -16\pi r^2 (-1 + \frac{1}{3} - (1 - \frac{1}{3}))\\
+& = & \displaystyle -16\pi r^2 (-\frac{4}{3})\\
+& = & \displaystyle \frac{64}{3} \pi r^2
+\end{array} \quad \quad \begin{array}{rcl}
+ds & = & \displaystyle \sqrt{(dx)^2 + (dy)^2}\\
+& = & \displaystyle \sqrt{(\frac{dx}{d\theta})^2 + (\frac{dy^2}{d\theta})^2}\\
+& = & \displaystyle \sqrt{2} r \sqrt{1 - \cos \theta} d\theta
+\end{array}\]
+\end{eg}
+\section{Polar Coordinates 極坐標}
+\begin{defn}
+\[\left\{\begin{array}{rcl}
+x & = & r \cos \theta \quad ---(1)\\
+y & = & r \sin \theta \quad ---(2)
+\end{array}\right.\]
+\[\begin{array}{rcl}
+\displaystyle \frac{(2)}{(1)} = \frac{y}{x} = \tan \theta & \implies & \displaystyle \theta = \tan^{-1} \frac{y}{x}\\
+(1)^2 + (2)^2 = r^2 + 1 & \implies & r = \sqrt{x^2 + y^2}
+\end{array}\]
+\[(r, \theta) = (\sqrt{x^2 + y^2}, \tan^{-1} \frac{y}{x})\]
+\end{defn}
+\begin{notn}
+\[\displaystyle (1, \frac{\pi}{4}) = (1, \frac{\pi}{4} + 2\pi) = (1, \frac{9}{4}\pi) = (-1, \frac{5}{4}\pi)\]
+Expression of the same point by polar coordinate may not be unique.
+\end{notn}
+\subsection*{Symmetry 對稱}
+\begin{itemize}
+\item \(x\)-axis\\
+\(\theta \to -\theta\), the eqn is invariant 
+\item \(y\)-axis\\
+\(\theta \to \pi - \theta\), the eqn is invariant 
+\item origin\\
+\( r \to -r\), the eqn is invariant\\\\
+\end{itemize}
+\begin{eg}
+Plot the graph of \(r = f(\theta) = 2 \cos(2\theta)\)
+\begin{itemize}
+\item \(\theta \to - \theta\)
+\[r = 2 \cos(2\theta) = 2 \cos(2(-\theta))\]
+\(\therefore\) the graph is symmetric w.r.t. \(x\)-axis
+\item \(\theta \to \pi - \theta\)
+\[r = 2 \cos(2\theta) = 2 \cos(2 (\pi - \theta))\]
+\[\cos(2\pi - 2\theta) = \cos (2\pi) \cos(2\theta) + \sin (2\pi) \sin(2\theta) = \cos (2\theta)\]
+\(\therefore\) the graph is symmetric w.r.t. \(y\)-axis
+\item \(r \to -r\)
+\[-r = 2 \cos (2\theta)  \quad \quad r = -2 \cos (2\theta)\]
+\[\theta \to \theta + \pi\]
+\[r = 2\cos (2\theta) = 2 \cos(2(\theta + \pi)) = 2\cos(2\theta) \cos(2\pi) - \sin(2\theta) \sin(2\pi) = 2 \cos (2\theta)\]
+\(\therefore\) the graph is symmetric w.r.t. to \((0, 0)\)
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+\(\theta\) & \(0\) & \(\displaystyle \frac{\pi}{6}\) & \(\displaystyle \frac{\pi}{4}\) & \(\displaystyle \frac{\pi}{3}\) & \(\displaystyle \frac{\pi}{2}\)\\ \hline
+\(r\) & \(2\) & \(\sqrt{3}\) & \(0\) & \(-1\) & \(-2\)
+\end{tabular}
+\end{center}
+\end{itemize}
+\end{eg}
+\begin{eg}
+Find tangent of \(\displaystyle r = 2\cos (2\theta) \text{ at } (1, \frac{\pi}{6})\)
+
+\soln
+\[\left\{\begin{array}{rcl}
+y & = & r \sin \theta = 2\cos (2\theta) \cdot \sin \theta = y(\theta)\\
+x & = & r \cos \theta = 2\cos (2\theta) \cdot \cos \theta = x(\theta)
+\end{array}\right.\]
+\[\displaystyle \frac{dy}{dx} \Big|_{\theta = \frac{\pi}{6}} = \frac{\frac{dy}{d\theta}}{\frac{dx}{d\theta}} \Big|_{\theta = \frac{\pi}{6}} = \frac{\cancel{2}(-2\sin (2\theta) \sin \theta + \cos(2\theta)) \cdot \cos \theta}{\cancel{2} (-2\sin (2\theta) \cos \theta + \cos(2\theta)) \cdot (-\sin \theta)}\]
+\end{eg}
+\begin{eg}[Cardioid 心臟線]
+Plot the graph of \(r = 1 + \sin \theta = f(\theta)\)
+\begin{itemize}
+\item \(\theta \to -\theta\)
+\[r = 1 + \sin (-\theta) = 1 - \sin \theta\]
+\(\therefore\) the graph is NOT symmetric w.r.t. \(x\)-axis 
+\item \(\theta \to \pi - \theta\)
+\[r = 1 + \sin (\pi - \theta) = 1 + \sin\pi \cos \theta - \cos\pi \sin \theta = 1 + \sin\theta\]
+\(\therefore\) the graph is symmetric w.r.t. \(y\)-axis
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+\(\theta\) & \(\displaystyle - \frac{\pi}{2}\) & \(\displaystyle - \frac{\pi}{6}\) & \(o\) & \(\displaystyle \frac{\pi}{2}\) & \(\displaystyle \frac{\pi}{2}\)\\ \hline
+\(r\) & \(0\) & \(\displaystyle \frac{1}{2}\) & \(1\) & \(\displaystyle \frac{3}{2}\) & \(2\)
+\end{tabular}
+\end{center}
+\end{itemize}
+\end{eg}
+\begin{eg}
+Find the slope of the tangent of \(r = 1 + \sin \theta \text{ at } \theta = \displaystyle \frac{\pi}{3}\)
+
+\soln
+\[\displaystyle \frac{dy}{dx} \Big|_{\theta = \frac{\pi}{3}}= \frac{\frac{dy}{d\theta}}{\frac{dx}{d\theta}} \Big|_{\theta \frac{\pi}{3}} = \frac{\cos \theta \sin \theta + (1 + \sin \theta) \cos \theta}{\cos \theta \cos \theta + (1 + \sin \theta) (1 - \sin \theta)} \Big|_{\frac{\pi}{3}}\]
+\end{eg}
+\subsection*{Area and Arc Length in Polar Coordinates}
+\begin{itemize}
+\item Area
+\[dA = \displaystyle \cancel{\pi} r^2 \frac{d\theta}{2\cancel{\pi}} = \frac{2}{1} r^2 d\theta\]
+\[\displaystyle \int A = \frac{1}{2} \int^b_a r^2 d\theta\]
+\item Arc length
+\[x = f(\theta)\cos \theta\]
+\[y = f(\theta) \sin \theta\]
+\[\begin{array}{rcl}
+\displaystyle (\frac{dx}{d\theta})^2 + (\frac{dy}{d \theta})^2 & = & (f'(\theta) \cos \theta + f(\theta) (-\sin \theta))^2 + (f'(\theta) \sin \theta + f(\theta) \cos \theta)^2\\
+& = & (f'(\theta))^2 + (f(\theta))^2
+\end{array}\]
+\[\begin{array}{rcl}
+ds \sqrt{(dx)^2 + (dy)^2} & = & \displaystyle \sqrt{(\frac{dx}{d\theta})^2 + (\frac{dy}{d\theta})^2} d\theta\\
+& = & \sqrt{(f'(\theta))^2 + (f(\theta))^2} d\theta\\
+& = & \sqrt{(r')^2 + r^2} d\theta
+\end{array}\]
+\end{itemize}
+\begin{eg}
+Find the length of \( r = 1 + \sin \theta\)
+
+\soln
+\[r = f(\theta) = 1 + \sin \theta\] 
+\[f'(\theta) = \cos \theta\]
+\[\begin{array}{rcl}
+(f(\theta))^2 + (f'(\theta))^2 & = & (1 + \sin \theta)^2 + \cos^2 \theta\\
+& = & 2 + 2\sin \theta
+\end{array}\]
+\[\begin{array}{rcl}
+\text{length } & = & \displaystyle 2 \int^{\frac{\pi}{2}}_{- \frac{\pi}{2}} \sqrt{2 + 2\sin \theta} d\theta\\
+& = & 2 \sqrt{2} \displaystyle \int^{\frac{\pi}{2}}_{-\frac{\pi}{2}} \sqrt{1 + \sin \theta} d\theta\\
+& = & 2 \sqrt{2} \displaystyle \int^{\frac{\pi}{2}}_{-\frac{\pi}{2}} \sqrt{\sin^2 \frac{\theta}{2} + \cos^2 \frac{\theta}{2} + 2 \sin \frac{\theta}{2} \cos \frac{\theta}{2}}\\
+& = & 2 \sqrt{2} \displaystyle \int^{\frac{\pi}{2}}_{-\frac{\pi}{2}} \sqrt{(\sin \frac{\theta}{2} + \cos \frac{\theta}{2})^2} d\theta\\
+& = & 2 \sqrt{2} \displaystyle \int^{\frac{\pi}{2}}_{-\frac{\pi}{2}} \Big| \sin \frac{\theta}{2} + \cos \frac{\theta}{2} \Big| d\theta\\
+& = & 2 \sqrt{2} \displaystyle (\int^{0}_{-\frac{\pi}{2}} \Big| \sin \frac{\theta}{2} + \cos \frac{\theta}{2} \Big| d\theta + \int^{\frac{\pi}{2}}_0 \Big| \sin \frac{\theta}{2} + \cos \frac{\theta}{2} \Big| d\theta)\\
+& = & 2 \sqrt{2} \displaystyle \int^{\frac{\pi}{2}}_{-\frac{\pi}{2}} \sin \frac{\theta}{2} + \cos \frac{\theta}{2} d\theta\\
+& = & 2 \sqrt{2} \displaystyle (-2 \cos \frac{\theta}{2} + 2 \sin \frac{\theta}{2}) \Big|^{\frac{\pi}{2}}_{-\frac{\pi}{2}}\\
+& = & 2 \sqrt{2} \displaystyle (\cancel{-2 \frac{\sqrt{2}}{2}} + \cancel{2 \frac{\sqrt{2}}{2}} - (-2 \frac{\sqrt{2}}{2} - 2 \frac{\sqrt{2}}{2}))\\
+& = & 2 \sqrt{2} \cdot 2 \sqrt{2}\\
+& = & 8
+\end{array}\]
+\end{eg}
+\begin{eg}[Rose Curve 玫瑰線]
+\begin{itemize}
+\item Find the area of one loop of \(r = 2 \cos 2 \theta\)
+\[\begin{array}{rcl}
+A & = & \displaystyle \int \frac{1}{2} r^2 d\theta\\
+& = & \displaystyle \cancel{2} \int^{\frac{\pi}{4}}_0 \cancel{\frac{1}{2}} (2 \cos 2 \theta)^2 d\theta\\
+& = & \displaystyle 4 \int^{\frac{\pi}{4}}_0 \cos^2 2\theta d\theta\\
+& = & \displaystyle 2 \int^{\frac{\pi}{4}}_0 (0 + \cos 4\theta) d\theta\\
+& = & \displaystyle 2 (\theta + \frac{1}{4} \sin 4\theta) \Big|^{\frac{\pi}{4}}_0\\
+& = & \displaystyle 2 (\frac{\pi}{4})\\
+& = & \displaystyle \frac{\pi}{2}
+\end{array}\]
+\item Find the arc length of one loop of \(r = 2 \cos 2 \theta\)
+\end{itemize}
+\end{eg}
+\begin{eg}[Cardioid]
+\begin{itemize}
+\item Plot the graph of \(r = 1 - \cos \theta\)
+\begin{center}
+\begin{tabular}{c|c|c|c}
+\(\theta\) & \(0\) & \(\pi\) & \(\displaystyle \frac{\pi}{2}\)\\\hline
+\(r\) & \(0\) & \(2\) & \(1\)
+\end{tabular}
+\end{center}
+\item Find the area of \(r = 1 - \cos \theta\)
+\[\begin{array}{rcl}
+A & = & \displaystyle \cancel{2} \int^{\pi}_0 \cancel{\frac{1}{2}} (1 - \cos \theta)^2 d\theta\\
+& = & \displaystyle \int^{\pi}_0 (1 - 2 \cos \theta + \cos^2 \theta) d\theta\\
+& = & \displaystyle \frac{3}{2} \theta - 2 \sin \theta + \frac{1}{4} \sin 2 \theta \Big|^{\pi}_0\\
+& = & \displaystyle \frac{3}{2} \pi
+\end{array}\]
+\end{itemize}
+\end{eg}

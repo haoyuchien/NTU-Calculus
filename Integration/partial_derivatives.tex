@@ -1,0 +1,428 @@
+\graphicspath{{figures/series/}}
+\chapter{Partial Derivatives}\label{chap par der}
+
+\section{Partial Derivatives}
+\begin{defn}
+\[f(x) \quad x \in R \quad \text{\tssteelblue{single variable}}\] 
+\[f(x, y) \quad x, y \in R \quad \text{\tssteelblue{multi variables}}\]
+\end{defn}
+\begin{eg}
+\[z = f(x, y) = \sqrt{9 - x^2 - y^2}\]
+\begin{itemize}
+\item Domain
+\[9 - x^2 - y^2 \geq 0\] 
+\[x^2 +y^2 \leq 9\]
+\(\implies\) Domain is \(\{(x, y) | x^2 + y^2 \leq 9\}\)
+\item Range
+\[0 \leq x^2 + y^2 \leq 9\] 
+\[0 \leq 9 - x^2 - y^2 \leq 9\]
+\[0 \leq \sqrt{9 - x^2 - y^2} \leq 3\]
+\(\implies\) Range is \(0 \leq z \leq 3\)
+\item Graph
+\[z = \sqrt{9 - x^2 - y^2}\]
+\[z^2 = 9 - x^2 - y^2\]
+\[x^2 + y^2 + z^2 = 9\]
+\[(x - 0)^2 + (y - 0)^2 + (z - 0)^2 = 3^2\]
+\(\implies\) 上半球面(sphere) \quad center = \((0, 0)\) \quad radius = \(3\) 
+\item Level Curve（等高線）
+\[z = \sqrt{9 - x^2 - y^2}\]
+\[k = 9 - x^2 - y^2\]
+\[x^2 + y^2 = 9 - k\]
+\[0 \leq k \leq 9\]
+\[k = 0 \quad x^2 + y^2 = 3^2\]
+\[k = 1 \quad x^2 + y^2 = (2 \sqrt{2})^2\]
+\end{itemize}
+\end{eg}
+\section{Limit and Continuity}
+\begin{itemize}
+\item 1D \(\implies \displaystyle \lim_{x \to a} f(x)\)
+\item 2D \(\implies \displaystyle \lim_{(x, y) \to (a, b)} f(x, y)\)
+\end{itemize}
+\begin{defn}
+\(\displaystyle \lim_{A \to B} f(A) = L\) \ if \ \(\forall \epsilon > 0 \quad \exists \delta > 0\)\\
+s.t. if \(d(A, B) < \delta\), then 
+\[|f(A) - L| < \epsilon\]
+\end{defn}
+\begin{eg}
+Does \(\displaystyle \lim_{(x, y) \to (0, 0)} \frac{x^2 - y^2}{x^2 + y^2}\) exists? \quad \tssteelblue{homogeneous 齊次}
+
+\soln \ \\
+Along the line \(y = mx \quad m\): const\\
+\[\displaystyle \lim_{(x, m) \to (0, 0)} \frac{x^2 - y^2}{x^2 + y^2} = \displaystyle \lim_{x \to 0} \frac{\cancel{x^2} (1 - m^)}{\cancel{x^2} (1 + m^2)} = \displaystyle \frac{1 - m^2}{1 + m^2} \quad \tssteelblue{\text{depend on } m}\]
+\(\implies\) The limit doesn't exist
+\end{eg}
+\begin{eg}
+Does \(\displaystyle \lim_{(x, y) \to (0, 0)} \frac{xy^2}{x^2 + y^4}\) exists?
+
+\soln
+\[y = mx^k \quad k: \text{ const}\]
+\[\displaystyle \frac{x \cdot m^2 x^{2k}}{x^2 + m^4x^{4k}} = \frac{m^2 x^{2k + 1}}{x^2 + mx^4k}\]
+\[2k + 1 = 2 = 4k\]
+\[k = \frac{1}{2}\]
+Along \(y = mx^{\frac{1}{2}}\)
+\[\displaystyle \lim_{(x, mx^{\frac{1}{2}}) \to (0, 0)} \frac{x \cdot m^2x}{x^2 + m^4x^2} = \lim_{x \to 0} \frac{\cancel{x^2} m^2}{\cancel{x^2}(1 + m^4)} = \frac{m^2}{1 + m^4} \quad \tssteelblue{\text{depend on }m}\]
+\(\implies\) The limit doesn't exist
+\end{eg}
+\begin{eg}
+Find \(\displaystyle \lim_{(x, y) \to (0, 0)} \frac{x^2y}{x^2 + y^2}\)
+
+\soln 1
+\[\displaystyle \Big| \frac{x^2y}{x^2 + y^2} \Big| = \Big| \frac{x^2}{x^2 + y^2} \Big| \Big|y\Big| \leq 1|y| = |y|\]
+\[\displaystyle \lim_{(x, y) \to (0, 0)} 0 \leq \lim_{(x, y) \to (0, 0)} \Big| \frac{x^2y}{x^2 + y^2} \Big| \leq \lim_{(x, y) \to (0, 0)} |y|\]
+By Squeeze Theorem
+\[\displaystyle \lim_{(x, y) \to (0, 0)} \Big| \frac{x^2y}{x^2 + y^2} \Big| = 0 = \lim_{(x, y) \to (0, 0)} \frac{x^2y}{x^2 + y^2}\]
+\soln 2\\
+Use polar coordinates \((x, y) \to (r, \theta)\)
+\[x = r\cos \theta \quad y = r\sin \theta\]
+\[\displaystyle \lim_{(x, y) \to (0, 0)} \frac{x^2y}{x^2 + y^2} = \lim_{r \to 0} \frac{r^3 \cos^2 \theta \sin \theta}{r^2} = 0\]
+\end{eg}
+\begin{eg} 
+Does \(\displaystyle \lim_{(x, y) \to (0, 0)} \frac{x^2 + \sin^2 y}{2x^2 + y^2}\) exists?
+
+\soln Key: \(\displaystyle \lim_{y \to 0} \frac{\sin y}{y} = 1 \quad y = mx\)\\
+Along \(y = mx\)
+\[\begin{array}{rcl}
+\displaystyle \lim_{(x, y) \to (0, 0)} \frac{x^2 + (\frac{\sin y}{mx})^2(mx)^2}{2x^2 + y^2} & = & \lim_{x \to 0} \frac{\cancel{x^2} +m^2\cancel{x^2}(\frac{\sin (mx)}{mx})^2}{2\cancel{x^2} + m^2\cancel{x^2}}\\
+& = & \displaystyle \frac{1}{1 + m^2} \lim_{x \to 0} (1 + m^2 (\frac{\sin (mx)}{mx})^2)\\
+& = & \displaystyle \frac{1}{1 + m^2}(1 + m^2 \cdot 1)
+\end{array}\]
+\(\implies\) The limit doesn't exist
+\end{eg}
+\begin{notn}
+\begin{itemize}
+\item \(f(x)\) is continue at \(a\) if \(\displaystyle \lim_{x \to a} f(x) = \underline{f(a)}\)
+\item \(f(x, y)\) is continue at \((x_0, y_0)\) if \(\displaystyle \lim_{(x, y) \to (x_0, y_0)} f(x, y) = \underline{f(x_0, y_0)}\)
+\end{itemize}
+\end{notn}
+\begin{eg} 
+Find \(a\) such that \(f(x, y) = \left\{ \begin{array}{ccl}
+\displaystyle \frac{x^2 + y^2}{\sqrt{x^2 + y^2 + 1} - 1} &, & (x, y) \neq (0, 0)\\
+a &, & (x, y) = (0, 0)
+\end{array}\right.\) is conti. at \((0, 0)\)
+
+\soln 1\\
+We need \(\displaystyle \lim_{(x, y) \to (0, 0)}f(x, y) = f(0, 0)\)
+\[\begin{array}{rcl}
+\text{LHS} & = & \displaystyle \lim_{(x, y) \to (0, 0)} \frac{x^2 + y^2}{\sqrt{x^2 + y^2 + 1} - 1} \cdot \frac{\sqrt{x^2 + y^2 + 1} + 1}{\sqrt{x^2 + y^2 + 1} + 1}\\
+& = & \lim_{(x, y) \to (0, 0)} \frac{\cancel{(x^2 + y^2)} (\sqrt{x^2 + y^2 + 1} + 1)}{\cancel{x^2 + y^2}}\\
+& = & 2 = a = \text{RHS}
+\end{array}\]
+\(\implies a = 2\)
+
+\soln 2\\
+Use \(x = r \cos \theta \quad y = r \sin \theta\)
+\[\begin{array}{rcl}
+\text{LHS} & = & \displaystyle \lim_{r \to 0} \frac{r^2}{\sqrt{r^2 + 1} - 1}\\
+& \vdots &\\
+& = & 2
+\end{array}\]
+\end{eg}
+\section{First Partial Derivatives}
+Recall: \(\displaystyle f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h}\)
+\begin{itemize}
+\item \(\displaystyle \frac{\partial}{\partial x} (x, y)\Big|_{(a, b)} = \lim_{h \to 0} \frac{f(a + h, b) - f(a, b)}{h}\)
+\item \( \displaystyle \frac{\partial}{\partial y} f(x, y) \Big|_{(a, b)} = \lim_{h \to 0} \frac{f(a, b+h) - f(a, b)}{h}\)
+\end{itemize}
+\begin{notn}
+\[\displaystyle \frac{\partial}{\partial x} f(x, y) = \frac{\partial f(x, y)}{\partial x} = f_x (x, y) = \partial x f(x, y)\]
+\end{notn}
+\begin{eg}
+\(f(x, y) = x^2 + xy + 2y^2\). Find \(f_x\) and \(f_y\)
+
+\soln
+\[\begin{array}{rcl}
+f_x & = & \displaystyle \frac{\partial}{\partial x} f(x, y)\\
+& = & \displaystyle \frac{\partial}{\partial x} (x^2 + xy + 2y^2)\\
+& = & 2x + y + 0
+\end{array}\]
+\[\begin{array}{rcl}
+f_y & = & \displaystyle \frac{\partial}{\partial y} f(x, y)\\
+& = & \displaystyle \frac{\partial}{\partial y} (x^2 + xy +2y^2)\\
+& = & 0 + x + 4y
+\end{array}\]
+\end{eg}
+\section{Second Partial Derivatives}
+\begin{itemize}
+\item \((f_x)_x = f_{xx} = \displaystyle \frac{\partial}{\partial x} (\frac{\partial f(x, y)}{\partial x}) = \frac{\partial^2 f(x, y)}{\partial x^2}\)
+\item \((f_x)_y = f_{xy} = \displaystyle \frac{\partial}{\partial y} (\frac{\partial f(x, y)}{\partial x}) = \frac{\partial^2 f(x, y)}{\partial y \partial x}\)
+\item \((f_y)_x = f_{yx} = \displaystyle \frac{\partial}{\partial x} (\frac{\partial f(x, y)}{\partial y}) = \frac{\partial^2 f(x, y)}{\partial x \partial y}\)
+\item \((f_y)_y = f_{yy} = \displaystyle \frac{\partial}{\partial y} (\frac{\partial f(x, y)}{\partial y}) = \frac{\partial^2 f(x, y)}{\partial y^2}\)
+\end{itemize}
+\begin{eg}
+\[f(x, y) = x^2 + xy + 2y^2\]
+
+\[\begin{array}{rcl}
+f_{xx} = (f_x)_x = 2 & \quad \quad & f_{yx} = (f_y)_x = 1\\
+f_{xy} = (f_x)_y = 1 & \quad \quad & f_{yy} = (f_y)_y = 4
+\end{array}\]
+\end{eg}
+\begin{eg}
+\(u(x, y) = e^x \sin y\). Find \(u_{xx} + u_{yy}\).
+
+\soln
+\[u = e^x \sin y\]
+\[u_x = e^x \sin y\]
+\[u_{xx} = (u_x)_x = e^x \sin y\]
+\[u_y = e^x \cos y\]
+\[u_{yy} = (u_y)_y = e^x (- \sin y)\]
+\(\implies u_{xx} + u_{yy} = 0\) \quad \tssteelblue{Laplace Equation}
+\end{eg}
+\begin{theorem}[Clairaut Theorem]
+If \(f_{xy}\) and \(f_{yx}\) are conti in \(D\), then
+\[f_{xy} = f_{yx} \text{ in } D\]
+\end{theorem}
+\begin{eg}
+If you are told \(\exists\) a fcn. s.t. \(\left\{\begin{array}{rcl}
+f_x & = & 2x + 3y\\
+f_y & = & 4x - y
+\end{array}\right.\). Believe it or not?
+
+\soln
+\[(f(x, y) \in c^2 \quad \text{兩次微分後連續}\]
+\[\left\{\begin{array}{rclcrl}
+f_x & = & 2x + 3y &\implies & f_{xy} = (f_x)_y = 3\\
+f_y & = & 4x - y & \implies & f_{yx} = (f_y)_x = 4
+\end{array}\right.\]
+\(\implies\) I don't believe it.
+\end{eg}
+\begin{eg}
+If \(u(x, t) = u(x - ct) \quad c:\text{ const}\). Find \(u_{tt} - c^2u_{xx}\)
+
+\soln \ \\
+Let \(z = x - ct\)
+\[u_x = u_z \cdot z_x = u_z \cdot 1 = u_z\]
+\[u_{xx} = (u_z)_z \cdot  z_x = u_{zz} \cdot 1 = u_{zz}\]
+\[u_t = u_z \cdot z_t = u_z \cdot (-c) = -cu_z\]
+\[u_{tt} = (-cu_z)_z) \cdot z_t = -c u_{zz}(-c) = c^2 {u_zz}\]
+\[u_{tt} - c^2u_{xx} = c^2 u_{zz} - c^2u_{zz} = 0\]
+\end{eg}
+\begin{notn}
+\begin{itemize}
+\item Laplace Equation\\
+\(u(x, y) = e^x \sin y \) satisfies \(u_{xx} + u{yy} = 0\)
+\item Wave Equation\\
+\(u(x, t) = u(x - ct)\) solves \(u_{tt} - c^2u_{xx} = 0\)
+\end{itemize}
+\end{notn}
+\begin{eg}
+\[u(x, t) = \sin (x - ct) \overset{c = 1}{=} \sin (x - t)\]
+\[\begin{array}{rcl}
+t = 0 &, & \sin x\\
+t = 1 &, & \sin (x - 1)\\
+t = 2 &, & \sin (x - 2)
+\end{array}\]
+\end{eg}
+\section{Partial Derivatives by Implicit Differentiation}
+\begin{eg}
+If \(xyz = \cos (x + y + y)\). Find \(\displaystyle \frac{\partial z}{\partial x}( = z_x), \frac{\partial z}{\partial y} (= z_y)\)
+
+\soln
+\[z = z(x, y)\]
+\[xyz(x, y) = \cos (x + y + z(x, y)) \quad \tssteelblue{\text{Product Rule}}\]
+\[y(z + xz_x) = - \sin (x + y + z(x, y)) \cdot (1 + 0 + z_x) \quad \tssteelblue{\text{Chain Rule}}\]
+\[yz + xyz_x = - \sin (x + y + z') - z_x \sin (x + y + z)\]
+\[\displaystyle z_x = \frac{-yz - \sin (x + y + z)}{xy + \sin (x + y + z)}\]
+\[\displaystyle z_y = \frac{-xz - \sin (x + y + z)}{xy + \sin (x + y +z)}\]
+\end{eg}
+\begin{eg}
+\(\displaystyle f(x, y) = (\frac{1}{3} (x^3 + y^3))(e^{- \sin y})\). Find \(\displaystyle f_x (1, 0) = \frac{\partial f}{\partial x} \Big|_{(1, 0)}\)
+
+\soln 1
+\[f_x(x, y) = e^{\sin y} \cdot x^2\]
+\[f_x(1, 0) = e^{- 0} \cdot 1^2 = 1\]
+
+\soln 2
+\[f(x, 0) = \frac{1}{3} x^3\]
+\[f_x(x, o) = x^2\]
+\[f_x(1, 0) = 1^2 = 1\]
+\end{eg}
+\begin{eg}
+\[f(x, y) = \left\{\begin{array}{ccl}
+\displaystyle \frac{x^3y - xy^3}{x^2 + y^2} &, & (x, y ) \neq (0, 0)\\
+0 &, & (x, y) = (0, 0)
+\end{array}\right.\]
+\begin{itemize}
+\item[(1)] Find \(f_x\) and \(f_y\) when \((x, y) \neq (0, 0)\)
+
+\soln
+\[\begin{array}{rcl}
+f_x & = & \displaystyle \frac{(x^2 + y^2)(3x^2y - y^3) - (x^3y - xy^3)(2x)}{(x^2 + y^2)^2} \quad \tssteelblue{\text{Quotient Rule}}\\
+& = & \displaystyle \frac{x^4 + 4x^2y^2 - y^4}{(x^2 + y^2)^2}\\
+f_y & = & \displaystyle \frac{(x^2 + y^2)(x^3 - 3xy^2) - (x^3y - xy^3)(2y)}{(x^2 + y^2)^2}\\
+& = & \displaystyle \frac{x(x^4 - 4x^2y^2 - y^4)}{(x^2 + y^2)^2}
+\end{array}\]
+\item[(2)] Find \(f_x(0, 0)\) and \(f_y(0, 0)\)
+
+\soln
+\[\begin{array}{rcl}
+f_x(0, 0) & := & \displaystyle \lim_{h \to 0} \frac{f(0 + h, 0) - f(0, 0)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{0 - 0}{h}\\
+& = & 0\\
+f_y(0, 0) & := & \displaystyle \lim_{h \to 0} \frac{f(0, h) - f(0, 0)}{h}\\
+& = & 0
+\end{array}\]
+\item[(3)] Find \(f_{xy}(0, 0)\) and \(f_{yx}(0, 0)\)
+
+\soln
+\[\begin{array}{rcl}
+(f_x)_y (0, 0) & = & g_y(0, 0)\\
+& = & \displaystyle \lim_{h \to 0} \frac{g(o, h) - g(0, 0)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{f_x(0, h) - f_x(0, 0)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{\frac{h(-\cancel{h^4})}{\cancel{h^4}} - f_x(0, 0)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{-\cancel{h}}{\cancel{h}}\\
+& = & -1\\
+(f_y)_x (0, 0) & = & J_x(0, 0)\\
+& = & \displaystyle \lim_{h \to 0} \frac{J(h, o) - J(0, 0)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{f_y(h, o) - f_y(0 , 0)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{\frac{h^{\cancel5}}{\cancel{h^4}} - f_y(0, 0)}{h}\\
+& = & \displaystyle \lim_{h \to 0} \frac{h}{h}\\
+& = & 1
+\end{array}\]
+\end{itemize}
+\end{eg}
+\section{Tangent Planes}
+\begin{notn}
+\[z = f(x, y) \quad p = (x_0, y_0, z_0)\]
+Q: Find the tangent plane of \(z = f(x, y)\) at \(P\)\\\\\\
+\(c_1: z = f(x_0, y)\\
+T_1\): tangent line of \(c_1\) at \(x_0\)\\
+\(c_2: z = f(x, y_0)\\
+T_x\): tangent line of \(c_2\) at \(y_0\)\\
+\[a(x - x_0) + b(y - y_0) + c(z - z_0) = 0\]
+If \(c \neq 0\)
+\[\displaystyle \frac{a}{c} (x - x_0) + \frac{b}{c} (y - y_0) + (z - z_0) = 0\]
+Normal Vector = \((A, B, 1)\)\\
+\[A(x - x_0) + B(y - y_0) + (z - z_0) = 0\]
+\begin{itemize}
+\item \(x = x_0\)\\
+\(T_1: B(y - y_0) + (z - z_0) = 0\\
+\implies \displaystyle B = - \frac{z - z_0}{y - y_0} = - f_y(x_0, y_0)\)
+\item \(y = y_0\)\\
+\(T_2: A(x - x_0) + (z - z_0) = 0\\
+\implies \displaystyle A = - \frac{z - z_0}{x - x_0} = - f_x(x_0, y_0)\)
+\end{itemize}
+\[(A, B, 1) = ( -f_x(x_0, y_0), -f_y(x_0, y_0), 1)\]
+Tangent plane\\
+\[z - f_x(x, y) = 0\]
+\[\displaystyle (-f_x, -f_y, 1)|_{(x_0, y_0)}\]
+\[F = z - f(x, y)\]
+\[\displaystyle (F_x, F_y, F_z)|_{(x_0, y_0)}\]
+\end{notn}
+\begin{eg}
+\(z = f(x, y) = 2x^2 + y^2\). Find the tangent plane of \(z = f(x, y)\) at \((1, 1, 3)\)
+
+\soln \ \\
+Normal vector is \((- f_x, -f_y, 1)|_{(1, 1)} = (-4x, -2y, 1)|_{(1, 1)} = (-4, -2, 1)\)\\
+Tangent plane
+\[-4(x - 1) - 2(y - 1) + (z - 3) = 0\]
+\[-4x - 2y + z + 3 = 0\]
+\end{eg}
+\section{Linear Approximation}
+\begin{notn}
+\[z = f(x, y) \quad (x_0, y_0, z_0)\]
+The tangent plane of \(z = f(x, y)\) at \((x_0, y_0, z_0)\) is
+\[- f_x(x - x_0) - f_y(y - y_0) + (z - z_0) = 0\]
+\[z = z_0 + f_x(x - x_0) + f_y(y - y_0)\]
+\[f(x, y) = f(x_0, y_0) + f_x(x - x_0) + f_y(y - y_0)\]
+\end{notn}
+\begin{eg}
+\(f(x, y) = x^2 + y^2 \quad (x_0, y_0) = (3, 4)\). Approximate \(f(301, 399)\)
+
+\soln
+\[\begin{array}{rcl}
+f(x, y) & \approx & f(3, 4) + f_x|_{(3, 4)} (x - 3) + f_y|_{(3, 4)} (y - 4)\\
+& = & 25 + 6(x - 3) + 8(y - 4)\\
+& = & -25  + 6x + 8y
+\end{array}\]
+\(\implies f(301, 399) \Doteq 25\)
+\end{eg}
+\section{Chain Rule}
+\begin{defn}
+\[\displaystyle \frac{d}{dx} (f(g(x)) = \frac{d}{d(g(x))} f(g(x)) \cdot g'(x)\]
+\end{defn}
+\begin{eg}
+\(f(x, y) = x^2 + xy +y^2\) where \(x = \cos t, y = \sin t\). Find \(\displaystyle \frac{d}{dt} f(x(t), y(t))\).
+
+\soln 1
+\[\begin{array}{ccl}
+f(x(t), y(t)) & = & \cos^2 t + \cos t \sin t + \sin^2 t\\
+& = & 1 + \cos t \sin t\\
+\displaystyle \frac{d}{dt} f(x(t), y(t)) & = &-\sin^2 t + \cos^2 t
+\end{array}\]
+
+\soln 2
+\[\begin{array}{rcl}
+\displaystyle \frac{d}{dx} f(x(t), y(t)) & = & f_x \cdot x't + f_y \cdot y't\\
+& = & (2x + y)(-\sin t) + (x + 2y)(\cos t)\\
+& = & (2\cos t + \sin t)(-\sin t) + (\cos t+ 2\sin t)(\cos t)\\
+& = & \cos t \sin t(-2 + 2) -\sin^2 t + \cos^2 t\\
+& = & -\sin^2 t + \cos^2 t
+\end{array}\]
+\end{eg}
+\begin{notn}
+If \(f(x(t, s), y(t, s))\)
+\[\begin{array}{rcl}
+\displaystyle \frac{\partial f}{\partial t} & = & f_x \cdot x_t + f_y \cdot y_t\\
+\displaystyle \frac{\partial f}{\partial s} & = & f_s x_s + f_y y_s
+\end{array}\]
+\end{notn}
+\begin{eg}
+\[(x, y) \implies (r, \theta)\]
+\[\left\{\begin{array}{rcccl}
+x & = & r\cos \theta & = & x(r, \theta)\\
+y & = & r\sin \theta & = & y(r, \theta)
+\end{array}\right.\]
+\end{eg}
+\begin{eg}
+\(f(x, y) = z = f(x(r, s), y(r, s)), \left\{ \begin{array}{rcccl}
+x & = & r^2 + s^2 & = & x(r, s)\\
+y & = & 2rs & = & y(r, s)
+\end{array}\right.\). Find \(z_{rr}\)
+
+\soln
+\[\begin{array}{rcl}
+z_r & = & z_x \cdot \cot x_r + z_y \cdot y_r\\
+& = & z_x (2r) + z_y(2s)\\
+& = & 2(rx_r + sz_y)\\\\
+z_{rr} & = & (z_r)_r\\
+& = & 2(rz_r + sz_y)_r\\
+& = & 2(z_x + 2r^2z_{xx} + 2rs z_{xy} + 2s^2 z_{yy} + 2rs z_{yx})\\\\
+(rz_x)_r & = & 1 z_x + r (z_x)_r\\
+& = & z_x + r(g_x \cdot x_r + g_y \cdot y_r)\\
+& = & z_x + r(z_{xx} (2r) + z_{xy} (2s))\\
+& = & z_x + 2r(r z_{xx} + s z_{xy})\\\\
+(sz_y)_r & = & s(z_y)_r\\
+& = & s(z_{yx} (2r) + z_{yy}(2s))
+\end{array}\]
+\end{eg}
+\begin{eg} 
+\(u(x, y) = u(x(r, \theta), y(r, \theta))\). Let \(\left\{\begin{array}{rcl}
+x & = & r\cos \theta\\
+y & = & r\sin \theta
+\end{array}\right.\). Show \(\displaystyle u_{xx} + u_{yy} = u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\theta \theta}\)
+
+\soln
+\[\begin{array}{rcl}
+u_r & = & u_x \cdot x_r + u_y \cdot y_r\\
+& = & u_x \cos \theta + u_y \sin \theta\\\\
+u_{\theta} & = & u_x \cdot x_{\theta} + u_y \cdot y_{\theta}\\
+& = & u_x (-r\sin \theta) + u_y(r\cos \theta)\\\\
+u_{rr} & = & (u_r)_r\\
+& = & (\cos \theta u_x + \sin \theta u_y)_r\\
+& = & \cos \theta (u_x)_r + \sin \theta (u_y)_r\\
+& = & \cos \theta ((u_x)_x \cdot x_r + (u_x)_y \cdot y_r) + \sin \theta ((u_y)_x \cdot x_r + (u_y)_y \cdot y_r)\\
+& = & u_{xx} (\cos^2 \theta) + u_{yy} (\sin^2 \theta) + u_{xy} (2\cos \theta \sin \theta)\\\\
+u_{\theta \theta} & = & (u_\theta)_{\theta}\\
+& = & r(-\sin \theta u_x + \cos \theta u_y)_{\theta}\\
+& = & r(-\cos \theta u_x -\sin \theta(u_x)_{\theta} - \sin \theta u_y + \cos \theta (u_y)_{\theta}\\
+& = & r(-\cos \theta u_x - \sin \theta (u_{xx} \cdot x_{\theta} + u_{xy} \cdot y_{\theta}) - \sin \theta u_y + \cos \theta (u_{yx} \cdot x_{\theta} + u_{yy} \cdot y_{\theta}))\\
+& = & u_{xx} (r^2 \sin^2 \theta) +u_{yy} (r^2 \cos^2 \theta) + u_{xy} (2\cos \theta \sin \theta)
+\end{array}\]
+\[\begin{array}{rcl}
+\text{RHS} & = & \displaystyle u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\theta \theta}\\
+& = & \displaystyle u_{xx} (\cos^2 \theta) + u_{yy} (\sin^2 \theta) + u_{xy} (2\cos \theta \sin \theta) + \frac{\cos \theta}{r} u_x + \frac{\sin \theta}{r} u_y\\
+&& \displaystyle + u_{xx} (\sin^2 \theta) + u_{yy} (\cos^2 \theta) + u_{xy} (-2\sin \theta \cos \theta) + \frac{1}{r} (-\cos \theta u_x - \sin \theta u_y)\\
+& = & u_{xx} + u_{yy}\\
+& = & \text{LHS}
+\end{array}\]
+\end{eg}

@@ -1,0 +1,751 @@
+%
+% Copyright 2018 Joel Feldman, Andrew Rechnitzer and Elyse Yeager.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+%
+
+\graphicspath{{./figures/integration/}}
+
+
+\def\showissues{y}
+\def\showintremarks{n}
+
+
+\chapter{Integration} \label{chap integral}
+\section{Integrals 積分}
+$$\displaystyle \delta x = \frac{b-a}{n} \quad x_i = a+i\delta x$$
+$$\text{area of }A_i = f(x_i) \delta x \displaystyle \implies \sum\limits_{i=1}^n=A_i=\sum\limits_{i=1}^n f(x_i)\delta x$$
+\begin{defn}
+area under $y=f(x)$ from $a$ to $b \left\{\begin{array}{cl} 
+= & \displaystyle \int_a^b f(x)dx\\
+:= & \displaystyle \lim_{n\to \infty} \sum\limits_{i=1}^n f(x_i)\delta x
+\end{array}\right.$
+\end{defn}
+\subsection*{Techniques of Integrations}
+\begin{itemize}
+\item Substitution Rule\\
+(change of variables)
+\item Trigonometric Integral $\star$\\
+$\displaystyle \int \sin^2 x \cos ^3 x dx$
+\item Integration by Parts $\star$\\
+$\displaystyle \int \frac{P(x)}{Q(x)} dx$ where $P, Q$ are polynomials\\\\
+\end{itemize}
+\begin{eg}
+$$y= f(x)= x^2 \quad a=0, b=1$$
+$$\displaystyle \delta x = \frac{1-0}{n} = \frac{1}{n}$$
+$$\displaystyle x_i = a+ i \cdot \delta x = i \cdot \frac{1}{n} = \frac{i}{n}$$
+$$\begin{array}{rcl}
+\displaystyle \sum\limits_{i=1}^n f(x_i)\delta x & = & \displaystyle \sum\limits_{i=1}^n (\frac{i}{n})^2 \frac{1}{n}\\
+& = & \displaystyle \frac{1}{n^3} \sum\limits_{i=1}^n i^2\\
+& = & \displaystyle \frac{1}{n^3} \frac{n}{6} (n+1)(2n+1)\\
+& = & \displaystyle \frac{(n+1)(2n+1)}{6n^2}
+\end{array}$$
+let $n \to \infty$
+$$\begin{array}{rcl}
+\displaystyle \sum\limits_{i=1}^\infty f(x_i)\delta x & = & \displaystyle \lim_{n\to \infty} \frac{(n+1)(2n+1)}{6n^2}\\
+& = & \displaystyle \lim_{n\to \infty} \frac{2n^2+3n+1}{6n^2}\\
+& = & \displaystyle \lim_{n\to \infty} \frac{2+\frac{3}{n} + \frac{1}{n^2}}{6}\\
+& = & \displaystyle \frac{1}{3}
+\end{array}$$
+$$(\displaystyle \frac{1}{3} = \int_0^1 x^2 dx)$$
+\end{eg}
+\section{Definite Integral 定積分}
+\begin{defn}
+Let $x_i^* \in [x_{i-1}, x_i]$ be any point \quad $i=1, \cdots, n$\\
+$$\displaystyle \int_a^b f(x)dx= \lim_{n\to \infty} \sum\limits_{i=1}^n f(x_i^*) \delta x$$ if the limit exists
+\end{defn}
+\subsection*{Properties of Definite Integral}
+\begin{itemize}
+\item $\displaystyle \int_a^b f(x) dx = - \int_b^a f(x)dx \quad (\delta x = \frac{b-a}{n})$ 
+\item $\displaystyle \int_a^a f(x) dx = 0 \quad (\delta x = \frac{a-a}{n} = 0)$
+\item $\displaystyle \int_a^b c dx= c(b-a)$
+\item $\displaystyle \int_a^b (f(x) \pm g(x))dx = \int_a^b f(x) dx \pm \int_a^b g(x)dx$
+\item $\displaystyle \int_a^b cf(x)dx = c \int_a^b f(x)fd$
+\item $\displaystyle \int_a^b f(x)dx = \int_a^cf(x)dx + \int_c^b f(x) dx$
+\end{itemize}
+\section{Indefinite Integral 不定積分}
+\begin{defn}
+$\displaystyle \int f(x) dx = F(x)$ where $F'(x) = f(x)$
+\end{defn}
+\subsection*{Properties of Indefinite Integral}
+\begin{itemize}
+\item $\displaystyle \int x^n dx = \frac{1}{n+1} x^{n+1} \color{red}+ c$
+\item $\displaystyle \int x^{-1} dx = ln x \color{red}+ c$
+\item $\displaystyle \int e^x dx = e^x \color{red}+c$
+\item $\displaystyle \int a^x dx =  \frac{1}{ln a} a^x \color{red}+ c$
+\item $\displaystyle \int \sin x dx = - \cos x \color{red}+ c$
+\item $\displaystyle \int \cos x dx = \sin x \color{red}+ c$
+\item $\displaystyle \int \sec x^2 dx = \tan x \color{red}+ c$
+\item $\displaystyle \int \sec x \tan x dx = \sin x \color{red}+ c$
+\item $\displaystyle \int \frac{1}{1+x^2} dx =\tan ^{-1} x \color{red}+ c$
+\item $\displaystyle \int \frac{dx}{\sqrt{1-x^2}} = \sin^{-1} \color{red}+ c$\\
+\end{itemize}
+\begin{eg}
+$$\displaystyle g(x) = \int_0^x \sqrt{1+t^2} dt$$
+$$\displaystyle g'(x) = \frac{d}{dx} \int_0^x \sqrt{1+t^2} dt = \sqrt{1+x^2}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} \int_1^{x^4} \sec t dt &= & \displaystyle \frac{d}{d(x^4)} \int_1^{x^4} \sec t dt \cdot \frac{d(x^4)}{dx} \quad \tssteelblue{\text{by Chain Rule}}\\
+& = & \displaystyle \frac{d}{du} \int_1^u \sec t dt (4x^3) \quad \tssteelblue{\text{let } x^4 = u}\\
+& = & \sec u \cdot 4x^3 \quad \tssteelblue{\text{by F.T.C}} \\
+& = & \sec (x^4) \cdot 4x^3
+\end{array}$$
+\end{eg}
+\section{Fundamental Theorem of Calculus 微積分基本定理}
+\begin{theorem}
+If $f(x)$ is conti on $[a, b]$ and let $\displaystyle g(x) = \int_a^x f(t)dt (a\leq x \leq b)$. Then\\
+\begin{itemize}
+\item[(1)] $\displaystyle g'(x) = \frac{d}{dx} \int_a^x f(t) dt = f(x)$
+\item[(2)] $\displaystyle \int_a^b f(x) dx = F(b) - F(a)$ where $F'(x) = f(x)$\\
+\end{itemize}
+\end{theorem}
+\begin{proof} F.T.C\\\\
+We prove (1) first, let $h > 0$\\
+To prove (1), let $x, x+h \in [a, b]$\\
+$$\begin{array}{rcl}
+g(x+h) - g(x) & = & \displaystyle \int_a^{x+h} f(t)dt - \int_a^x f(t)dt\\
+& = & \displaystyle \int_x^{x+h} f(t) dt
+\end{array}$$
+Use extreme value theorem on $f(x)$ for $[x, x+h]$
+$$\displaystyle \max_{[x, x+h]} f(x) = f(u) \implies f(x) \leq f(u) \quad \forall x \in [x, x+h]$$
+$$\displaystyle \min_{[x, x+h]} f(x) = f(\upsilon) \implies f(x) \geq f(\upsilon) \quad \forall x \in [x, x+h]$$
+for some $u, \upsilon \in [x, x+h]$\\
+$$\begin{array}{rcccl}
+\displaystyle \int_x^{x+h} f(\upsilon)dt & \leq & \displaystyle \int_x^{x+h} f(t)dt & \leq & \displaystyle \int_x^{x+h} f(u) dt\\
+\displaystyle h f(\upsilon) & \leq & \displaystyle \int_x^{x+h} f(t)dt & \leq & h f(u)\\
+\displaystyle f(\upsilon) & \leq & \displaystyle \frac{1}{h} \int_x^{x+h} f(t)dt & \leq &f(u)
+\end{array}$$
+$$\displaystyle \frac{g(x+h)-g(x)}{h} = \frac{1}{h} \int_x^{x+h} f(t)dt$$
+$$\displaystyle \lim_{h \to 0^+} \frac{g(x+h) -g(x)}{h} = \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t)dt$$
+$$\displaystyle \lim_{h \to 0^+} f(\upsilon) = f(x)$$
+$$\displaystyle \lim_{h \to 0^+} f(u) = f(x)$$
+If we can show $\displaystyle \lim_{h \to 0^-} \frac{g(x+h)-g(x)}{h} = f(x)$, then
+$$g'(x) = f(x)$$
+prove (2) from (1)
+$$g'(x) = f(x) = F'(x)$$
+$$\displaystyle \implies \frac{d}{dx} (g(x)-F(x)) = 0$$
+$$\implies g(x) - F(x) = c  \quad c \text{ is a const}$$
+$$\displaystyle g(x) = \int_a^x f(t)dt$$
+$$\displaystyle g(a) = 0, g(b) = \int_a^b f(t)dt$$
+$$\displaystyle \implies g(a) - F(a) = c$$
+$$\implies F(a) = - c$$
+$$\displaystyle \int_a^b f(t)dt = g(b) = F(b) + c = F(b) -F(a)$$
+\end{proof}
+\begin{eg}
+$$\displaystyle \int_3^6 \frac{1}{x} dx$$
+By F.T.C, $$\displaystyle f(x) = \frac{1}{x} \implies F(x) = ln x + c$$
+$$\displaystyle \int_3^6 \frac{1}{x} dx = (ln6 + \cancel{c}) - (ln3 + \cancel{c}) = ln6 - ln3 = ln2$$
+\end{eg}
+\begin{eg}
+$$\displaystyle \int_{-1}^3 \frac{1}{x^2} dx$$
+$$\displaystyle f(x) = \frac{1}{x^2} \implies F'(x) = \frac{1}{x^2} = x^{-2} \implies F(x) = -x^{-1} + c$$
+$$\displaystyle \int_{-1}^3 \frac{1}{x^2} dx = -\frac{1}{x} \Big| _{-1}^3 = (-\frac{1}{3}) - (1) = - \frac{4}{3} \color{red}<0 $$
+$\displaystyle f(x) = \frac{1}{x^2}$ is NOT defined at $x=0$
+\end{eg}
+\begin{eg}
+Find $g'(x)$ where $\displaystyle g(x) = \int_{2x}^0 \frac{1}{1+t^3}dt$
+
+\soln
+$$\displaystyle g(x) = - \int_0^{2x} \frac{1}{1+t^3} dt$$
+$$\displaystyle g'(x) = - \frac{1}{1+(2x)^3} \cdot 2$$
+\end{eg}
+\begin{jk}[本書特有題]
+殺鳥 $\implies$ 織田信長 \quad 讓鳥叫 $\implies$ 豐臣秀吉 \quad 等鳥叫 $\implies$ 德川家康
+\end{jk}
+\section{Substitution Rule}
+\begin{defn}
+$$\displaystyle u = u(x) \implies \frac{du}{dx} u'(x)$$
+$$\displaystyle \int f(u)du = \int(f(u(x)) u'(x) dx$$
+\end{defn}
+\begin{proof} Substitution Rule (by Chain Rule + F.T.C)\\\\
+let $F$ satisfying $F'=f$\\
+$$\displaystyle \frac{dF(u(x))}{dx} = F'(u(x))u'(x)$$
+$$\displaystyle \int \frac{dF(u(x))}{dx}= \int F'(u(x))u'(x)dx$$
+$$\displaystyle F(u(x))+c = \int F'(u(x))u'(x)dx$$
+$$\displaystyle \int F'(u)du + c= \int F'(u(x)) u'(x) dx$$
+$$\displaystyle \int f(u)du + c = \int f(u(x))u'(x)dx$$
+\end{proof}
+\begin{eg}
+$$\displaystyle \int (\cos (x^2)) dx$$
+let $\displaystyle u = x^2$ 
+$$\frac{du}{dx} =2x \implies du = 2x dx \implies \frac{1}{2} du = xdx$$
+$$\begin{array}{rcl}
+\displaystyle \int (\cos u)x dx & = & \displaystyle \frac{1}{2} \int \cos u du\\
+& = & \displaystyle \frac{1}{2} (\sin u +c)\\
+& = & \displaystyle \frac{1}{2} (\sin (x^2) + c)\\
+& = & \displaystyle \frac{1}{2} \sin (x^2) + c
+\end{array}$$
+$$\begin{array}{rcl}
+\displaystyle \int (\cos (x^2)) dx & = & \int \cos (x^2) \frac{1}{2}d(x^2)\\
+& = & \displaystyle \frac{1}{2} \int \cos (x^2) d(x^2)\\
+& = & \displaystyle \frac{1}{2} \sin (x^2) + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \frac{x}{\sqrt{1-x^2}} dx & = & \displaystyle \frac{1}{2} \int \frac{d(x^2)}{\sqrt{1-x^2}}\\
+\tssteelblue{\text{let }u = x^2} & = & \displaystyle \frac{1}{2} \int \frac{du}{\sqrt{1-u}}\\
+& = & -(1- u)^{\frac{1}{2}} +c\\
+& = & -(1-x^2)^{\frac{1}{2}} + c
+\end{array}$$
+$$\begin{array}{rcl}
+\displaystyle \int \frac{du}{\sqrt{1-u}} & = & \displaystyle \int (1-u)^{-\frac{1}{2}} du\\
+\tssteelblue{\text{let } 1-u = \upsilon}& = & \displaystyle \int \upsilon^{-\frac{1}{2}} (-d\upsilon)\\
+& = & \displaystyle \int \upsilon^{-\frac{1}{2}} d\upsilon\\
+& = & \displaystyle -(2\upsilon^{\frac{1}{2}} + c)\\
+& = & \displaystyle -2(1-u)^{\frac{1}{2}} + c
+\end{array}$$
+$$\displaystyle \frac{d\upsilon}{du} = \displaystyle \frac{d}{du}(1-u) = -1$$
+$$-d\upsilon = du$$
+\end{eg}
+\begin{eg} 
+$$\begin{array}{rcl}
+\displaystyle \int \tan x dx & = & \displaystyle \int \frac{\sin x}{\cos x} dx\\
+& = & \displaystyle -\int \frac{d(\cos x)}{\cos x}\\
+\tssteelblue{\text{let } \cos x = u} & = & \displaystyle -\int \frac{du}{u}\\
+& = & -ln u +c\\
+& = & - ln(\cos x) + c
+\end{array}$$
+$$\begin{array}{rcl}
+\displaystyle \frac{d}{dx} (-ln(\cos x)) & = & \displaystyle -\frac{- \sin x}{\cos x}\\
+& = & \tan x
+\end{array}$$
+\end{eg}
+\begin{eg}
+Find $\displaystyle I = \int (2x+1)^\frac{1}{2} dx$
+
+\soln
+let $u = 2x +1$
+$$\displaystyle \frac{du}{dx} = 2 \implies du = 2dx \implies dx = \frac{1}{2} du$$
+$$\begin{array}{rcl}
+I & = & \displaystyle \int u^{\frac{1}{2}} \frac{1}{2} du\\
+& = & \displaystyle \frac{1}{2} \int u^{\frac{1}{2}}du\\
+& = & \displaystyle \frac{1}{\cancel{2}} \frac{\cancel{2}}{3} u^{\frac{3}{2}} + c\\
+& = & \displaystyle \frac{1}{3} u^{\frac{3}{2}} + c\\
+& = & \displaystyle \frac{1}{3} (2x+1)^{\frac{3}{2}} + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+Find $\displaystyle I = \frac{lnx}{x} dx$
+
+\soln
+let $u = ln x$
+$$\displaystyle \frac{du}{dx} = \frac{1}{x}  \implies du = \frac{dx}{x}$$
+$$\begin{array}{rcl}
+I & = & \displaystyle \int \frac{u}{x} dx\\
+& = & \displaystyle \int u \frac{dx}{x}\\
+& = & \displaystyle \int u du\\
+& = & \displaystyle \frac{1}{2}u^2 +c\\
+& = & \displaystyle \frac{1}{2}(ln x)^2 +c
+\end{array}$$
+\end{eg}
+\begin{eg}
+Find $\displaystyle I = \int_0^4 (2x+1)^{\frac{1}{2}} dx$
+
+\soln
+let $u = 2x+1$
+$$x = 0, u = 1$$
+$$x = 4, u = 9$$
+$$\begin{array}{rcl}
+I & = & \displaystyle \frac{1}{2} \int_{u=1}^{u=9} u^{\frac{1}{2}}du\\
+& = & \displaystyle \frac{1}{2} \frac{2}{3} u^{\frac{3}{2}} \Big|_{u=1}^{u=9}\\
+& = & \displaystyle \frac{1}{3}(9^\frac{3}{2} - 1^{\frac{3}{2}})\\
+& = & \displaystyle \frac{1}{3}(27-1)\\
+& = & \displaystyle \frac{26}{3}
+\end{array}$$
+\end{eg}
+\begin{eg}
+Find $\displaystyle I = \int_1^e \frac{ln x}{x}dx$
+
+\soln
+let $u = lnx$
+$$x = 1, u = 0$$
+$$x = e, u = 1$$
+$$\displaystyle \frac{du}{dx} = \frac{1}{x} \implies du = \frac{dx}{x} \implies dx = xdu = e^u du$$
+$$\begin{array}{rcl}
+I & = & \displaystyle \int_{u=0}^{u=1} u du\\
+& = & \displaystyle \frac{1}{2} u^2 \Big|_0^1\\
+& = & \displaystyle \frac{1}{2}(1^2 - 0^2)\\
+& = & \displaystyle \frac{1}{2}
+\end{array}$$
+\end{eg}
+\begin{jk}
+天才伽利略
+\end{jk}
+\section{Volume of Solids of Revolution  旋轉體體積}
+\begin{notn}
+\begin{itemize}
+\item Disk method (圓切法)  $$\displaystyle \int \pi (f(x))^2 dx$$
+\item Shell method (殼切法) $$\displaystyle \int 2\pi x f(x) dx$$
+\end{itemize}
+\end{notn}
+\begin{eg}
+Find the volume of a sphere with radius $r$
+
+\soln
+$$\begin{array}{rcl}
+\text{volume} & = & \displaystyle 2 \int_0^r \pi y^2 dx\\
+& = & \displaystyle 2 \pi \int_0^r y^2 dx\\
+& = & \displaystyle 2 \pi \int_0^r (r^2-x^2)dx\\
+& = & \displaystyle 2 \pi (r^2x - \frac{1}{3} x^3) \Big| _{x=0}^{x=r}\\
+& = & \displaystyle 2 \pi (r^3 - \frac{1}{3}r^3-0)\\
+& = & \displaystyle 2 \pi \cdot \frac{2}{3}r^3\\
+& = & \displaystyle \frac{4}{3} \pi r^3
+\end{array}$$
+\end{eg}
+\begin{eg}
+Find the volume of a right circular cone with height $h$ and radius of base $r$
+
+\soln
+$$\displaystyle \frac{y}{x} = \frac{r}{h} \implies y = \frac{r}{h}\cdot x$$
+$$\begin{array}{rcl}
+\text{volume} & = & \displaystyle \int_0^h \pi (\frac{r}{h} x)^2 dx\\
+& = & \displaystyle \pi \frac{r^2}{h^2} \int_0^h x^2 dx\\
+& = & \displaystyle \frac{\pi r^2}{h^2} \cdot \frac{1}{3} x^3 \Big| _{x=0}^{x=h}\\
+& = & \displaystyle \frac{\pi r^2}{\cancel{h^2}} \frac{1}{3} h^{\cancel{3}}\\
+& = & \displaystyle \frac{1}{3}\pi r^2 h
+\end{array}$$
+\end{eg}
+\begin{eg}
+Find the volume of a pyramid whose base is a square with side $L$ and where height is $h$
+
+\soln
+$$\displaystyle \frac{y}{x} = \frac{\frac{L}{2}}{h} \implies y = \frac{L}{2h}x$$
+$$\begin{array}{rcl}
+\text{volume} & = & \displaystyle \int_0^h (2y)^2dx\\
+& = & \displaystyle 4 \int_0^h (\frac{L}{2h}x)^2 dx\\
+& = & \displaystyle \cancel{4} \frac{L^2}{\cancel{4} h^2} \int_0^h x^2 dx\\
+& = & \displaystyle \frac{L^2}{\cancel{h^2}} \frac{1}{3} h^{\cancel{3}}\\
+& = & \displaystyle \frac{1}{3} L^2h
+\end{array}$$
+\end{eg}
+\begin{eg}
+Find the volume of a sphere with radius $r$
+
+\soln
+$$x^2 + y^2 = r^2 \implies y = \sqrt{r^2-x^2}$$
+$$\begin{array}{rcl}
+\text{volume} & = & \displaystyle 2 \int_0^r 2 \pi x \sqrt{r^2-x^2} dx\\
+& = & \displaystyle 4 \pi \int_0^r x \sqrt{r^2-x^2}dx\\
+& = & \displaystyle \frac{-4 \pi}{3}(r^2 - x^2)^{\frac{3}{2}} \Big| _{x=0}^{x=r}\\
+& = & \displaystyle \frac{-4 \pi}{3}(0-r^3)\\
+& = & \displaystyle \frac{4}{3}\pi r^3
+\end{array}$$
+$$\begin{array}{rcl}
+\displaystyle \int x \sqrt{r^2-x^2} dx & = & \displaystyle \int x (r^2-x^2)^{\frac{1}{2}} dx\\
+\tssteelblue{\text{let } x^2 = u} & = & \displaystyle \frac{1}{2} \int (r^2-x^2) du\\
+& = & \displaystyle \frac{1}{\cancel{2}} (r^2-u)^{\frac{3}{2}} \frac{\cancel{2}}{3}(-1) + c\\
+& = & \displaystyle \frac{-1}{3} (r^2-u)^{\frac{3}{2}} + c\\
+& = & \displaystyle \frac{-1}{3} (r^2-x^2)^{\frac{3}{2}} + c
+\end{array}$$
+\end{eg}
+\section{Integration by Parts}
+\begin{defn}
+$$\displaystyle \frac{d}{dx} (f(x)g(x)) = f'(x)g(x)+f(x)g'(x)$$
+$$\displaystyle \int \frac{d(f(x)(g(x))}{dx} dx = \int f'(x)g(x) dx + \int f(x)g'(x) dx$$
+$$\displaystyle f(x)g(x) = \int g(x) df(x) + \int f(x) dg(x)$$
+let $f(x) = u, g(x) = v$
+$$uv = \int v du + \int u dv$$
+$$\color{red}\int udv = uv - \int v du$$
+\end{defn}
+\begin{notn}
+\begin{itemize}
+\item $\displaystyle \int \text{poly} \cdot a^x dx$
+\item $\displaystyle \int \text{poly} \cdot \log_a x dx$
+\item $\displaystyle \int \text{poly} \cdot \text{(trigonometric fcn) } dx$
+\item $\displaystyle \int \text{poly} \cdot \text{poly } dx$
+\item $\displaystyle \int a^x \cdot \text{(trigonometric fcn) }dx$
+\item $\displaystyle \int \text{poly} \cdot \text{Inverse trigonometric fcn } dx$
+\end{itemize}
+\end{notn}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int ln x dx & = & \displaystyle (ln x)x - \int x d lnx \quad \tssteelblue{\text{use I.B.P, let }u= ln x, v=x}\\
+& = & \displaystyle xlnx - \int \cancel{x} \frac{1}{\cancel{x}} dx\\
+& = & \displaystyle xlnx - \int 1 dx\\
+& = & \displaystyle xlnx -x + c 
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int x e^x dx & = & \displaystyle x^2 e^x - \int x d(xe^x)\\
+& = & \displaystyle x^2 e^x - \int (xe^x + x^2e^x) dx \implies \text{fail but equality remains true}\\
+\displaystyle \int xe^xdx & = & \displaystyle \int \frac{1}{2} e^xd(x^2)\\
+& = & \displaystyle \frac{1}{2} (x^2e^x - \int x^2de^x) \implies \text{fail}\\
+\displaystyle \int xe^x dx & = & \displaystyle \int x de^x\\
+& = & \displaystyle xe^x - \int x^0 e^xdx \quad \tssteelblue{\text{reduce the degree of }x}\\
+& = & \displaystyle xe^x - e^x + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int x^2 ln x dx & = & \displaystyle \frac{1}{3} \int ln x d(x^3)\\
+& = & \displaystyle \frac{1}{3} (x^3 ln x - \int x^3 d ln x)\\
+& = & \displaystyle \frac{1}{3} (x^3 ln x - \frac{1}{3}x^3) + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int x \sin x dx & = & \displaystyle \frac{1}{2} \int \sin x d(x^2)\\
+& = & \displaystyle \frac{1}{2}(x \sin x - \int x^2 d\sin x) \implies \text{fail}\\
+\displaystyle \int x \sin x dx & = & \displaystyle - \int x d\cos x\\
+& = & \displaystyle -(x\cos x - \int \cos x dx)\\
+& = & \displaystyle -x\cos x +\sin x + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int x \sec^2x dx & = & \displaystyle \int x d\tan x\\
+& = & \displaystyle x \tan x - \int \tan x dx\\
+& = & \displaystyle x \tan x + ln \cos x +c\\
+\displaystyle \int \tan x dx & = & \displaystyle \int \frac{\sin x}{\cos x}dx\\
+& = & \displaystyle -\int \frac{d\cos x}{\cos x}\\
+& = & \displaystyle -\int \frac{du}{u}\\
+& = & \displaystyle -ln u + c\\
+& = & \displaystyle -ln \cos x + c\\
+& = & \displaystyle -ln \sec x + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int x(x-1)^5 dx & = & \displaystyle \frac{1}{6} \int x d((x-1)^6)\\
+& = & \displaystyle \frac{1}{6} (x(x-1)^6 - \int (x-1)^6 dx)\\
+& = & \displaystyle \frac{1}{6} (x(x-1)^6 - \frac{1}{7} (x-1)^7) + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int e^x \sin x dx & = & \displaystyle \int \sin x de^x\\
+& = & \displaystyle e^x \sin x - \int e^x d\sin x\\
+& = & \displaystyle e^x \sin x - \int e^x \cos x dx\\
+& = & \displaystyle e^x \sin x - \int \cos x de^x\\
+& = & \displaystyle e^x \sin x - (e^x \cos x - \int e^x d\cos x)\\
+& = & \displaystyle e^x \sin x - e^x \cos x - \int e^x \sin x dx\\
+& = & \displaystyle e^x (\sin x - \cos x) - \int e^x \sin x dx\\
+& = & \displaystyle \frac{1}{2} e^x (\sin x - \cos x) +c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \tan^{-1}x dx & = & \displaystyle x \tan^{-1}x - \int x d\tan^{-1} x\\
+& = & \displaystyle x \tan^{-1} x - \int \frac{x}{1+x^2} dx\\
+& = & \displaystyle x \tan^{-1} x - \frac{1}{2}ln (1+x^2) +c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \sin^{-1} x dx & = & \displaystyle x \sin^{-1} x - \int x d \sin^{-1} x\\
+& = & \displaystyle x \sin^{-1} x - \int \frac{x}{\sqrt{1-x^2}} dx\\
+& = & \displaystyle x \sin^{-1} x + (1-x^2)^{\frac{1}{2}} + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int x \tan^{-1} x dx & = & \displaystyle \frac{1}{2} \int \tan^{-1}x d(x^2)\\
+& = & \displaystyle \frac{1}{2} (x^2 \tan^{-1} x - \int x^2 d\tan^{-1} x)\\
+& = & \displaystyle \frac{1}{2} (x^2 \tan^{-1} x - \int \frac{x^2}{1+x^2} dx)\\
+& = & \displaystyle \frac{1}{2} (x^2 \tan^{-1} x - \int (-1 + \frac{1}{1+x^2}) dx)\\
+& = & \displaystyle \frac{1}{2} (x^2 \tan^{-1} x - x + \tan^{-1} x) + c
+\end{array}$$
+\end{eg}
+\section{Trigonometric Integrals}
+\begin{notn}
+\begin{itemize}
+\item $\displaystyle \int \sin^m x \cos^n x dx$\\
+\item $\displaystyle \int \tan^m x \sec^n x dx$
+\item $\displaystyle \int \sin (mx) \cos (nx) dx$
+\item $\displaystyle \int \sin (mx) \sin(nx) dx$
+\item $\displaystyle \int \cos (mx) \cos (nx) dx$
+\end{itemize}
+\end{notn}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \cos^2 x dx & = & \displaystyle \frac{1}{2} \int(1+ \cos(2x) dx\\
+& = & \displaystyle \frac{1}{2} ( x + \frac{1}{2} \sin(2x) ) + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \sin^5x \cos^2 x dx & = & \displaystyle \int \sin^4 x \cos^2 x \sin x dx\\
+& = & \displaystyle - \int (1- \cos^2 x)^2 \cos^2 x d\cos x\\
+& = & \displaystyle - \int (1- u^2)^2 u^2 du\\
+& = & \displaystyle - \int (u^2 - 2u^4 + u^6 ) du\\
+& = & \displaystyle -\frac{1}{3} u^3 + \frac{2}{5} u^5 - \frac{1}{7} u^7 + c\\
+& = & \displaystyle -\frac{1}{3} \cos^3 x + \frac{2}{5} \cos^5 x - \frac{1}{7} \cos^7 x + c 
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \sin^4 x \cos^3 x dx & = & \displaystyle \int \sin^4 x \cos^2x \cos x dx\\
+& = & \displaystyle \int u^4 (1-u^2) du\\
+& = & \displaystyle \frac{1}{5} u^5 - \frac{1}{7} u^7 + c\\
+& = & \displaystyle \frac{1}{5} \sin^5 x - \frac{1}{7} \sin^7 x + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\displaystyle I = \int \sin^2 x \cos ^4 x dx$$
+$$\cos 2\theta = 2\cos^2 \theta -1 = 1-2\sin^2 \theta$$
+$$\begin{array}{rcl}
+I & = & \displaystyle \int \frac{1}{2} (1- \cos (2x))(\frac{1+ \cos (2x)}{2}) dx\\
+& = & \displaystyle \frac{1}{8} \int (1-\cos (2x))(1+ 2\cos(2x) + \cos^2 2x)) dx\\
+& = & \displaystyle \frac{1}{16} \int(1-\cos (2x))(3+4\cos (2x) + \cos(4x)) dx\\
+& = & \displaystyle \frac{1}{16} \int (3+ 4\cos (2x) + \cos (4x) - 3 \cos(2x) - 4\cos^2 (2x) - \cos (2x)\cos(4x)) dx
+\end{array}$$
+$$\begin{array}{rcl}
+\displaystyle \int \cos(2x)\cos(4x) dx & = & \displaystyle \frac{1}{2} \int (\cos (6x) + \cos (2x)) dx\\
+& = & \displaystyle \frac{1}{2} ( \frac{1}{6} \sin(6x) + \frac{1}{2} \sin (2x)) + c
+\end{array}$$
+$$\cos (\alpha + \beta) = \cos \alpha \cos \beta - \sin \alpha \sin \beta$$
+$$\cos (\alpha - \beta) = \cos \alpha \cos \beta + \sin \alpha \sin \beta$$
+$$\displaystyle \cos \alpha \cos \beta = \frac{1}{2}(\cos (\alpha + \beta) + \cos(\alpha - \beta)$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \sec x dx & = & \displaystyle \int \frac{\sec x(\sec x + \tan x)}{\sec x + \tan x} dx\\
+& = & \displaystyle \int \frac{(\sec^2 x + \sec x \tan x) dx}{\sec x + \tan x}\\
+& = & \displaystyle \int \frac{d(\tan x + \sec x)}{\tan x + \sec x}\\
+& = & \displaystyle ln \mid \sec x + \tan x \mid + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \tan x dx & = & \displaystyle \int \frac{\sin x}{\cos x} dx\\
+& = & \displaystyle -ln \mid \cos x \mid +c\\
+& = & \displaystyle ln \mid \sec x \mid +c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \tan^3 x dx & = & \displaystyle \int \tan^2 x \tan x dx\\
+& = & \displaystyle \int (\sec^2-1) \tan x dx\\
+& = & \displaystyle \int \tan x \sec^2 x dx - \int \tan xdx\\
+& = & \displaystyle \int \tan x  d\tan x + ln \mid \cos x \mid \\
+& = & \displaystyle \frac{1}{2} \tan^2 x + ln \mid \cos x \mid +c
+\end{array}$$
+$$\displaystyle y = \frac{ln (\frac{x}{m} - as)}{r^2}$$
+$$\displaystyle e^{yr^2} = e^{ln(\frac{x}{m} - as)}$$
+$$\displaystyle e^{yr^2} = \frac{x}{m} -as$$
+$$\displaystyle m\cdot e^{yr^2} = x- mas$$
+$$\displaystyle me^{rry} = x-mas$$
+$$\displaystyle \int \sin^m x \cos^n x dx$$
+\end{eg}
+\begin{notn}
+\begin{itemize}
+\item[(1)] either $m$ or $n$ is odd
+$$\displaystyle \int \sin^5 x \cos^2 x dx = \int \sin^4 x \cos^2 x \sin x dx$$
+\item[(2)] both $m$ and $n$ are even\\
+$$\begin{array}{rcl}
+\displaystyle \int \sin^4 x \cos^2 x dx & = & \displaystyle \int \sin^4 x (1-\sin^2 x) dx\\
+& = & \displaystyle \int ( \sin^4 x - \sin^6 x)dx
+\end{array}$$
+$$\begin{array}{rcl}
+\displaystyle \int \sin^4x dx & = & \displaystyle \int (\frac{1-\cos x }{2})^2 dx\\
+& = & \displaystyle \frac{1}{4} \int (1-2 \cos (2x) + \cos^2 (2x))dx
+\end{array}$$
+\end{itemize}
+\end{notn}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \tan^6 x \sec^4 x dx & = & \displaystyle \int \tan^6 x \sec^2 x \sec^2 dx\\
+& = & \displaystyle \int u^6 (1+u^2) du \quad \quad \tssteelblue{\text{let} \tan x = u}\\
+& = & \displaystyle \frac{1}{7} \tan^7 x + \frac{1}{9} \tan^9 x +c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\displaystyle \int \tan^5 x \sec^7 x dx & = & \displaystyle \int \tan^4 x \sec^6 x \tan x \sec x dx\\
+& = & \displaystyle \int u^6 (u^2 -1)^2 du \quad \quad \tssteelblue{\text{let } \sec x = u}\\
+& = & \displaystyle \frac{1}{11} \sec^11 x - \frac{2}{9} \sec^9 x + \frac{1}{7} \sec^7 x +c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\begin{array}{rcl}
+\int \tan^3x dx & = & \displaystyle \int \tan x \tan^2 x dx\\
+& = & \displaystyle \int \tan x (\sec^2 x -1) dx\\
+& = & \displaystyle \int (\tan x \sec^2 x - \tan x) dx\\
+& = & \displaystyle \int \tan x d \tan x - \int \tan x dx \quad \quad \tssteelblue{= \frac{1}{2}\tan^2 x + c}\\
+& = & \displaystyle \int \sec x d \sec x - \int \tan dx \quad \quad \tssteelblue{= \frac{1}{2} \sec^2 x + c = \frac{1}{2} (\tan^2 +1) + c = \frac{1}{2} \tan^2 x + \frac{1}{2} + c}
+\end{array}$$
+\end{eg}
+\section{Trigonometric Substitution}
+\begin{notn}
+\begin{itemize}
+\item $\displaystyle \sqrt{a^2-x^2} \implies \text{let } x = a \sin \theta$
+\item $\displaystyle \sqrt{x^2 + a^2} \implies \text{let } x = a \tan \theta$
+\item $\displaystyle \sqrt{x^2 - a^2} \implies \text{let } x = a \sec \theta$
+\end{itemize}
+\end{notn}
+\begin{eg}
+$$\displaystyle \int \frac{\sqrt{9-x^2}}{x^2} dx = - \frac{\sqrt{9-x^2}}{x} - \sin^{-1} (\frac{x}{3}) + c$$
+consider $\displaystyle \int \frac{\sqrt{1-x^2}}{x^2} dx$ first\\
+let $\displaystyle x = \sin \theta, -\frac{\pi}{2} \leq x \leq \frac{\pi}{2}$
+$$\sqrt{1-x^2} = \cos \theta$$
+$$dx = \cos \theta d \theta$$
+$$\begin{array}{rcl}
+\displaystyle \int \frac{\sqrt{1-x^2}}{x^2} dx & = & \displaystyle \int \frac{\cos \theta}{\sin^2 \theta} \cos \theta d\theta\\
+& = & \displaystyle \int (\frac{\cos \theta}{\sin \theta})^2 d\theta\\
+& = & \displaystyle \int \cot^2 \theta d\theta\\
+& = & \displaystyle \int (\csc^2 \theta -1)d\theta\\
+& = & -\cot \theta - \theta +c\\
+& = & \displaystyle - \frac{\sqrt{1-x^2}}{x} - \sin^{-1} x +c
+\end{array}$$
+$$\displaystyle \sqrt{9-x^2} = 3 \sqrt{1-\frac{x^2}{9}} = 3 \sqrt{1-(\frac{x}{3})^2}$$
+let $\displaystyle \frac{x}{3} = \sin \theta \implies x = 3 \sin \theta$
+\end{eg}
+\begin{eg}
+$$\displaystyle \int \frac{dx}{x^4 \sqrt{x^2 +4}}$$
+$$\displaystyle \sqrt{x^4 +4} = 2 \sqrt{\frac{x^2}{4} + 1} = 2 \sqrt{(\frac{x}{2})^2 +1}$$
+let $\displaystyle \frac{x}{2} = \tan \theta$
+$$\displaystyle \sqrt{(\frac{x}{2})^2 + 1} = \sqrt{\tan^2 \theta + 1} = \sec \theta$$
+$$dx = 2 \sec^2 \theta d \theta$$
+$$\begin{array}{rcl}
+I & = & \displaystyle \int \frac{2\sec^2 \theta d\theta}{4\tan^2 \theta 2 \sec \theta}\\
+& = & \displaystyle \frac{1}{4} \int \frac{\sec \theta}{\tan^2 \theta} d\theta\\
+& = & \displaystyle \frac{1}{4} \int \frac{1}{\cos \theta} \frac{\cos^2 \theta}{\sin^2 \theta}d\theta\\
+& = & \displaystyle \frac{1}{4} \int \frac{\cos \theta}{\sin^2 \theta} d\theta\\
+& = & \displaystyle \frac{1}{4} \int \frac{du}{u^2} \quad \quad \tssteelblue{\text{let } \sin \theta = u}\\
+& = & \displaystyle - \frac{1}{4} u^{-1} + c\\
+& = & \displaystyle - \frac{1}{4} \csc \theta + c\\
+& = & \displaystyle - \frac{1}{4} \frac{\sqrt{x^2 + 4}}{x} + c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\displaystyle \int \frac{dx}{\sqrt{x^2-16}}$$
+$$\sec^2 \theta -1 = \tan^2 \theta$$
+$$\tan^2 \theta + 1 = \sec^2 \theta$$
+let $\displaystyle \frac{x}{4} = \sec \theta$
+$$x = 4 \sec \theta$$
+$$dx = 4 \sec \theta \tan \theta d \theta$$
+$$\begin{array}{rcl}
+\displaystyle \int \frac{4\sec \theta  \tan \theta d \theta }{4 \tan \theta} & = & \int \sec \theta d \theta\\
+& = & (ln \mid \sec \theta + \tan \theta) + c\\
+& = & \displaystyle ln \mid \frac{x}{4} + \frac{\sqrt{x^2 -16}}{4} \mid +c\\
+& = & \displaystyle ln \mid \frac{x + \sqrt{x^2 - 16}}{4} \mid +c\\
+& = & ln \mid x + \sqrt{x^2 -16} \mid - ln 4 +c\\
+& = & ln \mid x + \sqrt{x^2 -16} \mid +c
+\end{array}$$
+\end{eg}
+\begin{eg}
+$$\displaystyle \int \frac{xdx}{\sqrt{3-2x-x^2}}$$
+$$\begin{array}{rcl}
+x -2x + 3 & = & - (x^2 + 2x) + 3 \\
+& = & -(x + 1)^2 + 4 \quad \quad \tssteelblue{\text{complete the square 配方}}\\
+& = & -y^2 + 4 
+\end{array}$$
+let $y = x+1$
+$$dy = dx$$
+$$\begin{array}{rcl}
+\displaystyle \int \frac{(y-1) dy}{\sqrt{4-y^2}} & = & \displaystyle \int (\frac{y}{\sqrt{4-y^2}} - \frac{1}{\sqrt{4-y^2}}) dy\\
+& = & \displaystyle \int \frac{4\sin \theta \cos \theta d \theta}{2\cos \theta} - \int \frac{2\cos \theta}{2 \cos \theta} d\theta \quad \quad \tssteelblue{\text{let }y = 2\sin \theta \implies dy = 2\cos \theta d\theta}\\
+& = & 2 \int \sin \theta d\theta - \int 1d\theta\\
+& = & -2 \cos \theta - \theta + c\\
+& = & \displaystyle -2 \frac{\sqrt{4-y^2}}{2} - \sin^{-1}(\frac{y}{2}) + c\\
+& = & \displaystyle -\sqrt{-x^2-2x+3} - \sin^{-1} (\frac{x+1}{2}) + c
+\end{array}$$
+\end{eg}
+\section{Improper Integrals 瑕積分}
+\begin{itemize}
+\item Type I: infinite integral\\
+\( \displaystyle \int^{\infty}_0 x dx \text{, } \int^0_{-\infty} \sin x dx\)
+\item Type II: discontinuous integral 被積函數\\
+\( \displaystyle \int^2_0 \frac{1}{x-1}dx \quad (\frac{1}{x-1} \text{ is not conti. of } x = 1)\)
+\end{itemize}
+\begin{eg}
+\[\begin{array}{rcccl}
+A(t) & = & \displaystyle \int^t_1 \frac{1}{x^2} dx\\
+& = & \displaystyle -\frac{1}{x} \Big|^{x = t}_{x = 1}\\
+& = & \displaystyle - (\frac{1}{t} -1)\\
+& = & \displaystyle 1 - \frac{1}{t}\\\\
+\displaystyle \lim_{t \to \infty} A(t) & = & \displaystyle \lim_{t \to 0} (1 - \frac{1}{t}) & = & 1\\
+&& \displaystyle \lim_{t \to \infty} (\int^t_1 \frac{dx}{x^2}) & = & 1\\
+&&& := & \displaystyle \int^{\infty}_1 \frac{dx}{x^2}
+\end{array}\]
+\end{eg}
+\begin{defn}[Integrals of type I]
+\begin{itemize}
+\item \(\displaystyle \int^{\infty}_a f(x)dx := \lim_{t \to \infty} \int^t_a f(x)dx\)\\
+If the limit exists, then we say \(\displaystyle \int^{\infty}_a f(x)dx\) is convergent; otherwise, we say \(\displaystyle \int^{\infty}_a f(x)dx\) is divergent.
+\item \( \displaystyle \int^a_{-\infty} f(x)dx := \lim_{t \to -\infty} \int^a_t f(x)dx\)\\
+If the limits exists, then we say \( \displaystyle \int^a_{-\infty} f(x)dx\) is convergent; otherwise, we say \( \displaystyle \int^a_{-\infty} f(x)dx\) is divergent.
+\item \( \displaystyle \int^{\infty}_{-\infty} f(x)dx := \int^{\infty}_a f(x)dx + \int^a_{-\infty} f(x)dx\)\\
+\begin{itemize}
+\item[(1)] Both \( \displaystyle \int^{\infty}_a f(x)dx\) and \( \displaystyle \int^a_{-\infty} f(x)dx\) converge \( \implies \displaystyle \int^{\infty}_{-\infty}\) converges
+\item[(2)] Either \( \displaystyle \int^{\infty}_a f(x)dx\) or \( \displaystyle \int^a_{-\infty} f(x)dx\) diverges \( \implies \displaystyle \int^{\infty}_{-\infty}\) diverges
+\end{itemize}
+\end{itemize}
+\end{defn}
+\begin{eg}
+\[\begin{array}{rcl}
+\displaystyle \int^\infty_1 \frac{1}{x} dx & := & \displaystyle \lim_{t \to \infty} \int^t_1 \frac{1}{x} dx\\
+& = & \displaystyle \lim_{t \to \infty} (ln x \Big|^{x = t}_{x = 1})\\
+& = & \displaystyle \lim_{t \to \infty} (ln t - ln 1)\\
+& = & \displaystyle \lim_{t \to \infty} ln t \\
+& = &  \displaystyle \infty
+\end{array}\]
+\end{eg}
+\begin{eg}
+\[\begin{array}{rcl}
+\displaystyle \int^\infty_\infty \frac{1}{1+x^2} dx & := & \displaystyle \int^\infty_0 \frac{1}{1+x^2} dx + \int^0_\infty \frac{1}{1+x^2} dx\\
+& = & \displaystyle \lim_{t \to \infty} \int^t_0 \frac{1}{1+x^2} dx + \lim_{t \to \infty} \int^0_t \frac{1}{1+x^2} dx\\
+& = & \displaystyle \lim_{t \to \infty} (\tan^{-1} x \Big|^{x=t}_{x=0}) + \lim_{t \to \infty} (\tan^{-1} x \Big|^{x=0}_{x=t})\\
+& = & \displaystyle \lim_{t \to \infty} (\tan^{-1} t - \tan^{-1} 0) + \lim_{t \to \infty} (\tan^{-1} 0 - \tan^{-1} t)\\
+& = & \displaystyle \lim_{t \to \infty} \tan^{-1} t - \lim_{t \to \infty} \tan^{-1} t\\ 
+& = & \displaystyle \pi
+\end{array}\]
+\end{eg}
+\begin{eg}
+\[\begin{array}{rcl}
+\displaystyle \int^\infty_1 \frac{1}{x^p} dx \quad \color{red}{(p \neq 1)} & := & \displaystyle \lim_{t \to \infty} \int^t_1 \frac{1}{x^p} dx\\
+& = & \displaystyle \lim_{t \to \infty} (\frac{1}{1-p} x^{1-p} \Big|^{x=t}_{x=1})\\
+& = & \displaystyle \lim_{t \to \infty} (\frac{1}{1-p} (t^{1-p} -1^{1-p}))\\
+& = & \displaystyle \lim_{t \to \infty} \frac{1}{1-p} \lim_{t \to \infty} (t^{1-p} -1)\\
+&= & \displaystyle \left\{ \begin{array}{rcl}
+\displaystyle \frac{1}{p-1} & , & p > 1\\
+\infty & , & p < 1
+\end{array}\right.
+\end{array}\]
+\end{eg}
+\begin{notn}
+\begin{itemize}
+\item \(\displaystyle \int^\infty_1 \frac{dx}{x^p}  = \left\{ \begin{array}{rccl}
+\displaystyle \frac{1}{p-1} & \text{(convergent)} & , & p >1\\
+\infty & \text{(divergent)} & , & p \leq 1
+\end{array}\right.\)
+\item \(\displaystyle \int^\infty_1 \frac{dx}{x^2} ,  p=2 > 1\)
+\item \(\displaystyle \int^\infty_1 \frac{dx}{x^{\frac{1}{2}}},  p =\frac{1}{2} < 1\)
+\end{itemize}
+\end{notn}
+\begin{eg}[Type II: Discontinuous Integral]
+\[\begin{array}{rcl}
+\displaystyle \int^5_2 \frac{dx}{\sqrt{x-2}} & = & \displaystyle \lim_{t \to 2^+} \int^5_t \frac{dx}{\sqrt{x-2}}\\
+& = & \displaystyle \lim_{t \to 2^+} (2(x-2)^{\frac{1}{2}} |^{x=5}_{x=2})\\
+& = & \displaystyle \lim_{t \to 2^+} (2\sqrt{3} - 2(t-2)^{\frac{1}{2}})\\
+& = & 2\sqrt{3}
+\end{array}\]
+\end{eg}
+\section{Differential Equations}
+\begin{defn}
+\[y'(t) = ky(t) \quad k: \text{const}\]
+\[\begin{array}{rcl}
+\displaystyle \frac{dy(t)}{dt} & = & ky(t)\\
+dy(t) & = & ky(t) dt\\
+\displaystyle \frac{dy(t)}{y(t)} & = & kdt\\
+\displaystyle \int \frac{dy}{y} & = & \displaystyle k \int dt\\
+ln y(t) & = & kt + c\\
+e^{ln y(t)} & = & e^{kt + c}\\
+y(t) & = & e^c \cdot e^{kt}\\
+y(t) & = & c^* \cdot e^{kt}\\
+\end{array}\]
+\end{defn}
+\begin{eg}
+\[\displaystyle \frac{dy}{dx} = \frac{x^2}{y^2} \quad y(0) =2\]
+\[\begin{array}{rcl}
+\displaystyle \int y^2dy & = & \displaystyle \int x^2 dx\\
+\displaystyle \frac{1}{3} y^3 & = & \displaystyle \frac{1}{3} x^3 +c\\
+\end{array}\]
+use \(y(0) = 2\) to determine \(c\)
+\[\displaystyle \frac{1}{3}2^3  = \displaystyle \frac{1}{3} 0^3 +c\\
+c = \displaystyle \frac{8}{3}\] 
+The solution is \( y^3 = x^3 + 8\)
+\end{eg}

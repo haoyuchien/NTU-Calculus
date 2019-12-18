@@ -1,0 +1,1099 @@
+%
+% Copyright 2018 Joel Feldman, Andrew Rechnitzer and Elyse Yeager.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+%
+\graphicspath{{figures/series/}}
+\chapter{Sequence and Series}\label{chap seq ser}
+\section{Sequence 數列}
+\begin{defn}[\(f(n), n \in N\)]
+\begin{itemize}
+\item \(\displaystyle a_n = \frac{1}{n} \quad (\frac{1}{1}, \frac{1}{2}, \frac{1}{3}, \cdots)\)
+\item \(\displaystyle a_n = n \quad (1, 2, 3, \cdots)\)
+\item \(\displaystyle a_n = (-1)^n \quad (-1, 1, -1, 1, \cdots)\)
+\end{itemize}
+\end{defn}
+Q: Given a sequence (infinite) \(\{a_n\}^{\infty}_{n = 1}\). Is \(\{a_n\}^{\infty}_{n = 1}\) convergent or divergent?
+\begin{itemize}
+\item \(\displaystyle a_n = \frac{1}{n} \quad (\frac{1}{1}, \frac{1}{2}, \frac{1}{3}, \cdots)\)\\
+\(\displaystyle \lim_{n \to \infty} a_n = 0\) \quad convergent 
+\item \(\displaystyle a_n = n \quad (1, 2, 3, \cdots)\)\\
+\(\displaystyle \lim_{n \to \infty} a_n = \infty\) \quad divergent 
+\item \(\displaystyle a_n = (-1)^n \quad (-1, 1, -1, 1, \cdots)\)\\
+divergent
+\end{itemize}
+\begin{theorem}
+If \(\displaystyle \lim_{x \to \infty} a_x = L, x \in R\), then
+\[\lim_{n \to \infty} a_n = L, n \in N\]
+\end{theorem}
+\begin{eg}
+\[\displaystyle a_n = \frac{ln n}{n}, n \in N\]
+\[\displaystyle \lim_{x \to \infty} \frac{ln x}{x}, x \in R = \lim_{x \to \infty} \frac{\frac{1}{x}}{1} = 0\]
+\[\displaystyle \lim_{n \to \infty} \frac{ln n}{n} = 0, n \in N\]
+\end{eg}
+\begin{eg}[Geometric Sequence]
+\(\{r^n\}^{\infty}_{n = 1}\) converges
+\[\{r^n\}^{\infty}_{n = 1} = \{r, r^2, r^3, \cdots\}\]
+\[r = -1 \{-1, 1, -1, 1, \cdots\}\]
+\[-1 < r \leq 1\]
+\end{eg}
+\begin{theorem}
+Assume
+\begin{itemize}
+\item[(1)] \(\{a_n\}^{\infty}_{n = 1}\) is monotone 單調遞增或遞減\\
+\(a_n \leq a_{n + 1}, \forall n = 0, 1, 2, \cdots \text{ or } a_n \geq a_{n + 1}, \forall n = 0, 1, 2, \cdots\)
+\item[(2)]\(\{a_n\}^{\infty}_{n = 1}\) is bounded 有界\\
+\(\Big| a_n \Big| \leq M, \forall n = 1, 2, 3, \cdots \text{ for some } M > 0\)
+\end{itemize}
+\(\implies \{a_n\}^{\infty}_{n = 1}\) converges
+\end{theorem}
+\begin{eg}
+\[x = \sqrt{2+ \sqrt{2+ \sqrt{2 + \cdots}}}\]
+\[\begin{array}{rcl}
+x^2 & = & 2 + \sqrt{2 + \sqrt{2 + \cdots}}\\
+& = & 2 + x
+\end{array}\]
+\[x^2 -x - 2 = 0\]
+\[(x + 1)(x -2) = 0\]
+\[x = -1 \text{ or } 2\]
+\[x = 2\]
+\[\begin{array}{rclcl}
+a_1 & = & \sqrt{2}\\
+a_2 & = & \sqrt{2 + \sqrt{2}} & = & \sqrt{2 + a_1}\\
+a_3 & = & \sqrt{2 + \sqrt{2 + \sqrt{2}}} & = & \sqrt{2 + a_2}\\
+a_n &&& = & \sqrt{2 + a_n}
+\end{array}\]
+Consider \(\{a_n\}^{\infty}_{n = 1}\) 
+\begin{itemize}
+\item \(a_n \text{ monotone } (a_n \nearrow \text{ as } n \nearrow)\)
+\item \(a_n\) bounded
+\end{itemize}
+Want to show \(a_n \leq 2, \forall n \in N \quad --- (\star)\)\\
+Use Induction （數學歸納法）
+\begin{itemize}
+\item \(n = 1\)\\
+\[\Big| a_1 \Big| = \Big| \sqrt{2} \Big| = \sqrt{2} \leq 2\]
+\(\therefore n = 1, (\star)\) is true
+\item If \(n = k, (\star)\) is true \(\implies n = k + 1, (\star)\) is true\\
+\[\Big| a_{k + 1} \Big|= \Big| \sqrt{2 + a_k} \Big| \leq \sqrt{2 + 2} = 2\]
+\[\Big| a_{k + 1} \Big| \leq 2\]
+\end{itemize}
+By Induction, \((\star)\) is true\\
+By Thm, \(\{a_n\}^{\infty}_{n = 1}\) converges 
+\end{eg}
+\section{Series 級數}
+\begin{defn}[Series]
+Summation of a sequence
+\[\displaystyle \sum^{\infty}_{n = 1} a_n = a_1 + a_2 + a_3 + \cdots\]
+\end{defn}
+Q: Convergence of a series?
+\[\displaystyle \sum^{\infty}_{r = 1} r^n = r + r^2 + r^3 + \cdots = \lim_{n \to \infty} \frac{r(1 - r^n)}{1 - r}\]
+\[\text{convergence} \Leftrightarrow - 1 < r < 1\]
+\begin{theorem}
+If \(\displaystyle \sum^{\infty}_{n = 1} a_n\) converges, then
+\[\lim_{n \to \infty} a_n = 0\]
+\end{theorem}
+\begin{notn}
+\(\displaystyle \lim_{n \to \infty} a_n = 0\) does not imply \(\sum^{\infty}_{n = 1} a_n\) converges
+\end{notn}
+\begin{eg}
+\[\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \cdots\]
+Assume \(\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n} = S\) converges
+\[\begin{array}{rccccccccl}
+S & = & 1 & + & \displaystyle (\frac{1}{2} + \frac{1}{3}) & + & \displaystyle (\frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7}) & + & \displaystyle (\frac{1}{8} + \frac{1}{9} + \cdots + \frac{1}{15}) & + \cdots\\
+&&&& > \frac{1}{2} && > \frac{1}{8} + \frac{1}{8} + \frac{1}{8} + \frac{1}{8} && > \frac{1}{16} + \frac{1}{16} + \cdot + \frac{1}{16}\\
+& > & \displaystyle 1 & + & \displaystyle \frac{1}{2} & + & \displaystyle \frac{1}{2} & + & \displaystyle \frac{1}{2} & + \cdots\\
+& = & \infty
+\end{array}\]
+\(\displaystyle \lim_{n \to \infty} a_n = \lim_{n \to \infty} \frac{1}{n} = 0\ \text{ but } \sum^{\infty}_{n = 1} \frac{1}{n}\) diverges
+\end{eg}
+\section{Integral Test}
+\begin{defn}
+Assume
+\begin{itemize}
+\item[(1)] \(a_n > 0\) \quad for \(n = m, m + 1, \cdots\) (essentially positive)
+\item[(2)] \(a_n \searrow\)
+\item[(3)] \(a_n\) is conti. for \(x \in [1, \infty)\)
+\end{itemize}
+\(\implies \displaystyle \sum^{\infty}_{n = 1} a_n \text{ and } \int^{\infty}_1 a_x dx\) both converge or diverge
+\end{defn}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n^p}, p > 0\) (P-series) converges or diverges\\
+
+\soln
+\begin{itemize}
+\item[(1)] \(\displaystyle \frac{1}{n^p} > 0 \quad \forall n = 1, 2, 3, \cdots\)
+\item[(2)] \(\displaystyle a_n = \frac{1}{n^p} \searrow\)
+\item[(3)] \(a_x = \frac{1}{x^p}\) conti for \(x \geq 1\)
+\end{itemize}
+By integral test \(\implies \displaystyle \sum^{\infty}_{n = 1} \frac{1}{n^p} \text{ and} \int^{\infty}_1 \frac{1}{x^p} dx\) both converges or diverges
+\end{eg}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n^2 +1}\) converges or diverges by integral test
+
+\soln
+\begin{itemize}
+\item[(1)] \(\displaystyle a_n = \frac{1}{n^2 + 1} > 0 \quad \forall n = 1, 2, 3, \cdots\)
+\item[(2)] \(\displaystyle a_n =\frac{1}{n^2 + 1} \searrow \quad \quad f(x) = \frac{1}{n^2 + 1} \implies f'(x) = -(x^2 + 1)^{-2}(2x) < 0, x> 0\)
+\item[(3)] \(a_x = \frac{1}{x^2 + 1}\) is conti. \(x \geq 1\)
+\end{itemize}
+By integral test, consider
+\[\begin{array}{rcl}
+\displaystyle \int^{\infty}_1 \frac{1}{x^2 + 1} dx & = & \displaystyle \lim_{t \to \infty} (\int^{\infty}_1 \frac{1}{x^2 + 1} dx)\\
+& = & \displaystyle \lim_{t \to \infty} (\tan^{-1} x \Big|^{x = t}_{x = 1})\\
+& = & \displaystyle \lim_{t \to \infty} (\tan^{-1} t - \tan^{-1} 1)\\
+& = & \displaystyle \lim_{t \to \infty} \tan^{-1} t - \lim_{t \to \infty} \tan^{-1} 1\\
+& = & \displaystyle \frac{\pi}{2} - \frac{\pi}{4}\\
+& = & \displaystyle \frac{\pi}{4} \quad \text{converges}
+\end{array}\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} \frac{1}{n^2 +1}\) converges
+\[\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n^2 + 1} \neq \int^{\infty}_1 \frac{1}{x^2 + 1} dx\]
+Compare with P-series\\
+\[\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n^2 + 1} < \sum^{\infty}_{n = 1} \frac{1}{n^2} = \frac{\pi^2}{6}\quad \text{converges}\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} \) converges
+\end{eg}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n =1} \frac{1}{n(ln n)^p}, p > 0\) converges or diverges
+
+\soln
+\[\displaystyle a_n = \frac{1}{n(ln n)^p}\]
+\begin{itemize}
+\item[(1)] \(a_n > 0 \quad \forall n = 2, 3, \cdots\)
+\item[(2)] \(a_n \searrow\)
+\item[(3)] \(\displaystyle f(x) = \frac{1}{x(ln x)^p}\) is conti for \(x \in [2, \infty)\)
+\end{itemize}
+\[\begin{array}{rcl}
+\displaystyle \int^{\infty}_2 \frac{1}{x(ln x)^p} dx & = & \displaystyle \int^{x = \infty}_{x = 2} \frac{d lnx}{(lnx)^p}\\
+& = & \displaystyle \int^{y = \infty}_{y = ln 2} \frac{dy}{y^p}\\
+& = & \displaystyle \frac{1}{1 - p} y ^{1 - p} \Big|^{\infty}_{ln 2}\\
+& = & \left\{\begin{array}{rcl}
+\displaystyle \int^{\infty}_{ln2} \frac{1}{y} dy & = & lny \Big|^{\infty}_{ln2} = \infty, p = 1\\
+\displaystyle \int^{\infty}_{ln2} \frac{1}{y^p} dy & = & \displaystyle \frac{1}{1 - p} y^{1 - p} \Big|^{\infty}_{ln2} = \left\{\begin{array}{ccl}
+\text{converges} & , & p> 1\\
+\text{diverges} & , & 0 < p < 1
+\end{array} \right.\\
+\end{array} \right.\\
+& = & \left\{\begin{array}{ccl}
+\text{diverges} & , & 0 < p \leq 1\\
+\text{converges} & , & p >1
+\end{array} \right.\\
+\end{array}\]
+\end{eg}
+\begin{notn}
+\[\displaystyle \int^{\infty}_1 \frac{1}{x^p} dx = \left\{ \begin{array}{ccl} \text{diverges} &, & 0 < p \leq 1\\
+\text{converges} &, & p > 1 
+\end{array}\right.\]
+\[\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n^p} = \left\{\begin{array}{ccl}
+\text{diverges} &, & 0 < p \leq 1\\
+\text{converges} &, & p > 1
+\end{array} \right.\]
+\[p = 1 \quad \text{Harmonic Series （調和級數）}\]
+\end{notn}
+\section{Comparison Theorem}
+\begin{theorem}[Comparison Theorem]
+\begin{itemize}
+\item Subtraction 減法\\
+\[a_n, b_n > 0 \quad a_n \leq b_n \quad n = 1, 2, \cdots\]
+\begin{itemize}
+\item[(1)] \(\displaystyle \sum^{\infty}_{n = 1} b_n \text{ converges } \implies \sum^{\infty}_{n = 1} a_n\) converges
+\item[(2)] \(\displaystyle \sum^{\infty}_{n =1} a_n \text{ diverges } \implies \sum^{\infty}_{n = 1} b_n\) diverges 
+\end{itemize}
+\item Division 除法\\
+\[\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = c\]
+\begin{itemize}
+\item[(1)] \(c \neq 0 \text{ and } c \neq \infty\\
+\displaystyle \sum^{\infty}_{n = 1} a_n \text{ and } \sum^{\infty}_{n = 1} b_n\) both converges or diverges
+\item[(2)] \(c = 0 \quad (\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = 0)\\
+\displaystyle \sum^{\infty}_{n = 1} b_n \text{ converges } \implies \sum^{\infty}_{n = 1} a_n\) converges\\
+\(\displaystyle \sum^{\infty}_{n = 1} a_n \text{ diverges } \implies \sum^{\infty}_{n = 1} b_n\) diverges 
+\item[(3)] \(c = \infty\)\\
+\(\displaystyle \sum^{\infty}_{n = 1} a_n \text{ converges } \implies \sum^{\infty}_{n = 1} b_n\) converges\\
+\(\displaystyle \sum^{\infty}_{n = 1} b_n \text{ diverges } \implies \sum^{\infty}_{n = 1} a_n\) diverges \\
+\end{itemize}
+\end{itemize}
+\end{theorem}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n^2 - n - 1}\) converges or diverges
+
+\soln
+\[\displaystyle a_n = \frac{1}{n^2 - n - 1} \quad b_n = \frac{1}{n^2} \quad (\sum^{\infty}_{n = 1} \frac{1}{n^2} \text{ converges)}\]
+\[\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = \lim_{n \to \infty} \frac{n^2}{n^2 - n - 1} = 1 \neq 0\]
+\[\displaystyle \frac{1}{n^2 - n - 1} \geq \frac{1}{n^2} \quad n = 2, 3, \cdots\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} a_n\) converges
+\end{eg}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} \frac{1}{\sqrt{n(n + 1)(n + 2)}}\) converges or diverges
+
+\soln
+\[\displaystyle a_n = \frac{1}{\sqrt{n(n + 1)(n + 2)}} \quad b_n = \frac{1}{n^{\frac{3}{2}}} \quad (\sum^{\infty}_{n = 1} \frac{1}{n^{\frac{3}{2}}} \text{ converges)}\]
+\[\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = 1 \neq 0\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} a_n\) converges
+\end{eg}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} \sin (\frac{1}{n})\) converges or diverges
+
+\soln
+\[\displaystyle a_n = \sin (\frac{1}{n}) \quad b_n = \frac{1}{n} \quad (\sum^{\infty}_{n = 1} \frac{1}{n} \text{  diverges)}\]
+\[\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = \lim_{n \to \infty} \frac{\sin(\frac{1}{n})}{\frac{1}{n}} = \lim_{n \to \infty} \frac{\sin m}{m} = 1 \neq 0\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} a_n\) diverges
+\end{eg}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} \frac{n + 5}{\sqrt{n^7 + n^2}}\) converges or diverges
+
+\soln
+\[\displaystyle a_n = \frac{n + 5}{\sqrt{n^7 + n^2}} \quad b_n = \frac{1}{n^{\frac{4}{3}}} \quad (\sum^{\infty}_{n = 1} \frac{1}{n^{\frac{4}{3}}} \text{ converges)}\]
+\[\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = 1 \neq 0\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} a_n\) converges
+\end{eg}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n^{1 + \frac{1}{n}}}\) converges or diverges
+
+\soln
+\[\displaystyle a_n = \frac{1}{n^{1 + \frac{1}{n}}} \quad b_n = \frac{1}{n^1} \quad (\sum^{\infty}_{n = 1} \frac{1}{n} \text{ diverges)}\]
+\[\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = \lim_{n \to \infty} \frac{1}{n^{\frac{1}{n}}} = 1 \neq 0\]
+\[\displaystyle \lim_{x \to \infty} x^{\frac{1}{x}} \quad (\text{type } \infty)\]
+\[\displaystyle y = x^{\frac{1}{x}} \implies ln y = \frac{1}{x} lnx\]
+\[\displaystyle \lim_{x \to \infty} \frac{lnx}{x} = \lim_{x \to \infty} \frac{\frac{1}{x}}{1} = 0\]
+\[\displaystyle \lim_{x \to \infty} x^{\frac{1}{x}} = 1\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} a_n\) diverges
+\end{eg}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} \frac{n^3}{2^n}\) converges or diverges
+
+\soln
+\[\displaystyle a_n  = \frac{n^3}{2^n} = \frac{n^3}{(\frac{2}{1 \cdot 1})^n (1 \cdot 1)^n)} \quad b_n = \frac{1}{(\frac{2}{1 \cdot 1})^n} (\sum^{\infty}_{n = 1} \frac{1}{(\frac{2}{1 \cdot 1})^n} \text{ converges)}\] 
+\[\text{geometric series 等比級數 with common ratio 公比} < 1\]
+\[\displaystyle \lim_{n \to \infty} a_n = \lim_{n \to \infty} \frac{3n^2}{2^n ln2} = \frac{3}{ln2} \lim_{n \to \infty} \frac{n^2}{2^n} = \frac{3}{ln2} \lim_{n \to \infty} \frac{2n}{2^n ln2} = \frac{6}{(ln2)^2} \lim_{n \to \infty} \frac{1}{2^n} = 0\]
+\[\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = \lim_{n \to \infty} \frac{n^3}{(1 \cdot 1)^n} = 0\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} a_n\) converges
+\end{eg}
+\section{Alternating Series 交錯級數}
+\begin{defn}
+\[\displaystyle \sum^{\infty}_{n = 1} (-1)^{n + 1} a_n = a_1 - a_2 + a_3 - a_4 + \cdots\]
+Assume
+\begin{itemize}
+\item[(1)] \(a_n > 0 \quad \forall n = 1, 2, 3, \cdots\)
+\item[(2)] \(a_n \searrow\)
+\end{itemize}
+\(\implies \displaystyle \sum^{\infty}_{n = 1} (-1)^{n + 1} a_n\) converges
+\end{defn}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} (-1)^{n+1} \frac{1}{n} = \frac{1}{1} - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots\) converges or diverges
+
+\soln
+\begin{itemize}
+\item[(1)] \(a_n = \frac{1}{n} > 0 \quad \forall n = 1, 2, \cdots\)
+\item[(2)] \(a_n \searrow 0 \quad (a_n \searrow \text{ and } \displaystyle \lim_{n \to \infty} a_n = 0)\)
+\end{itemize}
+\(\implies \displaystyle \sum^{\infty}_{n = 1} (-1)^{n+1} a_n\) converges
+\end{eg}
+\begin{proof}
+\[\begin{array}{rcl}
+S_{2n} \nearrow \text{ has a upper bound } a_1 & \implies & \displaystyle \lim_{n \to \infty} S_{2n} \text{ converges}\\
+S^*_{2n +1} \searrow \text{ has a lower bound } 0 & \implies & \displaystyle \lim_{n \to \infty} S^*_{2n + 1} \text{ converges}
+\end{array}\]
+Claim: \(\displaystyle \lim_{n \to \infty} S_{2n} = \lim_{n \to \infty} S^*_{2n + 1}\)\\
+\[\displaystyle \lim_{n \to \infty} S_{2n} - \lim_{n \to \infty} S^*_{2n + 1} = \lim_{n \to \infty} (S_{2n} - S^*_{2n+ 1}) = 0\]
+\[\displaystyle \lim_{n \to \infty} S_{2n} = \lim_{n \to \infty} S^*_{2n + 1}\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} (-1)^{n +1} a_n\) converges
+\end{proof}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} (-1)^n \cos (\frac{\pi}{n})\) converges or diverges
+
+\soln
+\begin{itemize}
+\item[(1)] \(\displaystyle a_n = \cos (\frac{\pi}{n}) > 0 \quad \forall n = 3, 4, \cdots\)
+\item[(2)] \(\displaystyle a_n \searrow \quad f(x) = \cos (\frac{\pi}{n}) \implies f'(x) = \)\\
+\[\displaystyle \lim_{n \to \infty} \cos (\frac{\pi}{n}) = 1 \neq 0\]
+\end{itemize}
+\(\implies \displaystyle \sum^{\infty}_{n = 1} (-1)^n \cos (\frac{\pi}{n})\) diverges
+\end{eg}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 1} (-1)^n \sin (\frac{\pi}{n})\) converges or diverges
+
+\soln
+\begin{itemize}
+\item[(1)] \(\displaystyle a_n = \sin (\frac{pi}{n})>0 \quad \forall n = 2, 3, \cdots\)
+\item[(2)] \(\displaystyle a_n \searrow \quad f(x) = \sin (\frac{\pi}{x}) \implies f'(x) = \cos (\frac{\pi}{x}) \cdot (\frac{-\pi}{x^2}) < 0, x \geq 3\)
+\end{itemize}
+\(\implies \displaystyle \sum^{\infty}_{n = 1} (-1)^n \sin (\frac{\pi}{n})\) converges
+\end{eg}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 2} (-1)^n \frac{ln n}{n}\) converges or diverges?
+
+\soln
+\[\displaystyle a_n = \frac{ln n}{n}\]
+\begin{itemize}
+\item[(1)] \(a_n = \frac{ln n}{n} > 0 \quad \forall n = 2, 3, \cdots\)
+\item[(2)] \(\displaystyle \lim_{n \to \infty} a_n = \lim_{n \to \infty} \frac{ln n}{n} = \lim_{n \to \infty} \frac{\frac{1}{n}}{1} = 0\)
+\end{itemize}
+let \(\displaystyle f(x) = \frac{lnx}{x}\)
+\[\displaystyle f'(x) = \frac{x \frac{1}{x} - lnx}{x^2} = \frac{1}{x^2} (1 - lnx) \text{\quad \tssteelblue{Quotient Rule}}\]
+\(\therefore \text{As } x > e \implies f'(x) < 0 \quad (ln e =1)\\
+\implies a_n \nearrow \text{ when } n > 3\\
+\implies \displaystyle \sum^{\infty}_{n = 2} (-1)^n \frac{ln n}{n}\) converges
+\end{eg}
+\begin{eg}
+Determine \(\displaystyle \sum^{\infty}_{n = 2} (-1)^n \frac{(ln n)^p}{n}, p > 0\)  converges or diverges?
+
+\soln
+\[a_n = \frac{(ln n)^p}{n}\]
+\begin{itemize}
+\item[(1)] \(a_n = \frac{(ln n )^p}{n} > 0 \quad \forall n = 2, 3, \cdots\)
+\item[(2)] \(\displaystyle \lim_{n \to \infty} a_n = \lim_{n \to \infty} \frac{(ln n)^p}{n}\)
+\[\displaystyle \lim_{n \to \infty} \frac{p(ln n)^{p - 1} \frac{1}{n}}{1} = p (\lim_{n \to \infty} \frac{(ln n)^{p - 1})}{n})= \left\{\begin{array}{ccl}
+0 & , & p \leq 1\\
+\displaystyle \lim_{n \to \infty} \frac{(p - 1)(ln n)^{p - 2} \frac{1}{n}}{1} & , & p > 1
+\end{array}\right.\]
+\[\displaystyle p > 1: \quad p( p - 1) \lim_{n \to \infty} \frac{ln^{p - 2}}{n} = \left\{\begin{array}{ccl}
+0 & , & 1 < p \leq 2\\
+\cdots & , & p > 2
+\end{array}\right.\]
+\[\displaystyle \lim_{n \to \infty} \frac{(ln n)^p}{n} = 0\]
+\end{itemize}
+let \(\displaystyle f(x) = \frac{(ln x)^p}{x}\)
+\[f'(x) =\frac{\cancel{x} p (ln x)^{p - 1} \cdot \frac{1}{\cancel{x}} - (ln x)^p \cdot 1}{x^2} = \frac{1}{x^2} (ln x)^{p - 1} (p - lnx)\]
+\(\therefore \text{As } p - ln x < 0 \quad (x > e^p) \implies f'(x) < 0\)\\
+\(\implies \displaystyle \sum^{\infty}_{n = 2} (-1)^n \frac{(ln n )^p}{n}\) converges
+\end{eg}
+\section{Absolute Convergence}
+\begin{defn}[A.C and C.C]
+\begin{itemize}
+\item[(1)] If \(\displaystyle \sum^{\infty}_{n = 1} \Big| a_n \Big|\) converges, then \(\displaystyle \sum^{\infty}_{n = 1} a_n\) is absolute convergent (A.C).
+\item[(2)] If \(\displaystyle \sum^{\infty}_{n = 1} \Big| a_n \Big|\) diverges, but \(\displaystyle \sum^{\infty}_{n = 1} a_n\) converges, then \(\displaystyle \sum^{\infty}_{n = 1} a_n\) is conditionally convergent (C.C).
+\end{itemize}
+\end{defn}
+\begin{notn}
+If \(\displaystyle \sum^{\infty}_{n = 1} a_n\) is A.C
+\[\displaystyle \sum^{\infty}_{n = 1} \Big| a_n \Big| < \infty \text{\quad \tssteelblue{by def}}\] 
+\[\displaystyle \Big| \sum^{\infty}_{n = 1} a_n \Big| \leq \sum^{\infty}_{n = 1} \Big| a_n \Big| < \infty\]
+\[\displaystyle - \sum^{\infty}_{n = 1} \Big| a_n \Big| \leq \sum^{\infty}_{n = 1} a_n \leq \sum^{\infty}_{n = 1} \Big| a_n \Big|\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} a_n\) converges
+\end{notn}
+\begin{eg}
+Is \(\displaystyle \sum^{\infty}_{n = 1} (-1)^n \frac{1}{n^2}\) is A.C?
+
+\soln
+\[\displaystyle a_n = (-1)^n \frac{1}{n^2}\]
+\(\displaystyle \sum^{\infty}_{n = 1} \Big| (-1)^n \frac{1}{n^2} \Big| = \sum^{\infty}_{n = 1} \frac{1}{n^2}\) is convergent \quad (\(\because p\)-series with \(\displaystyle p = 2)\)\\
+\(\implies \displaystyle \sum^{\infty}_{n = 1} (-1)^n \frac{1}{n^2}\) is A.C)
+\end{eg}
+\begin{eg}
+Is \(\displaystyle \sum^{\infty}_{n = 1} (-1)^n \frac{1}{n}\) is A.C?
+
+\soln
+\[\displaystyle a_n = (-1)^n \frac{1}{n}\]
+\(\displaystyle \sum^{\infty}_{n = 1} \Big| (-1)^n \frac{1}{n} \Big| = \sum^{\infty}_{n = 1} \frac{1}{n}\) is divergent \quad (\(\because p\)-series with \(p = 1)\)\\\\\\
+\(\displaystyle \sum^{\infty}_{n = 1} (-1)^n \frac{1}{n}\) is alternating series
+\[\displaystyle a_n = \frac{1}{n}\]
+\begin{itemize}
+\item[(1)] \(\displaystyle a_n = \frac{1}{n} > 0 \quad \forall n = 1, 2, 3, \cdots\)
+\item[(2)] \(a_n \searrow 0 \quad \displaystyle \lim_{n \to \infty} a_n = 0\)
+\end{itemize}
+\(\implies \displaystyle \sum^{\infty}_{n = 1} (-1)^n \frac{1}{n}\) converges\\\\\\
+\(\implies \displaystyle \sum^{\infty}_{n = 1} (-1)^n \frac{1}{n}\) is C.C
+\end{eg}
+\section{Ratio and Root Tests}
+\begin{defn}
+Consider \(\displaystyle \sum^{\infty}_{n = 1} a_n\)
+\[\left\{\begin{array}{cr}
+\text{Ratio Test} & \displaystyle \lim_{n \to \infty} \Big| \frac{a_{n + 1}}{a_n} \Big| = L \geq 0\\
+\text{Root Test} & \displaystyle \lim_{n \to \infty} \Big| a_n\Big| ^{\frac{1}{n}} = L \geq 0
+\end{array}\right.\]
+\begin{itemize}
+\item[(1)] \(\displaystyle L < 1 \implies \sum^{\infty}_{n = 1} a_n\) is A.C (\(\displaystyle \implies\sum^{\infty}_{n = 1} \Big| a_n \Big|\) converges)
+\item[(2)] \(\displaystyle L > 1 \implies \sum^{\infty}_{n = 1} a_n\) diverges (\(\displaystyle \implies \sum^{\infty}_{n = 1} \Big| a_n \Big|\) diverges)
+\item[(3)] \(\displaystyle L = 1 \implies\) \underline{Inconclusive}\\
+Any conclusion cannot be drawn from this test (i.e the test fails)
+\end{itemize}
+\end{defn}
+\begin{eg}
+Does \(\displaystyle \sum^{\infty}_{n = 1} \frac{n^2}{2^n}\) converge?
+
+\soln
+\[\displaystyle a_n = \frac{n^2}{2^n}\]
+\begin{itemize}
+\item Ratio Test\\
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{a_{n +1}}{a_n} \Big| = \lim_{n \to \infty} \frac{\frac{(n+1)^2}{2^{n +1}}}{\frac{n^2}{2^n}} = \lim_{n \to \infty} (\frac{(n + 1)^2}{n} \frac{1}{2} = \frac{1}{2} < 1\]
+\(\implies \displaystyle \sum^{\infty}_{n = 1} \frac{n^2}{2^n}\) is A.C (\(\displaystyle \implies \sum^{\infty}_{n = 1} \frac{n^2}{2^n}\) converges)
+\item Root Test\\
+\[\displaystyle \lim_{n \to \infty} \Big| a_n \Big|^{\frac{1}{n}} = \lim_{n \to \infty} (\frac{n^2}{2^n})^{\frac{1}{n}} = \lim_{n \to \infty} \frac{n^{\frac{2}{n}}}{2} = \frac{1}{2} (\lim_{n \to \infty} n^{\frac{2}{n}}) = \frac{1}{2} < 1\]
+\[\displaystyle f(x) = x^{\frac{2}{x}} \quad ln f(x) = \frac{2}{x} ln x\]
+\[\displaystyle 2 \lim_{n \to \infty} \frac{ln x}{x} = 2 \lim_{n \to \infty} \frac{\frac{1}{x}}{1} = 0\]
+\[\displaystyle \lim_{n \to \infty} x^{\frac{2}{x}}= 1\]
+\(\displaystyle \implies \sum^{\infty}_{n = 1} \frac{n^2}{2^n}\) is A.C
+\end{itemize}
+\end{eg}
+\begin{eg}
+Does \(\displaystyle \sum^{\infty}_{n = 1} (\frac{n^2 + 1}{2n^2 + 1})^n\) converge?
+
+\soln
+\[\displaystyle a_n = (\frac{n^2 + 1}{2n^2 + 1})^n\]
+\begin{itemize}
+\item Root Test
+\[\displaystyle \lim_{n \to \infty} ((\frac{n^2 + 1}{2n^2 + 1})^{\cancel{n}})^{\cancel{\frac{1}{n}}} = \lim_{n \to \infty} \frac{1n^2 + 1}{2n^2 + 1} = \frac{1}{2} < 1\]
+\(\displaystyle \implies \sum^{\infty}_{n = 1} (\frac{n^2 + 1}{2n^2 + 1})\) is A.C
+\end{itemize}
+\end{eg}
+\begin{eg} 
+Does \(\displaystyle \sum^{\infty}_{n = 1} \frac{(-3)^n}{n!}\) converges?
+
+\soln
+\[\displaystyle a_n = \frac{(-3)^n}{n!}\]
+\begin{itemize}
+\item Ratio Test
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{a_{n +1}}{a_n} \Big| = \lim_{n \to \infty} \Bigg| \frac{\frac{(-3)^{n + 1}}{(n+1)!}}{\frac{(-3)^n}{n!}} \Bigg| = \lim_{n \to \infty} \frac{3}{n + 1} = 0 < 1\]
+\(\displaystyle \implies \sum^{\infty}_{n \to \infty} \frac{(-3)^n}{n!}\) is A.C (\(\displaystyle \implies \sum^{\infty}_{n = 1} \frac{(-3)^n}{n!}\) converges)
+\end{itemize}
+\end{eg}
+\begin{eg}
+Is \(\displaystyle \sum^{\infty}_{n = 1} (-1)^n \frac{2^n n!}{5 \cdot 8 \cdot 11 \cdots (3n + 2)}\) A.C?
+
+\soln
+\[\displaystyle a_n = \frac{(-1)^n 2^n n!}{5 \cdot 8 \cdot 11 \cdots (3n + 2)}\]
+\begin{itemize}
+\item Ratio Test
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{a_{n + 1}}{a_n} \Big| = \lim_{n \to \infty} \Bigg|\frac{\frac{\cancel{(-1)^{n + 1}} 2^{n + 1} (n + 1)!}{\cancel{5 \cdot 8 \cdot 11 \cdots (3n +2)}(3n + 5)}}{\frac{\cancel{(-1)^n} 2^n n!}{\cancel{5 \cdot 8 \cdot 11 \cdots (3n + 2)}}} \Bigg| = \lim_{n \to \infty} \Big| \frac{2(n +1)}{3n + 5} \Big| = \frac{2}{3} < 1\]
+\(\displaystyle \implies \sum^{\infty}_{n = 1} a_n\) is A.C \quad (i.e \(\displaystyle \sum^{\infty}_{n = 1} \Big| a_n \Big| < \infty\))
+\end{itemize}
+\end{eg}
+\begin{eg}
+Is \(\displaystyle \sum^{\infty}_{n = 1} \frac{(-1)^n 5^n n!}{5 \cdot 8 \cdot 11 \cdots (3n +2)}\) A.C?
+
+\soln
+\[\displaystyle a_n = \frac{(-1)^n 5^n n!}{5 \cdot 8 \cdot 11 \cdots (3n + 2)}\]
+\begin{itemize}
+\item Ratio Test
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{a_{n + 1}}{a_n} \Big| = \lim_{n \to \infty} \Bigg| \frac{\frac{\cancel{(-1)^{n +1}} 5^{n +1} (n + 1)!}{\cancel{5 \cdot 8 \cdot 11 \cdots (3n + 2)}(3n + 5)}}{\frac{\cancel{(-1)^n} 5^n n!}{\cancel{5 \cdot 8 \cdot 11 \cdots (3n + 2)}}} \Bigg| = \lim_{n \to \infty} \Big| \frac{5(n + 1)}{3n + 5} \Big| = \frac{5}{3} > 1\]
+\(\displaystyle \implies \sum^{\infty}_{n = 1} a_n\) diverges (NOT A.C)
+\end{itemize}
+\end{eg}
+\begin{eg}
+Is \(\displaystyle \sum^{\infty}_{n = 1} \frac{(-1)^n}{(\tan^{-1} n)^n}\) A.C?
+
+\soln
+\[\displaystyle a_n = \frac{(-1)^n}{(\tan^{-1} n)^n}\]
+\begin{itemize}
+\item Root Test
+\[\displaystyle \lim_{n \to \infty} \Big| a_n \Big|^{\frac{1}{n}} = \lim_{n \to \infty} \Big| \frac{1}{(\tan^{-1} n)^n} \Big|^{\frac{1}{n}} = \lim_{n \to \infty} \frac{1}{| \tan^{-1} n |} = \frac{1}{\frac{\pi}{2}} = \frac{2}{\pi} < 1\]
+\(\displaystyle \implies \sum^{\infty}_{n = 1} a_n\) is A.C
+\end{itemize}
+\end{eg}
+\section{Power Series 冪級數}
+\begin{defn}
+\[\displaystyle\sum^{\infty}_{n = 1} c_n (x - a)^n = c_0 (x - a)^0 + c_1 (x - a)^1 + c_2 (x - a)^2 + \cdots\]
+\(\displaystyle\sum^{\infty}_{n = 1} c_n (x - a)^n\) is a power series about \(a\) (centered at \(a\)) or a power series in \((x - a)\)
+\end{defn}
+\begin{notn}
+\begin{itemize}
+\item ``Power'' means ``\(n\)''
+\item Not a polynomial 
+\item variable \(x\) in \(a\) series
+\end{itemize}
+\end{notn}
+\begin{eg} Find the interval of convergence (收斂區間) and the ratio of convergence of \(\displaystyle \sum^{\infty}_{n = 1} \frac{(x - 3)^n}{n}\)
+
+\soln
+\[\displaystyle b_n = \frac{(x - 3)^n}{n} \quad \quad a = 3\]
+\[c_n = \left\{\begin{array}{rcl}
+\displaystyle \frac{1}{n} & , & n = 1, 2, 3 \cdots\\
+0 & , & n = 0
+\end{array}\right.\]
+Use Ratio Test
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{b_{n + 1}}{b_n} \Big| = \lim_{n \to \infty} \Bigg| \frac{\frac{(x - 3)^{n + 1}}{n + 1}}{\frac{(x - 3)^n}{n}} \Bigg| = \lim_{n \to \infty} \Big| \frac{(x - 3)n}{n + 1} \Big| = |x - 3| \lim_{n \to \infty} \Big| \frac{n}{n + 1} \Big| = |x - 3| = L\]
+\begin{itemize}
+\item \(|x - 3| < 1 \implies \displaystyle \sum^{\infty}_{n = 1} b_n\) is A.C
+\item \(|x - 3| > 1 \implies \displaystyle \sum^{\infty}_{n = 1} b_n\) is divergent
+\item \(|x - 3| = 1 \implies\) Inconclusive
+\begin{itemize}
+\item[(1)] \(x = 2 \quad \displaystyle \sum^{\infty}_{n = 1} \frac{(-1)^n}{n} \left(\begin{array}{l}
+\text{alternating series}\\
+\displaystyle k_n = \frac{1}{n} \searrow 0
+\end{array}\right)\)\\
+\(\implies \displaystyle \sum^{\infty}_{n = 1} \frac{(-1)^n}{n}\) converges 
+\item[(2)] \(x = 4 \quad \displaystyle \sum^{\infty}_{n = 1} \frac{1^n}{n} = \sum^{\infty}_{n = 1} \frac{1}{n}\) \quad (p-series with \(p = 1\))\\
+\(\implies\) diverges 
+\end{itemize}
+\end{itemize}
+I.O.C is \( 2 \leq x < 4\) or \([2, 4)\) and R.O.C \(=1\)
+\end{eg}
+\begin{eg}[Bessel Function]
+Find the I.O.C and R.O.C of \(\displaystyle \sum^{\infty}_{n = 1} \frac{(-1)^nx^{2n}}{2^{2n}(n!)^2}\)
+
+\soln
+\[\displaystyle b_n = \frac{(-1)^n(x - 0)^{2n}}{2^{2n}(n!)^2}\]
+Use Ratio Test
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{b_{n + 1}}{b_n} \Big| = \lim_{n \to \infty} \Bigg| \frac{\frac{\cancel{(-1)^{n + 1}}x^{2n + 2}}{2^{2n + 2}((n + 1)!)^2}}{\frac{\cancel{(-1)^n}x^{2n}}{x^{2n}(n!)^2}} \Bigg| = \lim_{n \to \infty} \Big| \frac{x^2}{4(n + 1)^2} \Big| = x^2 (\lim_{n \to \infty} \frac{1}{4(n + 1)^2}) = 0 \quad \forall x \in R\]
+I.O.C is \((- \infty, \infty)\) and R.O.C = \(\infty\)
+\end{eg}
+\begin{eg}
+Find the I.O.C of \(\displaystyle \sum^{\infty}_{n = 1} \frac{2^n(x - 1)^n}{n}\)
+
+\soln
+\[\displaystyle b_n = \frac{2^n(x - 1)^n}{n}\]
+Use Ratio Test
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{b_{n + 1}}{b_n} \Big| = \lim_{n \to \infty} \Bigg| \frac{\frac{2^{n + 1} (x - 1)^{n +1}}{n + 1}}{\frac{2^n(x - 1)^n}{n}} \Bigg| = \lim_{n \to \infty} \Big| \frac{2(x - 1)n}{n + 1} \Big| = |x - 1| \lim_{n \to \infty} \frac{2n}{n + 1} = 2 |x - 1|\]
+\begin{itemize}
+\item \(2|x - 1| < 1 \implies \displaystyle \sum^{\infty}_{n = 1} b_n\) is A.C
+\item \(2|x - 1| > 1 \implies \displaystyle \sum^{\infty}_{n = 1} b_n\) is divergent 
+\item \(2|x - 1| = 1 \implies\) Inconclusive
+\begin{itemize}
+\item[(1)] \(\displaystyle x = \frac{1}{2} b_n = \frac{2^n(-\frac{1}{2})^n}{n} = \frac{(-1)^n}{n}\\
+\implies \displaystyle \sum^{\infty}_{n = 1} b_n\) converges 
+\item[(2)] \(\displaystyle x = \frac{3}{2} b_n = \frac{2^n(\frac{1}{2})^n}{n} = \frac{1}{n}\\
+\implies \displaystyle \sum^{\infty}_{n = 1} b_n\) diverges
+\end{itemize}
+\end{itemize}
+I.O.C is \(\displaystyle \frac{1}{2} \leq x < \frac{3}{2}\)
+\end{eg}
+\begin{eg}
+Find the I.O.C and R.O.C of \(\displaystyle \sum^{\infty}_{n = 1} n!x^n\)
+ 
+\soln
+\[\displaystyle b_n =n!x^n\]
+Use Ratio Test
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{b_{n + 1}}{b_n} \Big| = \lim_{n \to \infty} \Big| (n + 1)x \Big| = |x| \lim_{n \to \infty} (n + 1)\]
+I.O.C is \(\{0\}\) and R.O.C \(= 0\)
+\end{eg}
+\section{Representation of Functions as Power Series}
+Q: Does a function has a power series representation?
+\[\displaystyle 1 + x + x^2 + \cdots = \sum^{\infty}_{n = 0} x^n = \frac{1}{1 - x} \quad \text{ as } |x| < 1\]
+\begin{eg}
+\[\displaystyle \frac{1}{1 + x^2} = \frac{1}{1 - (-x^2)} = \sum^{\infty}_{n = 0} (-x^2)^n \quad \text{ as } |-x^2| < 1\]
+\begin{itemize}
+\item \(\displaystyle \sum^{\infty}_{n = 0} (-x^2)^n = \sum^{\infty}_{n = 0} (-1)^n x^{2n}\)
+\item \(\displaystyle |-x^2| < 1 \implies x^2 < 1 \implies -1 < x < 1 \text{ or } |x| < 1\)
+\end{itemize}
+\end{eg}
+\begin{eg}
+\[\displaystyle \frac{1}{2 - x} = \frac{1}{2(1 - \frac{x}{2})} = \frac{1}{2} \frac{1}{1 - \frac{x}{2}} = \frac{1}{2} \sum^{\infty}_{n = 0} (\frac{x}{2})^n \quad \text{ as } \Big| \frac{x}{2} \Big| < 1\]
+\begin{itemize}
+\item \(\displaystyle \frac{1}{2} \sum^{\infty}_{n = 0} (\frac{x}{2})^n = \sum^{\infty}_{n = 0} 2^{-n-1} x^n\)
+\item \(\displaystyle \Big| \frac{x}{2} \Big| < 1 \implies |x| < 2 \implies -2 < x < 2\)
+\end{itemize}
+\end{eg}
+\begin{eg}
+\[\begin{array}{rcl}
+\displaystyle \frac{x^3}{2 + x^2} & = & \displaystyle x^3 (\frac{1}{x + x^2})\\
+& = & \displaystyle x^3 \frac{1}{2(1 + \frac{x^2}{2})}\\
+& = & \displaystyle \frac{x^3}{2} \frac{1}{1 - (- \frac{x^2}{2})}\\
+& = & \displaystyle \frac{x^3}{2} \sum^{\infty}_{n = 0} (- \frac{x^2}{2})^n\\
+& = & \displaystyle \frac{x^3}{2} \sum^{\infty}_{n = 0} (-1)^n \frac{1}{2^n} x^{2n}\\
+& = & \displaystyle \sum^{\infty}_{n = 0} \frac{(-1)^n}{2^{n + 1}} x^{2n + 3}
+\end{array}\]
+\end{eg}
+\section{Term by Term Differentiation and Integration}
+\begin{theorem}
+If \(\displaystyle \sum^{\infty}_{n = 0} c_n (x - a)^n\) has I.O.C \(|x - a| < r\) and let \(\displaystyle f(x) = \sum^{\infty}_{n = 0} c_n (x - a)^n\), then
+\begin{itemize}
+\item[(1)] Differentiation
+\[\begin{array}{rcl}
+\displaystyle f'(x) & = & \displaystyle  \frac{d}{dx} (\sum^{\infty}_{n = 0} c_n (x - a)^n\\
+& = & \displaystyle \sum^{\infty}_{n = 0} \frac{d}{dx}(c_n (x - a)^n) \quad x \in (a - r, a + r)\\
+& = & \displaystyle \sum^{\infty}_{n = 0} c_n \frac{d}{dx} ((x- a)^n)\\
+& = & \displaystyle 0 + c_1 + 2c_2(x - a)^1 + \cdots\\
+& = & \displaystyle \sum^{\infty}_{n = 1} c_n n(x - a)^{n - 1}
+\end{array}\]
+\item[(2)] Integration
+\[\begin{array}{rcl}
+\displaystyle \int f(x) dx & = & \displaystyle \int \sum^{\infty}_{n = 0} c_n (x - a)^n dx\\
+& = & \displaystyle \sum^{\infty}_{n = 0} (\int c_n (x - a)^n dx)\\
+& = & \displaystyle \sum^{\infty}_{n =0} (c_n \frac{1}{n + 1} (x - a)^{n + 1}) + C
+\end{array}\]
+\end{itemize}
+\end{theorem}
+\begin{eg}
+Find p.s.r of \(\displaystyle f(x) = ln (1 - x)\)
+
+\soln
+\[\displaystyle f'(x) = \frac{-1}{1 - x} = \sum^{\infty}_{n = 0} - x^n \quad \text{ as } |x| < 1\]
+\[ \displaystyle \int f'(x) dx = \int (\sum^{\infty}_{n = 0} -x^n) dx = - \sum^{\infty}_{n = 0} (\int x^n dx) = - \sum^{\infty}_{n = 0} \frac{1}{n + 1} x^{n + 1} + C \quad \tssteelblue{|x| < 1}\]
+\[\displaystyle f(x) = - \sum^{\infty}_{n = 0} \frac{1}{n + 1} x^{n + 1} + C \quad \tssteelblue{|x| < 1}\]
+let \(\displaystyle x = 0 \implies ln 1 0 + C \implies C = 0\)
+\[ln (1 - x) = \sum^{\infty}_{n = 0} \frac{-1}{n + 1} x^{n + 1} \quad \tssteelblue{|x| < 1}\]
+\end{eg}
+\begin{eg}
+Find p.s.r of \(\displaystyle f(x) = ln(1 - x)\)
+
+\soln
+\[\begin{array}{lcll}
+\displaystyle f'(x) = \frac{-1}{1 - x} & = & \displaystyle - \sum^{\infty}_{n = 0} x^n & \quad |x|< 1\\
+\displaystyle \int f'(x)dx & = & \displaystyle \int - \sum^{\infty}_{n = 0} x^n dx\\
+& = & \displaystyle - \sum^{\infty}_{n = 0} (\int x^n dx) & \quad |x| < 1\\
+& = & \displaystyle - \sum^{\infty}_{n = 0} \frac{1}{n + 1}x^{n + 1} & \quad |x| < 1\\
+\displaystyle ln(1 - x) + C & = & \displaystyle - \sum^{\infty}_{n = 0} \frac{1}{n + 1} x^{n + 1} & \quad |x| < 1
+\end{array}\]
+let \( x = 0\)
+\[\displaystyle ln 1 + C = 0 \implies C = 0\]
+\[\displaystyle ln (1 - x) = \sum^{\infty}_{n = 0} \frac{-1}{n + 1} x^{n + 1}\]
+\end{eg}
+\begin{eg}
+Find p.s.r of \(f(x) = \tan^{-1} x\)
+
+\soln
+\[\begin{array}{rcll}
+\displaystyle f'(x) & = &\displaystyle \frac{1}{1 + x^2}\\
+& = & \displaystyle \frac{1}{1 - 1(-x^2)}\\
+& = & \displaystyle \sum^{\infty}_{n = 0} (-x^2) & \quad |-x^2| < 1\\
+& = & \displaystyle \sum^{\infty}_{n = 0} ( -1)^n x^{2n} & \quad |x|< 1
+\end{array}\]
+\[\begin{array}{lcl}
+\displaystyle \int f'(x) dx & = & \displaystyle \int \sum^{\infty}_{n = 0} (-1)^n x^{2n} dx\\
+& = & \displaystyle \sum^{\infty}_{n = 0} (\int (-1)^n x^{2n} dx)\\
+& = & \displaystyle \sum^{\infty}_{n = 0} (-1)^n \frac{1}{2n + 1} x^{2n + 1} + C\\
+\displaystyle \tan^{-1} x & = & \displaystyle \sum^{\infty}_{n = 0} \frac{(-1)^n}{2n + 1} x^{2n + 1} + C
+\end{array}\]
+let \(x = 0\)
+\[\displaystyle \tan^{-1} 0 = 0 + C \implies C = 0\]
+\[\displaystyle \tan^{-1} x = \sum^{\infty}_{n = 0} \frac{(-1)^n}{2n + 1} x^{2n + 1} = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \cdots\]
+let \(x = 1\)
+\[\displaystyle \tan^{-1} 1 = 1 - \frac{1}{3}  + \frac{1}{5} - \frac{1}{7} + \cdots + \frac{d}{dx} (1 - x)^{-1} = ( 1 - x)^{-2}\]
+\end{eg}
+\begin{eg}
+Find p.s.r of \(\displaystyle f(x) = \frac{1}{(1 - x)^2}\)
+
+\soln
+\[\begin{array}{lcll}
+\displaystyle \int f(x) dx & = & \displaystyle \int ( 1-x)^{-2} dx\\
+& = & \displaystyle \frac{1}{1 - x} + C\\
+& = & \displaystyle \sum^{\infty}_{n = 0} x^n + C & \quad |x| < 1
+\end{array}\]
+\[\begin{array}{lcll}
+\displaystyle \frac{d}{dx} \int f(x) dx & = & \displaystyle \frac{d}{dx} \sum^{\infty}_{n = 0} x^n + C & \quad |x| < 1\\
+& = & \displaystyle \frac{d}{dx} (\sum^{\infty}_{n = 0} x^n) + \frac{d}{dx} C\\
+& = & \displaystyle \sum^{\infty}_{n = 0} (\frac{d}{dx} x^n)\\
+& = & \displaystyle \sum^{\infty}_{n = 1} nx^{n - 1}\\
+\displaystyle \frac{1}{(1 - x)^2} & = & \displaystyle \sum^{\infty}_{n = 1} nx^{n - 1} & \quad |x| < 1
+\end{array}\]
+\end{eg}
+\begin{eg}
+Does \(\displaystyle \sum^{\infty}_{n = 1} (-1)^n (\sqrt{x + 1} - \sqrt{n})\) converge?
+
+\soln
+\[\displaystyle a_n = \sqrt{n + 1} - \sqrt{n} < 0 \quad n = 1, 2, \cdots\]
+\begin{itemize}
+\item \(\displaystyle \lim_{n \to \infty} a_n = \lim_{n \to \infty} (\sqrt{n + 1} - \sqrt{n}) = \lim_{n \to \infty} \frac{(\sqrt{n + 1} - \sqrt{n})(\sqrt{n + 1} + \sqrt{n})}{(\sqrt{n + 1} + \sqrt{n})} = 0\)
+\item \(\displaystyle a_n = \frac{1}{\sqrt{n + 1} + \sqrt{n}} \searrow\)
+\end{itemize}
+\(\implies \displaystyle \sum^{\infty}_{n = 1} ( -1)^n a_n\) converges
+\end{eg}
+\begin{eg}
+Find p.s.r of \(\displaystyle \int \frac{dx}{1 + x^7}\)
+
+\soln
+\[\begin{array}{lcll}
+\displaystyle f(x) & = & \displaystyle \int \frac{dx}{1 + x^7}\\
+\displaystyle f'(x) & = & \displaystyle \frac{d}{dx} \int \frac{dx}{1 + x}\\
+& = & \displaystyle \frac{1}{1 + x^7}\\
+& = & \displaystyle \frac{1}{1 - (-x^7)}\\
+& = & \displaystyle \sum^{\infty}_{n = 0} (-x^7)^n & \quad |-x^7| < 1\\
+& = & \displaystyle \sum^{\infty}_{n = 0} (-1)^n x^{7n} & \quad |x| < 1
+\end{array}\]
+\[\begin{array}{lcll}
+\displaystyle \int f'(x)dx & = & \displaystyle \int \sum^{\infty}_{n = 0} (-1)^n x^{7n} & \quad |x| < 1\\
+f(x) & = & \displaystyle \sum^{\infty}_{n = 0} (-1)^n \int x^{7n} dx + C & \quad |x| < 1\\
+& = & \displaystyle \sum^{\infty}_{n = 0} \frac{(-1)^n}{7n + 1} x^{7n + 1} + C & \quad |x| < 1
+\end{array}\]
+\end{eg}
+\section{Taylor and Maclaurin Series}
+\begin{theorem}
+Assume \(\displaystyle f(x) = \sum^{\infty}_{n = 0} c_n (x - a)^n\) has p.s.r, then 
+\[\displaystyle c_n = \frac{f^{(n)}(a)}{n!}\]
+\end{theorem}
+\[\displaystyle f(x) = c_0 + c_1 (x - a) + c_2 (x - a)^2 + c_3 (x - a)^3 + c_4 (x - a)^4 + \cdots\]
+\begin{itemize}
+\item[(1)] let \(x = a \implies \displaystyle c_0 = f(a) = \frac{f(a)}{0!}\)
+\item[(2)] \(\displaystyle f'(x) = 0 + c_1 + 2c_2(x - a) + 3c_3(x - a)^2 + 4c_4(x - a)^3 + \cdots\)\\
+let \(x = a \implies \displaystyle c_1 = f'(a) = \frac{f'(a)}{1!}\)
+\item[(3)] \(\displaystyle f''(x) = 0 + 2c_2 + 3 \cdot 2 c_3(x - a) + 4 \cdot 3 c_4(x - a) + \cdots\)\\
+let \(x = a \implies \displaystyle c_2 = \frac{1}{2} f''(a) = \frac{f''(a)}{2!}\)
+\item[(4)] \(\displaystyle f'''(x) = 0 + 3 \cdot 2 c_3 + 4 \cdot 3 \cdot 2 c_4(x - a) + \cdots\)\\
+let \(x = a \implies \displaystyle c_3 = \frac{f'''(a)}{3!}\)\\
+\vdots
+\item[] \(\displaystyle c_n = \frac{f^{(n)}(a)}{n!}\)
+\end{itemize}
+\begin{defn}
+\begin{itemize}
+\item[(1)] \(\displaystyle \sum^{\infty}_{n = 0} c_n (x - a)^n \text{ , whose } c_n \frac{f^{(n)}(a)}{n!}\), is called Taylor series of \(f(x)\) about \(a\)\\
+(Given \(f(x)\) and \(a \implies\) Taylor series of \(f(x)\) of \(a\))
+\item[(2)] \(\displaystyle \sum^{\infty}_{n = 0} c_nx^n\) with \(\displaystyle c_n = \frac{f^{(n)}(0)}{n!}\) is called Maclaurin series of \(f(x)\)\\
+\end{itemize}
+\end{defn}
+\begin{eg}
+Find Maclaurin series of \(\displaystyle f(x) = e^x\)
+
+\soln
+\[\begin{array}{rcl}
+f(x) & = & e^x\\
+f'(x) & = & e^x\\
+& \vdots &\\
+f^{(n)}(x) & = & e^x\\
+f^{(n)}(0) & = & 1
+\end{array}\]
+\[\displaystyle c_n  = \frac{f^{(n)}(0)}{n!} = \frac{1}{n!}\]
+\(\therefore\) Maclaurin series of \(f(x) = e^x\) is 
+\[\displaystyle \sum^{\infty}_{n = 0} \frac{x^n}{n!} = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots + \frac{x^n}{n!}\]
+\[e^x = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \cdots\]
+\end{eg}
+\begin{eg}
+Find Maclaurin series of \(f(x) = \sin x\)
+
+\soln
+\[\begin{array}{rcrcrcr}
+f(x) & = & \sin x & \implies & f(0) & = & 0\\
+f'(x) & = & \cos x & \implies & f'(0) & = & 1\\
+f''(x) & = & -\sin x & \implies & f''(0) & = & 0\\
+f'''(x) & = & -\cos x & \implies & f'''(0) & = & -1\\
+f^{(4)}(x) & = & \sin x & \implies & f^{(4)}(0) & = & 0
+\end{array}\]
+\[\displaystyle c_n = \frac{(-1)^n}{(2n + 1)!}\]
+\(\therefore\) Maclaurin series of \(f(x) = \sin x\) is 
+\[\displaystyle \sum^{\infty}_{n = 0} \frac{(-1)^n}{(2n + 1)!}x^{2n + 1} = \frac{1}{1!} x - \frac{1}{3!} x^3 + \frac{1}{5!} x^5 - \frac{1}{7!} x^7 + \cdots (= \sin x)\]
+\[\displaystyle \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} + \cdots = \sum^{\infty}_{n = 0} \frac{(-1)^n}{(2n + 1)!} x^{2n + 1}\]
+\begin{itemize}
+\item[(1)] \(\sin (-x) = - \sin x\)
+\item[(2)] \(\displaystyle \lim_{n \to \infty} \frac{\sin x}{x} = 1\)
+\end{itemize}
+\end{eg}
+\begin{eg}
+Find Maclaurin series of \(f(x) = \cos x\)
+
+\soln
+\[\begin{array}{rcrcrcr}
+f(x) & = & \cos x & \implies & f(0) & = & 1\\
+f'(x) & = & -\sin x & \implies & f'(0) & = & 0\\
+f''(x) & = & -\cos x & \implies & f''(0) & = & -1\\
+f'''(x) & = & \sin x & \implies & f'''(0) & = & 0\\
+f^{(4)}(x) & = & \cos x & \implies & f^{(4)}(0) & = & 1
+\end{array}\]
+\[\begin{array}{rcl}
+\displaystyle \sum^{\infty}_{n = 0} \frac{f^{(n)}(0)}{n!} & = & \displaystyle \frac{f(0)}{0!} + \frac{f'(0)}{1!}x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 + \cdots\\
+& = & \displaystyle 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots + \frac{(-1)^n}{(2n)!} x^{2n} + \cdots\\
+& = & \displaystyle \sum^{\infty}_{n = 0} \frac{(-1)^n}{(2n)!} x^{2n}\\
+& = & \cos x
+\end{array}\]
+Q: What is the I.O.C of \(\displaystyle \sum^{\infty}_{n = 0} \frac{(-1)^n}{(2n + 1)!} x^{2n + 1}\)?
+\[\displaystyle a_n = \frac{(-1)^n}{(2n + 1)!} x^{2n + 1}\]
+Use Ratio Test
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{a_{n + 1}}{a_n} \Big| = \lim_{n \to \infty} \Bigg| \frac{\frac{\cancel{(-1)^{n + 1}}}{(2n + 3)!}x^{2n + 3}}{\frac{\cancel{(-1)^n}}{(2n + 1)!}x^{2n + 1}}\Bigg| = \lim_{n \to \infty} \Big| \frac{x^2}{(2n + 2)(2n + 3)} \Big| = x^2 (\lim_{n \to \infty} \frac{1}{(2n + 2)(2n + 3)}) = 0\]
+\end{eg}
+\begin{lemma}
+\[\displaystyle \lim_{n \to \infty} (n!)^{\frac{1}{n}} = \infty\]
+\end{lemma}
+\begin{eg}
+Is \(\displaystyle \sum^{\infty}_{n = 0} \frac{(-3)^n}{n!}\) A.C?
+
+\soln
+Use Root Test
+\begin{itemize}
+\item \(\displaystyle a_n = \frac{(-3)^n}{n!}\)
+\item \(\displaystyle \lim_{n \to \infty} |a_n|^{\frac{1}{n}} = \lim_{n \to \infty} \frac{3}{(n!)^{\frac{1}{n}}} = 0 < 1\)
+\end{itemize}
+\(\displaystyle \implies \sum^{\infty}_{n = 0}\) is A.C
+\end{eg}
+\begin{eg}
+Find I.O.C of \(\displaystyle \sum^{\infty}_{n = 0} \frac{(-1)^n x^{2n}}{x^{2n}(n!)^2}\)
+
+\soln
+Use Root Test
+\begin{itemize}
+\item \(\displaystyle a_n = \frac{(-1)^n x^{2n}}{x^{2n}(n!)^2}\)
+\item \(\displaystyle \lim_{n \to \infty} |a_n|^{\frac{1}{n}} = \lim_{n \to \infty} \frac{x^2}{4((n!)^{\frac{1}{n}})^2} = \frac{x^2}{4} \lim_{n \to \infty} \frac{1}{((n!)^{\frac{1}{n}})^2} = 0 \quad \forall x \in R < 1\)
+\end{itemize}
+\(\implies\) I.O.C is \(R\) or \((-\infty, \infty)\)
+\end{eg}
+\begin{eg}
+Find I.O.C of \(\displaystyle \sum^{\infty}_{n = 0} n!x^n\)
+
+\soln
+Use Root Test
+\begin{itemize}
+\item \(\displaystyle a_n = n!x^n\)
+\item \(\displaystyle \lim_{n \to \infty} |x|(n!)^{\frac{1}{n}} = (\lim_{n \to \infty} (n!)^{\frac{1}{n}}) |x| = \left\{ \begin{array}{rcl}
+0 < 1 &, & x = 0\\
+\infty > 1 &, & x \neq 0
+\end{array} \right.\)
+\end{itemize}
+\(\implies\) I.O.C is \({0}\)
+\end{eg}
+\begin{eg}
+Find M.S of \(\displaystyle f(x) = \left\{ \begin{array}{rcl}
+\displaystyle e^{-\frac{1}{x^2}} &, & x \neq 0\\
+0 &, & x = 0
+\end{array} \right.\)
+
+\soln
+\[\displaystyle \sum^{\infty}_{n = 0} \frac{f^{(n)}(0)}{n!}x^n\]
+\[\begin{array}{lcl}
+f(0) & = & 0\\
+f'(0) & = & \displaystyle \lim_{h \to \infty} \frac{f(0 + h) - f(0)}{h}\\
+& = & \displaystyle \lim_{h \to \infty} \frac{e^{-\frac{1}{h^2}}}{h}\\
+& = & \displaystyle \lim_{m \to \infty} \frac{e^{-m^2}}{\frac{1}{m}}\\
+& = & \displaystyle \lim_{m \to \infty} \frac{m}{e^{m^2}}\\
+& \overset{L}{=} & \displaystyle \lim_{m \to \infty} \frac{1}{2me^{m^2}}\\
+& = & 0\\
+f''(0) & = & \displaystyle \lim_{h \to \infty} \frac{f'(h) - f'(0)}{h}\\
+& = & \displaystyle \lim_{h \to \infty} \frac{e^{- \frac{1}{h^2}}}{2h^4}\\
+& = & 0\\
+& \vdots &\\
+f^{(n)}(0) & = & 0 \quad n = 1, 2, \cdots
+\end{array}\]
+M.S of \(f(x)\) is \(\displaystyle \sum^{\infty}_{n = 0} \frac{0}{n!}x^n = 0\) but \(f(x) \neq 0\)
+\end{eg}
+\begin{notn}
+\[\begin{tabular}{c|cc}
+& \text{限制} & \text{equal to Taylor series}\\\hline
+11.9 & \text{Yes} & \text{一定}\\
+11.10 & \text{No} & \text{不一定}
+\end{tabular}\]
+\end{notn}
+\begin{eg}
+\[\begin{array}{rcl}
+\displaystyle \lim_{x \to 0} \frac{e^x - 1 - x}{x^2} & = & \displaystyle \lim_{x \to 0} \frac{(1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \cdots) - 1 -x}{x^2} = \frac{1}{2}
+\end{array}\]
+\end{eg}
+\begin{eg}
+Find the first non-zero terms in the Maclaurin series of \(f(x)\)
+
+\soln
+\begin{itemize}
+\item[(a)]\(f(x) = \tan x\)\\
+\[\begin{array}{rcl}
+\tan x & = & \displaystyle \frac{\sin x}{\cos x}\\
+\sin x & = & \displaystyle x - \frac{x^3}{6} + \frac{x^5}{120} - \cdots \quad x \in R\\
+\cos x & = & \displaystyle 1 - \frac{x^2}{2} + \frac{x^4}{24} - \cdots \quad x \in R\\
+\end{array}\]
+\[\begin{array}{rccccccccc}
+&& x & + & \displaystyle \frac{x^3}{3} & + & \displaystyle \frac{2}{15} x^5\\ \cline{3-9}
+\displaystyle 1 - \frac{x^2}{2} + \frac{x^4}{24} - \cdots & ) & x & - & \displaystyle \frac{x^3}{6} & + & \displaystyle \frac{x^5}{120} & - & \cdots\\
+&& x & - & \displaystyle \frac{x^3}{2} & + & \displaystyle \frac{x^5}{24}\\ \cline{3-9}
+&&&& \displaystyle \frac{x^3}{3} & - & \displaystyle \frac{x^5}{30}\\
+&&&& \displaystyle \frac{x^3}{3} & - & \displaystyle \frac{x^5}{6} & + & \displaystyle \frac{x^7}{72}\\\cline{3-9}
+&&&&&& \displaystyle \frac{x}{15} x^5
+\end{array}\]
+\item[(b)] \(f(x) = e^x \sin x\)\\
+\[\begin{array}{rcl}
+e^x & = & \displaystyle 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \cdots \quad x \in R\\
+\sin x & = & \displaystyle x - \frac{x^3}{6} + \frac{x^5}{120} - \cdots \quad x \in R\\
+e^x \sin x & = & \displaystyle (1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \cdots) \cdot (x - \frac{x^3}{6} + \frac{x^5}{120} - \cdots)\\
+& = & \displaystyle x + x^2 + x^3 (- \frac{1}{6} + \frac{1}{2})\\
+& = & \displaystyle x + x^2 + \frac{x^3}{3} + \cdots \quad x \in R
+\end{array}\]
+\end{itemize}
+\end{eg}
+\begin{eg}
+Find the Taylor series for \(f(x) = e^x\) at \(a = 2\)
+
+\soln
+\[\displaystyle \sum^{\infty}_{n = 0} \frac{f^{(n)}(2)}{n!}(x - 2)^{n} = \sum^{\infty}_{n = 0} \frac{e^2}{n!}(x - 2)^n = e^2 (\sum^{\infty}_{n = 0} \frac{1}{n!} (x - 2)^n)\]
+Find I.O.C
+\[\displaystyle \lim_{n \to \infty} (n!)^{\frac{1}{n}} = \infty\]
+Use Root Test
+\[\begin{array}{rcl}
+\displaystyle \lim_{n \to \infty} \frac{|x - 2|}{(n!)^{\frac{1}{n}}} & = & \displaystyle |x - 2| \lim_{n \to \infty} \frac{1}{(n!)^{\frac{1}{n}}}\\
+& = & \displaystyle |x - 2| \cdot 0\\
+& = & 0 \quad \forall x \in R
+\end{array}\]
+\(\implies \text{I.O.C is } R \text{ or } (-\infty, \infty)\)
+\end{eg}
+\begin{eg}
+Use the Maclaurin series for \(f(x) = \sin x\) to find the Maclaurin series for \(g(x) = \cos x\)
+
+\soln
+\[\begin{array}{rcl}
+\sin x & = & \displaystyle x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots \quad x \in R\\
+& = & \displaystyle \sum^{\infty}_{n = 0} \frac{(-1)^n}{(2n + 1)!} x^{2n + 1} \quad x \in R\\
+\displaystyle \int \sin x & = & \displaystyle \frac{d}{dx} (\sum^{\infty}_{n = 0} \frac{(-1)^n}{(2n + 1)!} x^{2n + 1})\\
+& = & \displaystyle \sum^{\infty}_{n = 0} (\frac{(-1)^n}{(2n + 1)!} (2n + 1)x^2n)\\
+& = & \displaystyle \sum^{\infty}_{n = 0} \frac{(-1)^n}{(2n)!} \quad x \in R
+\end{array}\]
+\end{eg}
+\begin{defn}
+\(\displaystyle Tn(x) = \sum^n_{k = 0} \frac{f^{(k)}(a)}{k!} (x - a)^k\): the n-th degree of Taylor polynomial of \(f\) at \(a\) 
+\end{defn}
+\section{Taylor Inequality}
+\begin{defn}
+If 
+\[|f^{(n + 1)} (x)| \leq M \text{ for } |x - a| \leq d\] 
+Then
+\[\displaystyle |f(x) - Tn(x)| \leq \frac{M}{(n + 1)!} (x- a)^{n + 1} \text{ for } |x - a| \leq d\]
+Where 
+\[\displaystyle Tn(x) = \sum^{\infty}_{k = 0} \frac{f^{(k)} (a)}{k!} (x - a)^k\]
+\(Rn(x) = f(x) - Tn(x)\): Remainder to of Taylor series of \(f\) at \(a\)
+\end{defn}
+\begin{eg}
+Show that \(\displaystyle e^x = \sum^{\infty}_{n = 0} \frac{x^n}{n!}, x \in R\)
+
+\soln
+\begin{itemize}
+\item I.O.C is \(R\)\\
+Use Ratio Test
+\[\displaystyle a_n = \frac{x^n}{n!}\]
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{a_{n + 1}}{a_n} \Big| = \lim_{n \to \infty} \Bigg| \frac{\frac{x^{n + 1}}{(n + 1)!}}{\frac{x^n}{n!}} \Bigg| = |x| \lim_{n \to \infty} \frac{1}{n + 1} = 0 < 1 \quad \forall x \in R\]
+\item \(f(x) = e^x \implies f^{(n)} (x) = e^x \quad \forall x = 0, 1, 2, \cdots\)\\
+When \(|x| \leq d\) 
+\[ |e^x| \leq e^d = M\]
+\[M = e^d, a = 0\] 
+By Taylor Inequality,
+\[\displaystyle \Big| f(x) - \sum^{\infty}_{k = 0} \frac{x^k}{k!} \Big| \leq \frac{e^d}{(n + 1)!} x^{n + 1}\]
+Use the fact \(\displaystyle \sum^{\infty}_{n = 0} \frac{x^n}{n!}\) conveys \(\forall x \in R\)
+\[\displaystyle \lim_{n \to \infty} a_n = 0 \quad \forall x \in R\]
+\[\displaystyle \lim_{n \to \infty} \frac{x^n}{n!} = 0\]
+\[\displaystyle \lim_{n \to \infty} \Big| f(x) - \sum^{\infty}_{k =0} \frac{x^k}{k!} \Big| = 0\]
+\[\displaystyle \sum^{\infty}_{k = 0} \frac{x^k}{k!} = f(x) = e^x\]
+\end{itemize}
+\end{eg}
+\begin{eg}
+Show that \(\displaystyle (\infty)^{\frac{1}{\infty}} = \infty^0\)
+
+\soln
+\[\displaystyle \lim_{n \to \infty} (n!)^{\frac{1}{n}} = \infty\]
+\[\displaystyle e^x = 1 + x + \frac{x^2}{2!} + \cdots + \frac{x^n}{n!} + \cdots \quad x \in R\]
+let \(x = n\)
+\[\begin{array}{rcl}
+e^x & \geq & \displaystyle \frac{x^n}{n!} \quad x > 0\\
+e^n & \geq & \displaystyle \frac{n^n}{n!}\\
+(e^n)^{\frac{1}{n}} & \geq & \displaystyle \frac{(n^n)^{\frac{1}{n}}}{(n!)^{\frac{1}{n}}}\\
+e & \geq & \displaystyle \frac{n}{(n^n)^{\frac{1}{n}}}\\
+e(n!)^{\frac{1}{n}} & \geq & \displaystyle n\\
+\displaystyle e \lim_{n \to \infty} (n!)^{\frac{1}{n}} & \geq & \displaystyle \lim_{n \to \infty} n\\
+\displaystyle \lim_{n \to \infty} (n!)^{\frac{1}{n}} & \geq & \displaystyle \frac{\displaystyle \lim_{n \to \infty} n}{e} = \infty
+\end{array}\]
+\end{eg}
+\subsection*{Show Taylor Inequality}
+Idea F.T.C
+\[\begin{array}{rcl}
+f(x) & = & \displaystyle f(a) + \int^x_a f'(t)dt\\
+& = & \displaystyle f(a) + \int^x_a f'(t)d(t-x)\\
+& \overset{I.B.P}{=} & \displaystyle f(a) + f'(t)(t-x) \Big|^{t = x}_{t = a} - \int^x_a (t - x)f''(t)dt\\
+& = & \displaystyle f(a) - f'(a)(a -x) - \int^x_a \frac{1}{2} f''(t) d((t-x)^2)\\
+& \overset{I.B.P}{=} & \displaystyle f(a) - f'(a)(a - x) - \frac{1}{2} ( f''(t)(t - x)^2 \Big|^{t = x}_{t = a} - \int^x_a (t - x)^2 f'''(t)dt)\\
+& = & \displaystyle f(a) + f'(a)(x - a) + \frac{1}{2}(1 - f''(a)(a - x)^2) + \frac{1}{2}\int^x_a (t - x)^2f'''(t)dt\\
+& = & \displaystyle f(a) + f'(a)(x - a) + \frac{1}{2} f''(a)(x - a)^2 + \frac{1}{3!} \int^x_a f'''(t)d((t - x)^3)\\
+& \overset{I.B.P}{=} & \displaystyle f(a) + f'(a)(x - a) + \frac{1}{2}f''(a)(x - a)^2 + \frac{1}{3!} f'''(a)(x - a)^3 \Big|^{t = x}_{t = a} - \int^x_a (t - x)^3 f^{(4)}(t)dt\\
+& = & \displaystyle f(a) + f'(a)(x -a) + \frac{1}{2} f''(a)(x - a)^2 + \frac{1}{3!}f'''(a)(x -a)^3 - \frac{1}{3!} \int^x_a (t - x)^3 f^{(4)}(t)dt\\
+& \vdots &\\
+f(x) & = & \displaystyle f(a) + f'(a)(x - a) + \frac{1}{2!} f''(a)(x - a)^2 + \cdots + \frac{1}{n!} f^{(n)}(a) (x - a)^n\\
+&& \displaystyle + \underline{(-1)^n \frac{1}{n!} \int^x_a (t - x)^n f^{(t + 1)}(t)dt} \quad \tsorange{Rn(x)}\\
+& = & \displaystyle \tssteelblue{\sum^{\infty}_{k = 0} \frac{f^{(n)}(a)}{k!} (x - a)^k} + \tsorange{\frac{(-1)^n}{n!} \int^x_a (t - x)^n f^{(n + 1)}(t)dt}\\
+& = & \tssteelblue{Tn(x)} + \tsorange{Rn(x)}
+\end{array}\]
+\begin{proof} Taylor Inequality
+\[\begin{array}{rcl}
+Rn(x) & = & \displaystyle \frac{1}{n!} \int^x_a (x - t)^n f^{(n + 1)}(t)dt\\
+|Rn(x)| & \leq & \displaystyle \frac{1}{n!} \int^x_a |x - t||f^{(n + 1)}(t)|dt\\
+& \leq & \displaystyle \frac{1}{n!} \int^x_a |x - t|^n Mdt\\
+& = & \displaystyle \frac{n}{n!} \frac{(x - a)^{n + 1}}{n + 1}\\
+& = & \displaystyle \frac{M}{(n + 1)!} (x - a)^{n + 1}\\
+& \leq & \displaystyle \frac{M}{(n + 1)!} |x - a|^{n + 1}
+\end{array} \quad \quad \quad
+\begin{array}{rcl}
+\displaystyle \int^x_a |x - t|^n dt & = & \displaystyle \int^x_a (x - t)^n dt\\
+& = & \displaystyle \frac{-1}{n + 1} (x - t)^{n + 1} \Big|^{t = x}_{t = a}\\
+& = & \displaystyle \frac{-1}{n + 1} (0 - (x - a)^{n + 1})\\
+& = & \displaystyle \frac{1}{n + 1} (x - a)^{n + 1}
+\end{array}\]
+\end{proof}
+
+\begin{eg}
+\begin{itemize}
+\item[(a)] Approximate \(f(x) = x^{\frac{1}{3}}\) by a Taylor polynomial of degree \(2\) at \(a = 8\)
+
+\soln
+\[T_2(x) = \displaystyle \sum^2_{k = 0} \frac{f^{(k)}(2)}{k!} (x - a)^k\]
+\[\begin{array}{rcl}
+f(x) & = & \displaystyle x^{\frac{1}{3}}\\
+f'(x) & = & \displaystyle \frac{1}{3} x^{-\frac{2}{3}}\\
+f''(x) & = & \displaystyle - \frac{2}{9}x^{-\frac{5}{3}}
+\end{array} \quad \quad \quad
+\begin{array}{rcl}
+f(8) & = & 2\\
+f'(8) & = & \displaystyle \frac{1}{12}\\
+f''(8) & = & \displaystyle - \frac{2}{9} \cdot \frac{1}{32} = \frac{-1}{144}
+\end{array}\]
+\[\displaystyle T_2 (x) = f(8) + f'(8)(x - 8) + \frac{f''(8)}{2} (x -8)^2 = 2 + \frac{1}{12} (x - 8) - \frac{1}{288}(x - 8)^2\]
+\(T_2(x)\) is a quadratic (二次) fcn.
+\item[(b)] How accurate is the approximation when \(7 \leq x \leq 9\)?
+
+\soln
+\[n = 2, a = 8, d = 1\]
+\[\displaystyle f'''(x) = \frac{10}{27} \cdot \frac{1}{x^{\frac{8}{3}}}\]
+\[\displaystyle |f'''(x)| = \Big| \frac{10}{27} \cdot \frac{1}{x^{\frac{8}{3}}} \Big| \leq \frac{10}{27} \cdot \frac{1}{7^{\frac{8}{3}}} \tssteelblue{= M} \text{ when } |x - 8| \leq 1\]
+\[\displaystyle |R_2(x)| \leq \frac{M}{3!} |x - 8|^3 \leq \frac{1}{3!} \cdot \frac{10}{27} \cdot \frac{1}{7^{\frac{8}{3}}} \cdot 1^3 \Doteq 0.000344\]
+\[|x - 8| \leq 1\]
+\end{itemize} 
+\end{eg}
+\section{Review}
+\begin{itemize}
+\item Divergence Test\\
+\(\displaystyle \sum^{\infty}_{n = 0} a_n\) converges \(\implies \displaystyle \lim_{n \to \infty} a_n = 0\)\\
+(\(\displaystyle \lim_{n \to \infty} a_n \neq 0\) or doesn't exist \(\implies \displaystyle \sum^{\infty}_{n = 0}\) diverges)
+\item Alternating Series Test
+\[\displaystyle \sum^{\infty}_{n = 0} (-1)^n a_n \quad a_n > 0\]
+\begin{itemize}
+\item[(1)] \(\displaystyle \lim_{n \to \infty} a_n = 0\)
+\item[(2)] \(a_n \searrow\) in \(n\)
+\end{itemize}
+\item Integral test
+\begin{itemize}
+\item[(1)] \(a_n > 0 \quad \forall n = 1, 2, \cdots\)
+\item[(2)] \(a_n \searrow \) in \(a\)
+\end{itemize}
+\(\displaystyle \sum^{\infty}_{n = 1} a_n \neq \int^{\infty}_1 a_n dn\)\\
+Both converge or diverge
+\item Comparison Test
+\[\displaystyle \sum a_n \quad \sum b_n \quad \quad a_n, b_n > 0\]
+\begin{itemize}
+\item 減法
+\begin{itemize}
+\item[(1)] \(\displaystyle a_n \geq b_n \quad \sum a_n \text{ converges } \implies \sum b_n\) converges
+\item[(2)] \(\displaystyle a_n \geq b_n \quad \sum b_n \text{ diverges }\)\\
+\(\implies \sum a_n\) diverges
+\end{itemize}
+\item 除法
+\(\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = L\)
+\begin{itemize}
+\item[(1)] \( L = 0 \quad \displaystyle \sum b_n \text{ converges } \implies \sum a_n\) converges
+\item[(2)] \( L = \infty\) \quad \(\displaystyle \lim_{n \to \infty} \frac{b_n}{a_n} = 0\)
+\item[(3)] \(L \neq 0\) and \(L \neq \infty \quad (0 < L < \infty) \implies \displaystyle \sum a_n \text{ and } \sum b_n\) both converge or diverge
+\end{itemize}
+\end{itemize}
+\item Ratio and Root Test
+\begin{itemize}
+\item Ratio Test\\
+\[\displaystyle \lim_{n \to \infty} \Big| \frac{a_{n+1}}{a_n}\Big| = L\]
+\begin{itemize}
+\item[(1)] \(L < 1 \quad \displaystyle \sum a_n \text{ is A.C } \implies \sum a_n\) converges \quad (i.e \(\displaystyle \sum |a_n|\) converges)
+\item[(2)] \(L > 1 \quad \displaystyle \sum a_n\) diverges
+\item[(3)] \(L = 1 \quad\) Inconclusive\\
+\(\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n} \text{ diverges } \implies L = 1\\
+\displaystyle \sum^{\infty}_{n = 1} \frac{1}{n^2} \text{ converges } \implies L = 1\)
+\end{itemize}
+\item Root test
+\[\displaystyle \lim_{n \to \infty} |a_n|^{\frac{1}{n}} = L\]
+\begin{itemize}
+\item[(1)] \(L < 1 \quad \displaystyle \sum a_n \text{ is A.C } \implies \sum a_n\) converges \quad (i.e \(\displaystyle \sum |a_n|\) converges)
+\item[(2)] \(L > 1 \quad \displaystyle \sum a_n\) diverges
+\item[(3)] \(L = 1 \quad\) Inconclusive
+\end{itemize}
+\end{itemize}
+\item Power Series: Representation\\
+\(\displaystyle \sum^{\infty}_{n = 0} c_n (x - a)^n\) depends on \(x\)\\
+I.O.C is \(|x -a| \leq R\)\\
+R.O.C is \(R\)\\
+no negative power 
+\begin{itemize}
+\item[(1)] \(\displaystyle \frac{1}{1 - x} = 1 + x + x^2 + \cdots = \sum^{\infty}_{n = 0} x^n \quad |x| < 1\)
+\item[(2)] \(\displaystyle \int f'(x)dx = f(x) + C\\
+\int \sum (c_n (x - a)^n) dx\\
+\sum (\int c_n(x - a)^n dx)\)
+\end{itemize}
+\item Taylor Series of \(f\) at \(a\)
+\(\displaystyle \sum^{\infty}_{n = 0} \frac{f^{(n)}(a)}{n!}\)\\
+when \(a = 0 \implies\) Maclaurin series 
+\begin{itemize}
+\item[(1)] \(\displaystyle e^x = \sum^{\infty}_{n = 0} \frac{x^n}{n!} \quad x \in R\)
+\item[(2)] \(\displaystyle \sin x  = \sum^{\infty}_{n = 0} \frac{(-1)^n}{(2n + 1)!}x^{2n + 1} \quad x \in R\)
+\item[(3)] \(\displaystyle \cos x = \sum^{\infty}_{n = 0} \frac{(-1)^n}{(2n)!} x^{2n} \quad x \in R\)
+\end{itemize}
+\end{itemize}
